@@ -1,7 +1,7 @@
 name: ethiopiancalendar
 description: A new Flutter package project.
 version: 0.0.1
-author: Nabute Nigusse nabute925@gmail.com
+author: Nabute Nigusse nabute925@gmail.com;
 homepage:
 
 environment:
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  equatable: ^1.1.0
 
 dev_dependencies:
   flutter_test:
