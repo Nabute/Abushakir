@@ -3,6 +3,7 @@
 //
 
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
 abstract class Calendar extends Equatable {
   @override
@@ -45,8 +46,9 @@ class EthiopianCalendar extends Calendar {
     "value": 13
   };
 
-
-  EthiopianCalendar(this.moment);
+  
+  // Make sure the variable moment has a non-null value using an assertion.
+  EthiopianCalendar({@required this.moment}) : assert(moment.day != null && moment.month != null && moment.year != null);
 
   static EthiopianCalendar now() {
     return parse(DateTime.now().toString());
