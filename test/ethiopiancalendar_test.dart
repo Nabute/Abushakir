@@ -20,5 +20,6 @@ void main() {
   //TODO ጷጉሜን - Regular = September 06 
 
   // Holidays
+  //TODO አዲስ አመት - Regular = September 11, Leap Year = September 12 
 
 }
