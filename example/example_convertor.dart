@@ -30,4 +30,16 @@ void main() {
   print("The date is ${a.getDate()}");
   print("The Month is ${a.getMonthName()}");
 //  var moonLanding = new DateTime.parse("1969, 7, 20, 20, 18, 04");
+
+/////////////////////////////////////////////////////////////////////
+// Bahire Hasab (Abusakir) Implementation Examples
+  print("********************HAHIRE HASAB***********************");
+  BahireHasab b = BahireHasab(year: 2012);
+  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
+  print("Wenber:= ${b.getWenber()}");
+  print("Metkih:= ${b.getMetkih()}");
+  print("Abekte:= ${b.getAbekte()}");
+  print("Meskerem 1:= ${b.getMeskeremOne(returnName: true)}");
+  print("***********************************************************");
+  print('Test:= ${b.getNenewe()}');
 }
