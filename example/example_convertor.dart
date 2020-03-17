@@ -24,10 +24,29 @@ void main() {
   print(now.toString());
   print(now.toJson());
   print(now.toIso8601String());
+  print("The Month is ${now.getMonthName()}");
   var a = EthiopianCalendar.parse("1995-04-27 00:00:00");
+  print(a.runtimeType);
   print("ToString ${a.toString()}");
   print("ToJson ${a.toJson()}");
   print("The date is ${a.getDate()}");
   print("The Month is ${a.getMonthName()}");
 //  var moonLanding = new DateTime.parse("1969, 7, 20, 20, 18, 04");
+
+  /// TODO: Try to print all days of the month for a single year
+
+/////////////////////////////////////////////////////////////////////
+// Bahire Hasab (Abusakir) Implementation Examples
+  print("********************HAHIRE HASAB***********************");
+  BahireHasab b = BahireHasab();
+  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
+  print("Wenber:= ${b.getWenber()}");
+  print("Metkih:= ${b.getMetkih()}");
+  print("Abekte:= ${b.getAbekte()}");
+  print("Meskerem 1:= ${b.getMeskeremOne(returnName: true)}");
+  print("*********************  Movable Feasts and Holidays   **********************");
+//  print('Nenewe Tsom:= ${b.getNenewe()}');
+//  print("Abiy Tsom:= ${b.getAbiyTsom()}");
+  print("Getting single Beal's date:= ${b.getSingleBealOrTsom("ቅለት")}");
+  print("Bealat:= ${b.getAllAtswamat()}");
 }
