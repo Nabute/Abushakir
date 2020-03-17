@@ -122,7 +122,7 @@ class EthiopianCalendar extends Calendar {
   }
 
   String getMonthName(){
-    return _months[getMonth()];
+    return _months[getMonth()-1];
   }
 
   int getDay() {
@@ -279,6 +279,14 @@ class EthiopianCalendar extends Calendar {
   static final RegExp _parseFormat = RegExp(
       r'^([+-]?\d{4,6})-?(\d\d)-?(\d\d)' // Day part.
       r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d+))?)?)?$' // Time part.
-      r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$'); // Timezone part.
+      r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
+
+  EthiopianCalendar nextMonth(){}
+  EthiopianCalendar previousMonth(){}
+
+
+  EthiopianCalendar nextYear(){}
+  EthiopianCalendar previousYear(){}
+
 
 }

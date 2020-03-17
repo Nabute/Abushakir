@@ -76,17 +76,72 @@ class BahireHasab extends Equatable {
    * There are a few rules or theorems about this idea
    * 1:=
    */
-  Map<String, dynamic> getNenewe() {}
-  Map<String, dynamic> getAbiyTsom() {}
-  Map<String, dynamic> getDebreZeyit() {}
-  Map<String, dynamic> getHosaena() {}
-  Map<String, dynamic> getSiklet() {}
-  Map<String, dynamic> getTinsae() {}
-  Map<String, dynamic> getRikbeKahinat() {}
-  Map<String, dynamic> getErget() {}
-  Map<String, dynamic> getPeraklitos() {}
-  Map<String, dynamic> getTsomeHawariat() {}
-  Map<String, dynamic> getTsomeDihinet() {}
+  Map<String, dynamic> getNenewe() {
+    int metkih = getMetkih();
+    String meskerem1 = getMeskeremOne(returnName: true);
+    int month = yebealeMetkihWer();
+    int date;
+    int dayTewsak;
+    _yeeletTewsak.forEach((el) => {
+          if (el['key'] ==
+              _weekdays[(_weekdays.indexOf(meskerem1) + metkih - 1) % 7])
+            dayTewsak = el['value']
+        });
+    String monthName = dayTewsak + metkih > 30 ? 'የካቲት' : 'ጥር';
+    if (month == 2) {
+      // ጥቅምት
+      monthName = 'የካቲት';
+      String tikimt1 = _weekdays[(_weekdays.indexOf(meskerem1) + 2) % 7];
+      String metkihElet =
+          _weekdays[(_weekdays.indexOf(tikimt1) + metkih - 1) % 7];
+      _yeeletTewsak.forEach((el) => {
+            if (el['key'] == _weekdays[_weekdays.indexOf(metkihElet)])
+              dayTewsak = el['value']
+          });
+    }
+    date = metkih + dayTewsak;
+    return {"month": monthName, "date": date % 30};
+  }
 
+  List getAllAtswamat() {
+    Map<String, dynamic> mebajaHamer = getNenewe();
+    List result = List();
 
+    _yebealTewsak.forEach((beal, numOfDays) {
+      result.add({
+        "beal": beal,
+        "day": {
+          "month": _months[_months.indexOf(mebajaHamer['month']) +
+              (mebajaHamer['date'] + numOfDays) ~/ 30],
+          "date": (mebajaHamer['date'] + numOfDays) % 30
+        }
+      });
+    });
+    return result;
+  }
+
+  bool isMovableHoliday(String holidayName) {
+    if(_yebealTewsak.keys.contains(holidayName)) {
+      return true;
+    }
+    else throw BealNameException;
+
+  }
+
+  Map<String, dynamic> getSingleBealOrTsom(String name) {
+    try {
+      bool status = isMovableHoliday(name);
+      if (status) {
+        Map<String, dynamic> mebajaHamer = getNenewe();
+        int target =_yebealTewsak[name];
+        return {
+          "month": _months[_months.indexOf(mebajaHamer['month']) +
+              (mebajaHamer['date'] + target) ~/ 30],
+          "date": (mebajaHamer['date'] + target) % 30
+        };
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }

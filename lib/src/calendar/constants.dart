@@ -33,8 +33,6 @@ const List<String> _weekdays = [
 
 /// Weekday's Tewsak
 List<Map<String, dynamic>> _yeeletTewsak = [
-  null,
-  null,
   {"key": "አርብ", "value": 2},
   {"key": "ሐሙስ", "value": 3},
   {"key": "ረቡዕ", "value": 4},
@@ -45,15 +43,19 @@ List<Map<String, dynamic>> _yeeletTewsak = [
 ];
 
 /// Holiday's Tewsak
-List<Map<String, int>> _yebealTewsak = [
-  {"ነነዌ": 0},
-  {"ዓቢይ ጾም": 14},
-  {"ረቡዕ": 4},
-  {"ማግሰኞ": 5},
-  {"ሰኞ": 6},
-  {"እሁድ": 7},
-  {"ቅዳሜ": 8},
-];
+Map<String, int> _yebealTewsak = {
+  "ነነዌ": 0,
+  "ዓቢይ ጾም": 14,
+  "ደብረ ዘይት": 41,
+  "ሆሣዕና": 62,
+  "ስቅለት": 67,
+  "ትንሳኤ": 69,
+  "ርክበ ካህናት": 93,
+  "ዕርገት": 108,
+  "ጰራቅሊጦስ": 118,
+  "ጾመ ሐዋርያት": 119,
+  "ጾመ ድህነት": 121,
+};
 
 const List<String> _dayNumbers = [
   "፩",

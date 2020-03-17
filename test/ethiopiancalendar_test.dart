@@ -1,4 +1,4 @@
-//import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'package:ethiopiancalendar/ethiopiancalendar.dart';
 
@@ -10,4 +10,9 @@ void main() {
 //    expect(calculator.addOne(0), 1);
 //    expect(() => calculator.addOne(null), throwsNoSuchMethodError);
 //  });
+
+  test('Should Print the parsed Date and TIme', () {
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.toString(), "2012-07-07 18:26:31.449");
+  });
 }
