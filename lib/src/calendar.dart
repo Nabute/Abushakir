@@ -7,24 +7,26 @@ abstract class Calendar extends Equatable {
   List<Object> get props => [];
 
 //  // Getters
-  int getDay();
+    int get year;
 
-  int getYear();
+  int get month;
 
-  int getMonth();
+  String get monthGeez;
 
-  int getHour();
+  int get day;
 
-  int getMinute();
+  String get dayGeez;
 
-  int getSecond();
+  int get hour;
 
-  int getMilliSecond();
+  int get minute;
 
-//  String getDay();
-//  String getTime();
+  int get second;
+
+  int get millisecond;
 
   String toString();
-
-// Setters
+  String toJson();
+  String toIso8601String();
+  
 }

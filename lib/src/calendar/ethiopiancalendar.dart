@@ -91,7 +91,7 @@ class EthiopianCalendar extends Calendar {
     }
   }
 
-  int getYear() {
+  int get year {
     int yearRemainder = this.moment % yearMilliSec;
     int monthValue = 
         initialMonth + yearRemainder ~/ monthMilliSec;
@@ -100,7 +100,7 @@ class EthiopianCalendar extends Calendar {
         : initialYear + (this.moment ~/ yearMilliSec);
   }
 
-  int getMonth() {
+  int get month {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
     int dateValue = 
@@ -133,14 +133,14 @@ class EthiopianCalendar extends Calendar {
     }
   }
 
-  String getMonthName(){
-    return _months[getMonth()-1];
+  String get monthGeez{
+    return _months[month-1];
   }
 
-  int getDay() {
+  int get day {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
-    int month = this.getMonth();
+    int month = this.month;
     int date = monthRemainder ~/ dateMilliSec;
 
     // If it's NOT ጷጉሜን ( the last month of the year)
@@ -156,18 +156,18 @@ class EthiopianCalendar extends Calendar {
     }
   }
 
-  String getDate(){
-    return _dayNumbers[getDay()-1];
+  String get dayGeez{
+    return _dayNumbers[day-1];
   }
 
-  int getHour() {
+  int get hour {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
     int dateRemainder = monthRemainder % dateMilliSec;
     return dateRemainder ~/ hourMilliSec;
   }
 
-  int getMinute() {
+  int get minute {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
     int dateRemainder = monthRemainder % dateMilliSec;
@@ -175,7 +175,7 @@ class EthiopianCalendar extends Calendar {
     return hourRemainder ~/ minMilliSec;
   }
 
-  int getSecond() {
+  int get second {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
     int dateRemainder = monthRemainder % dateMilliSec;
@@ -184,7 +184,7 @@ class EthiopianCalendar extends Calendar {
     return minuteRemainder ~/ secMilliSec;
   }
 
-  int getMilliSecond() {
+  int get millisecond {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
     int dateRemainder = monthRemainder % dateMilliSec;
@@ -246,37 +246,29 @@ class EthiopianCalendar extends Calendar {
   }
 
   String toString() {
-    String y = _fourDigits(this.getYear());
-    String m = _twoDigits(this.getMonth());
-    String d = _twoDigits(this.getDay());
-    String h = _twoDigits(this.getHour());
-    String min = _twoDigits(this.getMinute());
-    String sec = _twoDigits(this.getSecond());
-    String ms = _threeDigits(this.getMilliSecond());
+    String y = _fourDigits(year);
+    String m = _twoDigits(month);
+    String d = _twoDigits(day);
+    String h = _twoDigits(hour);
+    String min = _twoDigits(minute);
+    String sec = _twoDigits(second);
+    String ms = _threeDigits(millisecond);
     return "$y-$m-$d $h:$min:$sec.$ms";
   }
 
   String toJson() {
     return json.encode({
-      "year": _fourDigits(this.getYear()),
-      "month": _twoDigits(this.getMonth()),
-      "date": _twoDigits(this.getDay()),
-      "hour": _twoDigits(this.getHour()),
-      "min": _twoDigits(this.getMinute()),
-      "sec": _twoDigits(this.getSecond()),
-      "ms": _threeDigits(this.getMilliSecond()),
+      "year": _fourDigits(year),
+      "month": _twoDigits(month),
+      "date": _twoDigits(day),
+      "hour": _twoDigits(hour),
+      "min": _twoDigits(minute),
+      "sec": _twoDigits(second),
+      "ms": _threeDigits(millisecond),
     });
   }
 
   String toIso8601String() {
-    int year = this.getYear();
-    int month = this.getMonth();
-    int day = this.getDay();
-    int hour = this.getHour();
-    int minute = this.getMinute();
-    int second = this.getSecond();
-    int millisecond = this.getMilliSecond();
-
     String y =
         (year >= -9999 && year <= 9999) ? _fourDigits(year) : _sixDigits(year);
     String m = _twoDigits(month);
