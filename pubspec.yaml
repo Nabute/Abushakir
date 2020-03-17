@@ -1,7 +1,7 @@
 name: ethiopiancalendar
-description: A new Flutter package project.
+description: A Dart Package for Ethiopian Calendar.
 version: 0.0.1
-author: Nabute Nigusse nabute925@gmail.com;
+author: Nabute Nigusse nabute925@gmail.com; Nahom 4nahom@gmail.com
 homepage:
 
 environment:
