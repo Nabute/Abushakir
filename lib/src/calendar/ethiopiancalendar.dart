@@ -9,7 +9,19 @@ class EthiopianCalendar extends Calendar {
   int moment;
 
   // Constructors
-  EthiopianCalendar({int year, int month, int day});
+  EthiopianCalendar(
+      {int year,
+      int month = 1,
+      int day = 1,
+      int hour = 0,
+      int minute = 0,
+      int second = 0,
+      int millisecond = 0,
+      int microsecond = 0})
+      : this.moment =
+            _dateToEpoch(year, month, day, hour, minute, second, millisecond) {
+    if (moment == null) throw new ArgumentError();
+  }
 
   EthiopianCalendar.now() {
     this.moment = DateTime.now().millisecondsSinceEpoch;
@@ -81,7 +93,7 @@ class EthiopianCalendar extends Calendar {
 
   int getYear() {
     int yearRemainder = this.moment % yearMilliSec;
-    int monthValue =
+    int monthValue = 
         initialMonth + yearRemainder ~/ monthMilliSec;
     return monthValue > _months.length
         ? initialYear + (this.moment ~/ yearMilliSec) + 1
@@ -91,31 +103,31 @@ class EthiopianCalendar extends Calendar {
   int getMonth() {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
-    int dateValue =
+    int dateValue = 
         initialDate + monthRemainder ~/ dateMilliSec;
 
-    if (((initialMonth + yearRemainder ~/ monthMilliSec) %
+    if (((initialMonth + yearRemainder ~/ monthMilliSec) % 
             _months.length) !=
         0) {
       return dateValue > 30
-          ? (initialMonth + yearRemainder ~/ monthMilliSec) +
-              1
+          ? (initialMonth + yearRemainder ~/ monthMilliSec) + 
+          1
           : initialMonth + yearRemainder ~/ monthMilliSec;
     }
     // else it is ጷጉሜን
     else {
-      if (initialYear + (this.moment ~/ yearMilliSec) % 4 ==
-          3) {
+      if (initialYear + (this.moment ~/ yearMilliSec) % 4 == 
+      3) {
         return dateValue > 6
             ? (initialMonth +
-                    yearRemainder ~/ monthMilliSec) +
-                1
+             yearRemainder ~/ monthMilliSec) + 
+            1
             : initialMonth + yearRemainder ~/ monthMilliSec;
       } else {
         return dateValue > 5
             ? (initialMonth +
-                    yearRemainder ~/ monthMilliSec) +
-                1
+             yearRemainder ~/ monthMilliSec) +
+              1
             : initialMonth + yearRemainder ~/ monthMilliSec;
       }
     }
@@ -135,8 +147,8 @@ class EthiopianCalendar extends Calendar {
     if (month ~/ 13 == 0) {
       return (initialDate + date) % 30;
     } else {
-      if (initialYear + (this.moment ~/ yearMilliSec) % 4 ==
-          3) {
+      if (initialYear + (this.moment ~/ yearMilliSec) % 4 == 
+      3) {
         return (initialDate + date) % 6;
       } else {
         return (initialDate + date) % 5;
@@ -145,7 +157,7 @@ class EthiopianCalendar extends Calendar {
   }
 
   String getDate(){
-    return _dayNumbers[getDay()];
+    return _dayNumbers[getDay()-1];
   }
 
   int getHour() {
@@ -287,6 +299,4 @@ class EthiopianCalendar extends Calendar {
 
   EthiopianCalendar nextYear(){}
   EthiopianCalendar previousYear(){}
-
-
 }
