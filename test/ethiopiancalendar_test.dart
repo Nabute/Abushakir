@@ -3,64 +3,83 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ethiopiancalendar/ethiopiancalendar.dart';
 
 void main() {
-//  test('adds one to input values', () {
-//    final calculator = Calculator();
-//    expect(calculator.addOne(2), 3);
-//    expect(calculator.addOne(-7), -6);
-//    expect(calculator.addOne(0), 1);
-//    expect(() => calculator.addOne(null), throwsNoSuchMethodError);
-//  });
 
-  test('Should Print the parsed Date and TIme', () {
+
+  // Parameterized Constructors
+
+
+  //FIXME: Day is reduced by 1
+  test('Should Print the parsed Date and Time', () {
     final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
     expect(ec.toString(), "2012-07-07 18:26:31.449");
   });
 
-  test('Testing Constructor with Parameters', (){
-    final ec = EthiopianCalendar(year: 2012,month: 07, day: 07);
+  test('Testing Year on Parameterized Constructor', (){
+    final ec = EthiopianCalendar(year: 2012, month: 07, day: 07);
     expect(ec.getYear(), 2012);
+  });
+
+  test('Testing Month on Parameterized Constructor', (){
+    final ec = EthiopianCalendar(year: 2012, month: 07, day: 07);
     expect(ec.getMonth(), 07);
-    expect(ec.getDay(), 07);
-    print("The value of 'moment' is ${ec.moment}"); // moment shouldn't be null
-
-  });
-  
-  test('Testing Year with Formatted String Constructor', (){
-    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
-    expect(ec.getYear(), 2012);
-
   });
 
-  test('Testing Month with Formatted String Constructor', (){
-    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
-    expect(ec.getMonth(), 07);
-
-  });
-  
-  //FIXME: Day is reduced by 1.
-  test('Testing Day with Formatted String Constructor', (){
-    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+  //FIXME: Day is reduced by 1
+  test('Testing Day on Parameterized Constructor', (){
+    final ec = EthiopianCalendar(year: 2012, month: 07, day: 07);
     expect(ec.getDay(), 07);
   });
 
-  //FIXME: Reason unknown
-  test('Testing Hour with Formatted String Constructor', (){
+  //FIXME: Day is reduced by 1
+  test('Testing Date on Parameterized Constructor', (){
+    final ec = EthiopianCalendar(year: 2012, month: 07, day: 07);
+    expect(ec.getDate(), "፯");
+  });
+
+
+  // Named Constructors
+  
+
+  test('Testing Year on Named Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getYear(), 2012);
+  });
+
+  test('Testing Month on Named Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getMonth(), 07);
+  });
+  
+  //FIXME: Day is reduced by 1
+  test('Testing Day on Named Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getDay(), 07);
+  });
+
+  //FIXEME: Day is reduced 1
+  test('Testing Date with Named Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getDate(), "፯");
+  });
+
+  //FIXME: Reason Unknown
+  test('Testing Hour on Named Constructor', (){
     final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
     expect(ec.getHour(), 18);
   });
 
-  test('Testing Minute with Formatted String Constructor', (){
+  test('Testing Minute on Named Constructor', (){
     final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
     expect(ec.getMinute(), 26);
 
   });
 
-  test('Testing Second with Formatted String Constructor', (){
+  test('Testing Second on Named Constructor', (){
     final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
     expect(ec.getSecond(), 31);
   });
 
-  test('Testing Millisecond with Formatted String Constructor', (){
+  test('Testing Millisecond on Named Constructor', (){
     final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
     expect(ec.getMilliSecond(), 449);
   });
