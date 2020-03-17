@@ -10,7 +10,7 @@ class EthiopianCalendar extends Calendar {
 
   // Constructors
   EthiopianCalendar(
-      {int year,
+      {@required int year,
       int month = 1,
       int day = 1,
       int hour = 0,
