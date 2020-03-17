@@ -15,4 +15,13 @@ void main() {
     final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
     expect(ec.toString(), "2012-07-07 18:26:31.449");
   });
+
+  test('Should Print the correct Constructed Date', (){
+    final ec = EthiopianCalendar(year: 2012,month: 07, day: 07);
+    expect(ec.getYear(), 2012);
+    expect(ec.getMonth(), 07);
+    expect(ec.getDay(), 07);
+    print("The value of 'moment' is ${ec.moment}"); // moment shouldn't be null
+
+  });
 }
