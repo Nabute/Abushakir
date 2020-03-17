@@ -69,4 +69,4 @@ If you want to contact me you can reach me at <daniel@ibrave.dev>.
 ## License
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
