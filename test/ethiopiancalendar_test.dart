@@ -4,6 +4,7 @@ import 'package:ethiopiancalendar/ethiopiancalendar.dart';
 
 void main() {
 
+<<<<<<< Updated upstream
   // All the starting dates of the months
   //TODO መስከረም - Regular = September 11, Leap Year = September 12 
   //TODO ጥቅምት - Regular = October 11, Leap Year = October 12 
@@ -22,4 +23,23 @@ void main() {
   // Holidays
   //TODO አዲስ አመት - Regular = September 11, Leap Year = September 12 
 
+=======
+  test('Should Print the parsed Date and Time', () {
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    // expect(ec.toString(), "2012-07-07 18:26:31.449");
+    print(ec.moment);
+  });
+
+  test('Should Print Constructed Date', () {
+    final ec = EthiopianCalendar(year: 2012, month: 07, day: 07);
+    // expect(ec.toString(), "2012-07-07");
+    print(ec.moment);
+  });
+
+  test('Should Print the correct Month Name', () {
+    final ec = EthiopianCalendar.now();
+    expect(ec.monthName, 'መጋቢት');
+    print(ec.toIso8601String());
+  });
+>>>>>>> Stashed changes
 }

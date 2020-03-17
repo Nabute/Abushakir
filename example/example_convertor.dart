@@ -14,20 +14,24 @@ void main() {
 //  print("${now['year']}-${now['month']['name']}-${now['date']}");  // 1991-ታኅሳስ-8
 
   EthiopianCalendar now = EthiopianCalendar.now();
-  print("Year: ${now.getYear()}");
-  print("Month: ${now.getMonth()}");
-  print("Date: ${now.getDay()}");
-  print("Hour: ${now.getHour()}");
-  print("Seconds: ${now.getSecond()}");
-  print("Minutes: ${now.getMinute()}");
-  print("MiliSeconds: ${now.getMilliSecond()}");
+  print("Year: ${now.year}");
+  print("Month: ${now.month}");
+  print("Date: ${now.day}");
+  print("Hour: ${now.hour}");
+  print("Seconds: ${now.second}");
+  print("Minutes: ${now.minute}");
+  print("MiliSeconds: ${now.millisecond}");
   print(now.toString());
   print(now.toJson());
   print(now.toIso8601String());
+<<<<<<< Updated upstream
+=======
+  print("The Month is ${now.monthName}");
+>>>>>>> Stashed changes
   var a = EthiopianCalendar.parse("1995-04-27 00:00:00");
   print("ToString ${a.toString()}");
   print("ToJson ${a.toJson()}");
-  print("The date is ${a.getDate()}");
-  print("The Month is ${a.getMonthName()}");
+  print("The date is ${a.date}");
+  print("The Month is ${a.monthName}");
 //  var moonLanding = new DateTime.parse("1969, 7, 20, 20, 18, 04");
 }
