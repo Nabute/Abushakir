@@ -16,12 +16,52 @@ void main() {
     expect(ec.toString(), "2012-07-07 18:26:31.449");
   });
 
-  test('Should Print the correct Constructed Date', (){
+  test('Testing Constructor with Parameters', (){
     final ec = EthiopianCalendar(year: 2012,month: 07, day: 07);
     expect(ec.getYear(), 2012);
     expect(ec.getMonth(), 07);
     expect(ec.getDay(), 07);
     print("The value of 'moment' is ${ec.moment}"); // moment shouldn't be null
 
+  });
+  
+  test('Testing Year with Formatted String Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getYear(), 2012);
+
+  });
+
+  test('Testing Month with Formatted String Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getMonth(), 07);
+
+  });
+  
+  //FIXME: Day is reduced by 1.
+  test('Testing Day with Formatted String Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getDay(), 07);
+  });
+
+  //FIXME: Reason unknown
+  test('Testing Hour with Formatted String Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getHour(), 18);
+  });
+
+  test('Testing Minute with Formatted String Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getMinute(), 26);
+
+  });
+
+  test('Testing Second with Formatted String Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getSecond(), 31);
+  });
+
+  test('Testing Millisecond with Formatted String Constructor', (){
+    final ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+    expect(ec.getMilliSecond(), 449);
   });
 }
