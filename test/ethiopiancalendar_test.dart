@@ -134,73 +134,59 @@ void main() {
     });
 
     test('Testing Abekte', (){
-      final bh = BahireHasab();
       expect(bh.getAbekte(), 6);
     });
 
     test('Testing Metkih', (){
-      final bh = BahireHasab();
       expect(bh.getMetkih(), 24);
     });
 
     test('Testing Nenewe', (){
-      final bh = BahireHasab();
       expect(bh.getNenewe(), {'month': 'የካቲት', 'date': 2});
     });
 
     // getSingleBealOrTsom
 
     test("Testing 'ነነዌ' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ነነዌ"), {'month': 'የካቲት', 'date': 2});
     });
     test("Testing 'ዓቢይ ጾም' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ዓቢይ ጾም"), {'month': 'የካቲት', 'date': 16});
     });
 
     test("Testing 'ደብረ ዘይት' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ደብረ ዘይት"), {'month': 'መጋቢት', 'date': 13});
     });
 
     test("Testing 'ሆሣዕና' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ሆሣዕና"), {'month': 'ሚያዝያ', 'date': 4});
     });
 
     test("Testing 'ስቅለት' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ስቅለት"), {'month': 'ሚያዝያ', 'date': 9});
     });
 
     test("Testing 'ትንሳኤ' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ትንሳኤ"), {'month': 'ሚያዝያ', 'date': 11});
     });
 
     test("Testing 'ርክበ ካህናት' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ርክበ ካህናት"), {'month': 'ግንቦት', 'date': 11});
     });
 
     test("Testing 'ዕርገት' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ዕርገት"), {'month': 'ግንቦት', 'date': 20});
     });
 
     test("Testing 'ጰራቅሊጦስ' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ጰራቅሊጦስ"), {'month': 'ግንቦት', 'date': 30});
     });
 
     test("Testing 'ጾመ ሐዋርያት' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ጾመ ሐዋርያት"), {'month': 'ሰኔ', 'date': 1});
     });
 
     test("Testing 'ጾመ ድህነት' on getSingleBealOrTsom", (){
-      final bh = BahireHasab();
       expect(bh.getSingleBealOrTsom("ጾመ ድህነት"), {'month': 'ሰኔ', 'date': 3});
     });
 
