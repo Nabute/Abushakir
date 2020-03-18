@@ -4,12 +4,12 @@ import 'package:ethiopiancalendar/ethiopiancalendar.dart';
 
 void main() {
 
-  group('Parameterized Constructors', () {
+  group('Parameterized Constructors :', () {
 
     EthiopianCalendar ec;
 
     setUp(() {
-      ec = EthiopianCalendar(year: 2012, month: 07, day: 07);;
+      ec = EthiopianCalendar(year: 2012, month: 07, day: 07);
     });
 
     test('Testing Year on Parameterized Constructor', (){
@@ -31,8 +31,30 @@ void main() {
     });
   });
 
+  //FIXME: All
+  group('Parameterized Constructors (year only) :', () {
 
-  group('Named Constructors (.parse)', () {
+    EthiopianCalendar ec;
+
+    setUp(() {
+      ec = EthiopianCalendar(year: 2010);
+    });
+    
+    test('Testing Year on Parameterized Constructor', (){
+      expect(ec.year, 2010);
+    });
+
+    test('Testing Month on Parameterized Constructor', (){
+      expect(ec.month, 01);
+    });
+
+    test('Testing Day on Parameterized Constructor', (){
+      expect(ec.day, 01);
+    });
+  });
+
+
+  group('Named Constructors (.parse) :', () {
 
     EthiopianCalendar ec;
 
@@ -83,7 +105,7 @@ void main() {
   });
 
 
-  group('Named Constructors (.now)', () {
+  group('Named Constructors (.now) :', () {
 
     EthiopianCalendar ec;
 
@@ -125,7 +147,7 @@ void main() {
     });
   });
 
-  group('BahireHasab', () {
+  group('BahireHasab :', () {
 
     BahireHasab bh;
 
