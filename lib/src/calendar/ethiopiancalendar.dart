@@ -227,7 +227,7 @@ class EthiopianCalendar extends Calendar {
     return (yearMilliSec * (year - initialYear) +
             monthMilliSec * (month - initialMonth) +
             dateMilliSec * (date - initialDate) +
-            hourMilliSec * (hour - initialHour) +
+            hourMilliSec * hour +
             millisecondsPerMinute * minute +
             millisecondsPerSecond * second +
             millisecond)
