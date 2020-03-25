@@ -6,10 +6,10 @@ void main() {
 
   group('Parameterized Constructors :', () {
 
-    EthiopianCalendar ec;
+    EtDatetime ec;
 
     setUp(() {
-      ec = EthiopianCalendar(year: 2012, month: 07, day: 07);
+      ec = EtDatetime(year: 2012, month: 07, day: 07);
     });
 
     test('Testing Year on Parameterized Constructor', (){
@@ -34,10 +34,10 @@ void main() {
   //FIXME: All
   group('Parameterized Constructors (year only) :', () {
 
-    EthiopianCalendar ec;
+    EtDatetime ec;
 
     setUp(() {
-      ec = EthiopianCalendar(year: 2010);
+      ec = EtDatetime(year: 2010);
     });
     
     test('Testing Year on Parameterized Constructor', (){
@@ -56,10 +56,10 @@ void main() {
 
   group('Named Constructors (.parse) :', () {
 
-    EthiopianCalendar ec;
+    EtDatetime ec;
 
     setUp(() {
-      ec = EthiopianCalendar.parse("2012-07-07 18:26:31.449");
+      ec = EtDatetime.parse("2012-07-07 18:26:31.449");
     });
 
     //FIXME: Day is reduced by 1
@@ -107,10 +107,10 @@ void main() {
 
   group('Named Constructors (.now) :', () {
 
-    EthiopianCalendar ec;
+    EtDatetime ec;
 
     setUp(() {
-      ec = EthiopianCalendar.now();
+      ec = EtDatetime.now();
     });
 
     test('Testing Year on .now() Named Constructor', (){

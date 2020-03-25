@@ -112,7 +112,7 @@ const int _maxMillisecondsSinceEpoch = 8640000000000000;
 const int initialYear = 1962;
 const int initialMonth = 4;
 const int initialDate = 23;
-const int initialHour = 21; // after mid night, Ethipian mid night, 09:00
+const int initialHour = 21; // after mid night, Ethiopian mid night, 09:00
 
 const int yearMilliSec = 31556952000;
 const int monthMilliSec = 2592000000;
@@ -120,6 +120,14 @@ const int dateMilliSec = 86400000;
 const int hourMilliSec = 3600000;
 const int minMilliSec = 60000;
 const int secMilliSec = 1000;
+/// Testing with ethiopian  648000 is the difference in milliSecondsPerYear
+//const int yearMilliSec = 31557600000;
+//const int monthMilliSec = 1489536000;
+//const int a12MonthMilSec = 2592000000;
+//const int dateMilliSec = 86400000;
+//const int hourMilliSec = 3600000;
+//const int minMilliSec = 60000;
+//const int secMilliSec = 1000;
 
 const int millisecondsPerSecond = 1000;
 const int secondsPerMinute = 60;

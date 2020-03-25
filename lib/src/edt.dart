@@ -1,13 +1,12 @@
 ///
 part of ethiopiancalendar;
 
-
-abstract class Calendar extends Equatable {
+abstract class EDT extends Equatable {
   @override
   List<Object> get props => [];
 
 //  // Getters
-    int get year;
+  int get year;
 
   int get month;
 
@@ -26,7 +25,13 @@ abstract class Calendar extends Equatable {
   int get millisecond;
 
   String toString();
+
   String toJson();
+
   String toIso8601String();
-  
+}
+
+abstract class Calendar extends Equatable {
+  @override
+  List<Object> get props => [];
 }
