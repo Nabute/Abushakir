@@ -9,7 +9,11 @@ class BahireHasab extends Equatable {
 
   BahireHasab({int year = -1}) {
     year < 0
+<<<<<<< HEAD
         ? this._year = EthiopianCalendar.now().year
+=======
+        ? this._year = EtDatetime.now().year
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
         : this._year = year;
   }
 

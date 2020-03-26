@@ -1,14 +1,19 @@
 ///
 part of ethiopiancalendar;
 
+<<<<<<< HEAD
 
 class EthiopianCalendar extends Calendar {
+=======
+class EtDatetime extends EDT {
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
   @override
   List<Object> get props => [];
 
   int moment;
 
   // Constructors
+<<<<<<< HEAD
   EthiopianCalendar({int year, int month, int day});
 
   EthiopianCalendar.now() {
@@ -17,6 +22,32 @@ class EthiopianCalendar extends Calendar {
 
 //  var moonLanding = EthiopianCalendar.parse("1969-07-20 20:18:04Z");  // 8:18pm
   static EthiopianCalendar parse(String formattedString) {
+=======
+  EtDatetime(
+      {@required int year,
+      int month = 1,
+      int day = 1,
+      int hour = 0,
+      int minute = 0,
+      int second = 0,
+      int millisecond = 0,
+      int microsecond = 0})
+      : this.moment =
+            _dateToEpoch(year, month, day, hour, minute, second, millisecond) {
+    if (moment == null) throw new ArgumentError();
+  }
+
+  EtDatetime.now() {
+    this.moment = DateTime.now().millisecondsSinceEpoch;
+  }
+
+  EtDatetime.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch)
+      : this._withValue(
+            millisecondsSinceEpoch * Duration.microsecondsPerMillisecond);
+
+//  var moonLanding = EthiopianCalendar.parse("1969-07-20 20:18:04Z");  // 8:18pm
+  static EtDatetime parse(String formattedString) {
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
     var re = _parseFormat;
     Match match = re.firstMatch(formattedString);
     if (match != null) {
@@ -65,13 +96,21 @@ class EthiopianCalendar extends Calendar {
       if (value == null) {
         throw FormatException("Time out of range", formattedString);
       }
+<<<<<<< HEAD
       return EthiopianCalendar._withValue(value);
+=======
+      return EtDatetime._withValue(value);
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
     } else {
       throw FormatException("Invalid date format", formattedString);
     }
   }
 
+<<<<<<< HEAD
   static EthiopianCalendar tryParse(String formattedString) {
+=======
+  static EtDatetime tryParse(String formattedString) {
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
     try {
       return parse(formattedString);
     } on FormatException {
@@ -81,8 +120,12 @@ class EthiopianCalendar extends Calendar {
 
   int get year {
     int yearRemainder = this.moment % yearMilliSec;
+<<<<<<< HEAD
     int monthValue =
         initialMonth + yearRemainder ~/ monthMilliSec;
+=======
+    int monthValue = initialMonth + yearRemainder ~/ monthMilliSec;
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
     return monthValue > _months.length
         ? initialYear + (this.moment ~/ yearMilliSec) + 1
         : initialYear + (this.moment ~/ yearMilliSec);
@@ -91,6 +134,7 @@ class EthiopianCalendar extends Calendar {
   int get month {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
+<<<<<<< HEAD
     int dateValue =
         initialDate + monthRemainder ~/ dateMilliSec;
 
@@ -100,10 +144,19 @@ class EthiopianCalendar extends Calendar {
       return dateValue > 30
           ? (initialMonth + yearRemainder ~/ monthMilliSec) +
               1
+=======
+    int dateValue = initialDate + monthRemainder ~/ dateMilliSec;
+
+    if (((initialMonth + yearRemainder ~/ monthMilliSec) % _months.length) !=
+        0) {
+      return dateValue > 30
+          ? (initialMonth + yearRemainder ~/ monthMilliSec) + 1
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
           : initialMonth + yearRemainder ~/ monthMilliSec;
     }
     // else it is ጷጉሜን
     else {
+<<<<<<< HEAD
       if (initialYear + (this.moment ~/ yearMilliSec) % 4 ==
           3) {
         return dateValue > 6
@@ -116,13 +169,27 @@ class EthiopianCalendar extends Calendar {
             ? (initialMonth +
                     yearRemainder ~/ monthMilliSec) +
                 1
+=======
+      if (initialYear + (this.moment ~/ yearMilliSec) % 4 == 3) {
+        return dateValue > 6
+            ? (initialMonth + yearRemainder ~/ monthMilliSec) + 1
+            : initialMonth + yearRemainder ~/ monthMilliSec;
+      } else {
+        return dateValue > 5
+            ? (initialMonth + yearRemainder ~/ monthMilliSec) + 1
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
             : initialMonth + yearRemainder ~/ monthMilliSec;
       }
     }
   }
 
+<<<<<<< HEAD
   String get monthName {
     return _months[month-1];
+=======
+  String get monthGeez {
+    return _months[month - 1];
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
   }
 
   int get day {
@@ -133,6 +200,7 @@ class EthiopianCalendar extends Calendar {
 
     // If it's NOT ጷጉሜን ( the last month of the year)
     if (month ~/ 13 == 0) {
+<<<<<<< HEAD
       return (initialDate + date) % 30;
     } else {
       if (initialYear + (this.moment ~/ yearMilliSec) % 4 ==
@@ -140,12 +208,28 @@ class EthiopianCalendar extends Calendar {
         return (initialDate + date) % 6;
       } else {
         return (initialDate + date) % 5;
+=======
+      return (initialDate + date) % 30 | 30;
+    } else {
+      if (year % 4 == 3) {
+        int a = (initialDate + date) % 6 | 6;
+//        return (initialDate + date) % 6;
+        return a;
+      } else {
+        return (initialDate + date) % 5 | 5;
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
       }
     }
   }
 
+<<<<<<< HEAD
   String get date{
     return _dayNumbers[this.day];
+=======
+  String get dayGeez {
+    print(day);
+    return _dayNumbers[day - 1 < 30 ? day - 1 : 0];
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
   }
 
   int get hour {
@@ -215,15 +299,23 @@ class EthiopianCalendar extends Calendar {
     return (yearMilliSec * (year - initialYear) +
             monthMilliSec * (month - initialMonth) +
             dateMilliSec * (date - initialDate) +
+<<<<<<< HEAD
             hourMilliSec * (hour - initialHour) +
+=======
+            hourMilliSec * hour +
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
             millisecondsPerMinute * minute +
             millisecondsPerSecond * second +
             millisecond)
         .abs();
   }
 
+<<<<<<< HEAD
   EthiopianCalendar._withValue(this.moment) {
 
+=======
+  EtDatetime._withValue(this.moment) {
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
     if (DateTime.now().millisecondsSinceEpoch.abs() >
             _maxMillisecondsSinceEpoch ||
         (DateTime.now().millisecondsSinceEpoch.abs() ==
@@ -273,6 +365,7 @@ class EthiopianCalendar extends Calendar {
       r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d+))?)?)?$' // Time part.
       r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
 
+<<<<<<< HEAD
   EthiopianCalendar nextMonth(){}
   EthiopianCalendar previousMonth(){}
 
@@ -281,4 +374,9 @@ class EthiopianCalendar extends Calendar {
   EthiopianCalendar previousYear(){}
 
 
+=======
+//  EthiopianCalendar add(Duration duration) {}
+//  EthiopianCalendar subtract(Duration duration) {}
+  EtDatetime difference(EtDatetime date) {}
+>>>>>>> 389a48ea2ec48c17ae6d51738005810bfa076d7f
 }
