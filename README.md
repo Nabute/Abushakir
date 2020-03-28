@@ -20,23 +20,61 @@ Before you begin, ensure you have met the following requirements:
 
 ## Installing <Abushakir>
 
-To install <Abushakir>, run:
+## Getting started
 
-NPM:
-```
-npm install abushakir
+In the `pubspec.yaml` of your flutter project, add the following dependency:
+
+```yaml
+dependencies:
+  ...
+  abushakir: "^0.0.1"
 ```
 
-YARN:
-```
-yarn install abushakir
-```
-## Using <Abushakir>
+In your library add the following import:
 
-To use <Abushakir>, follow these steps:
-
+```dart
+import 'package:abushakir/abushakir.dart';
 ```
-usage_example
+## Example
+
+```dart
+
+// Ethiopain Date and Time
+EtDatetime aMoment = EtDatetime.parse("2011-13-06 02:15:22");
+print("Year: ${aMoment.year}");
+print("Month: ${aMoment.month}");
+print("Day: ${aMoment.day}");
+print("Hour: ${aMoment.hour}");
+print("Minutes: ${aMoment.minute}");
+print("Seconds: ${aMoment.second}");
+print("MilliSeconds: ${aMoment.millisecond}");
+print("To String: ${aMoment.toString()}");
+print("To JSON: ${aMoment.toJson()}");
+print("To ISO8601String Format: ${aMoment.toIso8601String()}");
+print("The Month is ${aMoment.monthGeez}");
+
+/// OUTPUT
+/*
+* Year: 2011
+* Month: 13
+* Day: 6
+* Hour: 14
+* Minutes: 15
+* Seconds: 22
+* MilliSeconds: MilliSeconds: 0
+* To String: 2011-13-06 14:15:22.000
+* To JSON: {"year":"2011","month":"13","date":"06","hour":"14","min":"15","sec":"22","ms":"000"}
+* To ISO8601String Format: 2011-13-06T14:15:22.000
+The Month is ጷጉሜን
+*/
+
+/// Ethiopian Calendar
+ETC et = new ETC(year: aMoment.year, month: aMoment.month);
+
+/// OUTPUT
+/*
+*Days in the month 13 of 2011:= ([2011, 13, 1, 4], [2011, 13, 2, 5], [2011, 13, 3, 6], ..., [2011, 13, 5, 1], [2011, 13, 6, 2])
+*/
 ```
 
 <!---Add run commands and examples you think users will find useful. Provide an options reference for bonus points!--->

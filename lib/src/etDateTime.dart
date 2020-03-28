@@ -2,9 +2,6 @@
 part of ethiopiancalendar;
 
 class EtDatetime extends EDT {
-  @override
-  List<Object> get props => [];
-
   int moment;
 
   // Constructors
@@ -24,13 +21,13 @@ class EtDatetime extends EDT {
 
   EtDatetime.now() {
     this.moment = DateTime.now().millisecondsSinceEpoch;
+//    calculateDate();
   }
 
   EtDatetime.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch)
       : this._withValue(
             millisecondsSinceEpoch * Duration.microsecondsPerMillisecond);
 
-//  var moonLanding = EthiopianCalendar.parse("1969-07-20 20:18:04Z");  // 8:18pm
   static EtDatetime parse(String formattedString) {
     var re = _parseFormat;
     Match match = re.firstMatch(formattedString);
@@ -96,7 +93,7 @@ class EtDatetime extends EDT {
 
   int get year {
     int yearRemainder = this.moment % yearMilliSec;
-    int monthValue = initialMonth + yearRemainder ~/ monthMilliSec;
+    int monthValue = initialMonth + (yearRemainder ~/ monthMilliSec);
     return monthValue > _months.length
         ? initialYear + (this.moment ~/ yearMilliSec) + 1
         : initialYear + (this.moment ~/ yearMilliSec);
@@ -105,7 +102,7 @@ class EtDatetime extends EDT {
   int get month {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
-    int dateValue = initialDate + monthRemainder ~/ dateMilliSec;
+    int dateValue = initialDate + monthRemainder ~/ dayMilliSec;
 
     if (((initialMonth + yearRemainder ~/ monthMilliSec) % _months.length) !=
         0) {
@@ -128,53 +125,61 @@ class EtDatetime extends EDT {
   }
 
   String get monthGeez {
-    return _months[month - 1];
+    return _months[(month - 1) % 13];
   }
 
+//
   int get day {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
     int month = this.month;
-    int date = monthRemainder ~/ dateMilliSec;
+    int date = monthRemainder ~/ dayMilliSec;
 
     // If it's NOT ጷጉሜን ( the last month of the year)
     if (month ~/ 13 == 0) {
-      return (initialDate + date) % 30 | 30;
+      int a = (initialDate + date) % 30;
+      return a != 0 ? (initialDate + date) % 30 : 30;
     } else {
       if (year % 4 == 3) {
-        int a = (initialDate + date) % 6 | 6;
-//        return (initialDate + date) % 6;
+        int a = (initialDate + date) % 6 != 0 ? (initialDate + date) % 6 : 6;
         return a;
       } else {
-        return (initialDate + date) % 5 | 5;
+        return (initialDate + date) % 5 != 0 ? (initialDate + date) % 5 : 5;
       }
     }
   }
 
   String get dayGeez {
-    print(day);
-    return _dayNumbers[day - 1 < 30 ? day - 1 : 0];
+    return _dayNumbers[(day - 1) % 30];
   }
 
   int get hour {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
-    int dateRemainder = monthRemainder % dateMilliSec;
-    return dateRemainder ~/ hourMilliSec;
+    int dateRemainder = monthRemainder % dayMilliSec;
+    return ((initialHour +
+                ((dateRemainder ~/ hourMilliSec) % 12 != 0
+                    ? (dateRemainder ~/ hourMilliSec) % 12
+                    : 12)) %
+            24) -
+        6;
   }
 
   int get minute {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
-    int dateRemainder = monthRemainder % dateMilliSec;
+    int dateRemainder = monthRemainder % dayMilliSec;
     int hourRemainder = dateRemainder % hourMilliSec;
-    return hourRemainder ~/ minMilliSec;
+    return ((hourRemainder ~/ minMilliSec) % 60 != 0
+            ? (hourRemainder ~/ minMilliSec) % 60
+            : 60) %
+        60;
   }
 
   int get second {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
-    int dateRemainder = monthRemainder % dateMilliSec;
+    int dateRemainder = monthRemainder % dayMilliSec;
     int hourRemainder = dateRemainder % hourMilliSec;
     int minuteRemainder = hourRemainder % minMilliSec;
     return minuteRemainder ~/ secMilliSec;
@@ -183,11 +188,33 @@ class EtDatetime extends EDT {
   int get millisecond {
     int yearRemainder = this.moment % yearMilliSec;
     int monthRemainder = yearRemainder % monthMilliSec;
-    int dateRemainder = monthRemainder % dateMilliSec;
+    int dateRemainder = monthRemainder % dayMilliSec;
     int hourRemainder = dateRemainder % hourMilliSec;
     int minuteRemainder = hourRemainder % minMilliSec;
     return minuteRemainder % secMilliSec;
   }
+
+/*
+   * Returns the first day of the year
+   */
+  int _yearFirstDay() {
+    int ameteAlem = _ameteFida + year;
+    int rabeet = ameteAlem ~/ 4;
+    return (ameteAlem + rabeet) % 7;
+  }
+
+  int get yearFirstDay => _yearFirstDay();
+
+/*
+   * Returns the first day of the month
+   */
+  int get weekday => (yearFirstDay + ((month - 1) * 2)) % 7;
+
+/*
+   * Returns true if [this._year] is leap year or
+   * returns false.
+  */
+  bool get isLeap => year % 4 == 3;
 
   static String _fourDigits(int n) {
     int absN = n.abs();
@@ -207,27 +234,27 @@ class EtDatetime extends EDT {
   }
 
   static String _threeDigits(int n) {
-    if (n >= 100) return "${n}";
-    if (n >= 10) return "0${n}";
-    return "00${n}";
+    if (n >= 100) return "$n";
+    if (n >= 10) return "0$n";
+    return "00$n";
   }
 
   static String _twoDigits(int n) {
-    if (n >= 10) return "${n}";
-    return "0${n}";
+    if (n >= 10) return "$n";
+    return "0$n";
   }
 
   static int _dateToEpoch(int year, int month, int date, int hour, int minute,
       int second, int millisecond) {
-//    Calendar.millisecondsPerYear(year, month, day) +
-    return (yearMilliSec * (year - initialYear) +
-            monthMilliSec * (month - initialMonth) +
-            dateMilliSec * (date - initialDate) +
-            hourMilliSec * hour +
-            millisecondsPerMinute * minute +
-            millisecondsPerSecond * second +
-            millisecond)
-        .abs();
+    int a = ((yearMilliSec * year).abs() +
+            (monthMilliSec * month).abs() +
+            (dayMilliSec * date).abs() +
+            (hourMilliSec * hour).abs() +
+            (millisecondsPerMinute * minute).abs() +
+            (millisecondsPerSecond * second).abs() +
+            millisecond.abs()) -
+        (biginningEpoch * 1000);
+    return a.toInt();
   }
 
   EtDatetime._withValue(this.moment) {
@@ -238,6 +265,7 @@ class EtDatetime extends EDT {
       throw ArgumentError(
           "Calendar is outside valid range: ${DateTime.now().millisecondsSinceEpoch}");
     }
+//    calculateDate();
   }
 
   String toString() {
@@ -283,4 +311,24 @@ class EtDatetime extends EDT {
 //  EthiopianCalendar add(Duration duration) {}
 //  EthiopianCalendar subtract(Duration duration) {}
   EtDatetime difference(EtDatetime date) {}
+
+  EtDatetime add(Duration duration){}
+
+  EtDatetime subtract(Duration duration){}
+
+
+  bool isBefore(DateTime other){}
+
+  bool isAfter(DateTime other) {}
+
+  bool isAtSameMomentAs(DateTime other){}
+
+  int compareTo(DateTime other){}
+
+  // OVERRIDES
+  @override
+  List<Object> get props => null;
+
+  @override
+  bool get stringify => true;
 }

@@ -4,13 +4,8 @@ part of ethiopiancalendar;
 class BahireHasab extends Equatable {
   int _year;
 
-  @override
-  List<Object> get props => [];
-
   BahireHasab({int year = -1}) {
-    year < 0
-        ? this._year = EtDatetime.now().year
-        : this._year = year;
+    year < 0 ? this._year = EtDatetime.now().year : this._year = year;
   }
 
   /// Getting the evangelist of the given year, if year is not provided
@@ -25,7 +20,7 @@ class BahireHasab extends Equatable {
     return evangelist.toString();
   }
 
-  /// Getting the total sum of year from the beggining of numbering till
+  /// Getting the total sum of year from the beginning of numbering till
   /// the given year, if year is not provided
   /// it will take the current year.
   int getAmeteAlem() => _ameteFida + this._year;
@@ -67,9 +62,9 @@ class BahireHasab extends Equatable {
       return 2; // ጥቅምት
   }
 
-  /**
+  /*
    * This function returns the date Tsome Nenewe will be at.
-   * to get this date we need to get Mebaja Hamer(beggining)
+   * to get this date we need to get Mebaja Hamer(beginning)
    *
    * MebajaHamer = Metikih + Ye'elet Tewsak
    *
@@ -121,11 +116,10 @@ class BahireHasab extends Equatable {
   }
 
   bool isMovableHoliday(String holidayName) {
-    if(_yebealTewsak.keys.contains(holidayName)) {
+    if (_yebealTewsak.keys.contains(holidayName)) {
       return true;
-    }
-    else throw BealNameException;
-
+    } else
+      throw BealNameException;
   }
 
   Map<String, dynamic> getSingleBealOrTsom(String name) {
@@ -133,7 +127,7 @@ class BahireHasab extends Equatable {
       bool status = isMovableHoliday(name);
       if (status) {
         Map<String, dynamic> mebajaHamer = getNenewe();
-        int target =_yebealTewsak[name];
+        int target = _yebealTewsak[name];
         return {
           "month": _months[_months.indexOf(mebajaHamer['month']) +
               (mebajaHamer['date'] + target) ~/ 30],
@@ -144,4 +138,12 @@ class BahireHasab extends Equatable {
       print(e.toString());
     }
   }
+
+
+  // OVERRIDES
+  @override
+  List<Object> get props => null;
+
+  @override
+  bool get stringify => true;
 }

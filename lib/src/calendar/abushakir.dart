@@ -29,9 +29,26 @@ abstract class EDT extends Equatable {
   String toJson();
 
   String toIso8601String();
+
+  bool isBefore(DateTime other);
+
+  bool isAfter(DateTime other);
+
+  bool isAtSameMomentAs(DateTime other);
+
+  int compareTo(DateTime other);
+
+  EtDatetime add(Duration duration);
+
+  EtDatetime subtract(Duration duration);
 }
 
 abstract class Calendar extends Equatable {
   @override
   List<Object> get props => [];
+
+  monthDays();
+  yearDays();
+
+
 }

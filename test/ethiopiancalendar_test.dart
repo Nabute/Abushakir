@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ethiopiancalendar/ethiopiancalendar.dart';
+import 'package:ethiopiancalendar/abushakir.dart';
 
 void main() {
 

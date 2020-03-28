@@ -1,14 +1,7 @@
 ///
 part of ethiopiancalendar;
 
-/// Cycles [ዓውዳት]
-const int _awdeElet = 7; // Day cycle
-const int _awdeWerh = 30; // Month cycle
-const double _awdeAmet = 365.25; // Year Cycle
 
-const int _awdeTsehay = 28; // Sun's cycle
-const int _awdeMahtem = 76; // Cycle of Seal
-const int _awdeAbiyKemer = 532; // Greatlunar cycle
 
 /// The 4 Evangelist(s)
 const List<String> _evangelists = ["ዮሐንስ", "ማቴዎስ", "ማርቆስ", "ሉቃስ"];
@@ -111,23 +104,19 @@ const int _maxMillisecondsSinceEpoch = 8640000000000000;
 
 const int initialYear = 1962;
 const int initialMonth = 4;
-const int initialDate = 23;
-const int initialHour = 21; // after mid night, Ethiopian mid night, 09:00
+const int initialDate = 23; // was 23 initially, changed it for testing
+const int initialHour = 9; // after mid night, Ethiopian mid night, 09:00
 
-const int yearMilliSec = 31556952000;
+
+/// Testing with ethiopian  648000 is the difference in milliSecondsPerYear
+const int yearMilliSec = 31557600000;
 const int monthMilliSec = 2592000000;
-const int dateMilliSec = 86400000;
+const int dayMilliSec = 86400000;
 const int hourMilliSec = 3600000;
 const int minMilliSec = 60000;
 const int secMilliSec = 1000;
-/// Testing with ethiopian  648000 is the difference in milliSecondsPerYear
-//const int yearMilliSec = 31557600000;
-//const int monthMilliSec = 1489536000;
-//const int a12MonthMilSec = 2592000000;
-//const int dateMilliSec = 86400000;
-//const int hourMilliSec = 3600000;
-//const int minMilliSec = 60000;
-//const int secMilliSec = 1000;
+const int epochOffset = 2527200;
+const int biginningEpoch = 61925806800 + epochOffset;
 
 const int millisecondsPerSecond = 1000;
 const int secondsPerMinute = 60;
