@@ -30,13 +30,13 @@ abstract class EDT extends Equatable {
 
   String toIso8601String();
 
-  bool isBefore(DateTime other);
+  bool isBefore(EtDatetime other);
 
-  bool isAfter(DateTime other);
+  bool isAfter(EtDatetime other);
 
-  bool isAtSameMomentAs(DateTime other);
+  bool isAtSameMomentAs(EtDatetime other);
 
-  int compareTo(DateTime other);
+  int compareTo(EtDatetime other);
 
   EtDatetime add(Duration duration);
 

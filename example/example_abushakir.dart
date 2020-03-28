@@ -25,6 +25,32 @@ void main() {
   print("To ISO8601String Format: ${now.toIso8601String()}");
   print("The Month is ${now.monthGeez}");
 
+  print("******************   Testing utility funciton   *****************");
+  /*
+  Saturday, March 28, 2020 1:00:00 AM
+  Saturday, March 28, 2020 4:00:00 AM GMT+03:00
+   */
+  EtDatetime before = new EtDatetime.fromMillisecondsSinceEpoch(1585357200);
+  //
+  /*
+  Sunday, March 29, 2020 1:00:00 AM
+  Sunday, March 29, 2020 4:00:00 AM GMT+03:00
+   */
+  EtDatetime after = new EtDatetime.fromMillisecondsSinceEpoch(1585443600);
+  EtDatetime sameMomentWithAfter =
+      new EtDatetime.fromMillisecondsSinceEpoch(1585443600);
+
+  print("Is Before:= ${before.isBefore(after)}");
+  print("Is After:= ${before.isAfter(after)}");
+  print("Compare to:= ${after.compareTo(before)}");
+  print(
+      "Is Is As the same moment as:= ${after.isAtSameMomentAs(sameMomentWithAfter)}");
+  print("Adding one day:= ${before.add(Duration(days: 2))}");
+  print("------- RETESTING AFTER ADDING ONE DAY --------");
+  print("Is Before:= ${before.add(Duration(days: 2)).isBefore(after)}");
+  print("Is After:= ${before.add(Duration(days: 2)).isAfter(after)}");
+  print("Compare to:= ${before.add(Duration(days: 1)).compareTo(after.subtract(Duration(days: 1)))}");
+
 //  EtDatetime dt = new EtDatetime(year: 2011, month: 1);
 //  print("Year First Day:= ${dt.yearFirstDay}");
 //  print("Year First Day:= ${dt.weekday}");

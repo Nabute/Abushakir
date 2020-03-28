@@ -268,21 +268,30 @@ class EtDatetime extends EDT {
       r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d+))?)?)?$' // Time part.
       r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
 
-//  EthiopianCalendar add(Duration duration) {}
-//  EthiopianCalendar subtract(Duration duration) {}
-  Duration difference(EtDatetime date) {}
+  Duration difference(EtDatetime date) => Duration(days: moment - date.moment);
 
-  EtDatetime add(Duration duration) {}
+  EtDatetime add(Duration duration) {
+    return EtDatetime.fromMillisecondsSinceEpoch(this.moment + duration.inDays);
+  }
 
-  EtDatetime subtract(Duration duration) {}
+  EtDatetime subtract(Duration duration) {
+    return EtDatetime.fromMillisecondsSinceEpoch(moment - duration.inDays);
+  }
 
-  bool isBefore(DateTime other) {}
+  bool isBefore(EtDatetime other) => moment < other.moment;
 
-  bool isAfter(DateTime other) {}
+  bool isAfter(EtDatetime other) => moment > other.moment;
 
-  bool isAtSameMomentAs(DateTime other) {}
+  bool isAtSameMomentAs(EtDatetime other) => moment == other.moment;
 
-  int compareTo(DateTime other) {}
+  int compareTo(EtDatetime other) {
+    if (this.isBefore(other))
+      return -1;
+    else if (this.isAtSameMomentAs(other))
+      return 0;
+    else
+      return 1;
+  }
 
   // OVERRIDES
   @override
