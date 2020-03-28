@@ -7,7 +7,7 @@
 <!---![GitHub forks](https://img.shields.io/github/forks/Nabute/Abushakir?style=social)--->
 <!---![Twitter Follow](https://img.shields.io/twitter/follow/danny_nigusse?style=social)--->
 
-Abushakir is a package that allows developers to implement ethiopian calendar system in their application(s)`.
+Abushakir is a package that allows developers to implement ethiopian calendar system and DateTime System in their application(s)`.
 
 This package is implemented using the [UNIX EPOCH](https://en.wikipedia.org/wiki/Unix_time) which means it's not a conversion of any other calendar system into
 ethiopian, for instance, Gregorian Calendar into Ethiopian.
@@ -18,7 +18,7 @@ Before you begin, ensure you have met the following requirements:
 <!--- These are just example requirements. Add, duplicate or remove as required --->
 * ```equatable= ^1.1.0```
 
-## Installing <Abushakir>
+
 
 ## Getting started
 
@@ -65,7 +65,7 @@ print("The Month is ${aMoment.monthGeez}");
 * To String: 2011-13-06 14:15:22.000
 * To JSON: {"year":"2011","month":"13","date":"06","hour":"14","min":"15","sec":"22","ms":"000"}
 * To ISO8601String Format: 2011-13-06T14:15:22.000
-The Month is ጷጉሜን
+* The Month is ጷጉሜን
 */
 
 /// Ethiopian Calendar
@@ -96,7 +96,7 @@ Alternatively see the GitHub documentation on [creating a pull request](https://
 Thanks to the following people who have contributed to this project:
 
 * [@Nabute](https://github.com/Nabute) 📖
-* [@Nahom](https://github.com/icnahom) 🐛
+* [@Nahom](https://github.com/icnahom) 📖
 
 <!---You might want to consider using something like the [All Contributors](https://github.com/all-contributors/all-contributors) specification and its [emoji key](https://allcontributors.org/docs/en/emoji-key).--->
 
