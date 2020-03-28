@@ -102,10 +102,15 @@ const List<String> _months = [
 
 const int _maxMillisecondsSinceEpoch = 8640000000000000;
 
+const int ethiopicEpoch = 2796;
+const int unixEpoch = 719163;
+
 const int initialYear = 1962;
 const int initialMonth = 4;
 const int initialDate = 23; // was 23 initially, changed it for testing
 const int initialHour = 9; // after mid night, Ethiopian mid night, 09:00
+
+
 
 
 /// Testing with ethiopian  648000 is the difference in milliSecondsPerYear

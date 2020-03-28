@@ -6,23 +6,20 @@ void main() {
 //  EthiopianCalendar(now);
 //  var now = EthiopianCalendar.parse("1995-04-27 20:18:04Z");
 //  var now = EthiopianCalendar.parse("1970-01-01 00:00:00"); // 1962-ታኅሳስ-23 unix epoch started
-//  print(now);
-//  print(DateTime.parse("1970-01-01 00:00:00"));
-//  print(DateTime.now().day);
-//  print(DateTime.now().millisecondsSinceEpoch);
-////  var now = EthiopianCalendar.parse(DateTime.now().toString());
-//  print("${now['year']}-${now['month']['name']}-${now['date']}");  // 1991-ታኅሳስ-8
 
 //  EtDatetime now = EtDatetime.now();
-  EtDatetime now = EtDatetime.parse("2011-13-06 02:15:22");
+//  EtDatetime now = EtDatetime(year: 2011, month: 1, day: 6);
+  EtDatetime now = EtDatetime.parse("2011-01-06 01:00:00"); //
+  // Monday, June 23, 2003 8:15:22 PM GMT+03:00 == 1995-10-16 02:15:22 ET == 1056388522000
+  print(now.moment);
 //  print(EtDatetime.fromMillisecondsSinceEpoch(now.moment));
   print("Year: ${now.year}");
   print("Month: ${now.month}");
   print("Day: ${now.day}");
-  print("Hour: ${now.hour}");
-  print("Minutes: ${now.minute}");
-  print("Seconds: ${now.second}");
-  print("MilliSeconds: ${now.millisecond}");
+//  print("Hour: ${now.hour}");
+//  print("Minutes: ${now.minute}");
+//  print("Seconds: ${now.second}");
+//  print("MilliSeconds: ${now.millisecond}");
   print("To String: ${now.toString()}");
   print("To JSON: ${now.toJson()}");
   print("To ISO8601String Format: ${now.toIso8601String()}");
@@ -66,7 +63,7 @@ void main() {
 /////////////////////////////////////////////////////////////////////
 // Bahire Hasab (Abusakir) Implementation Examples
 //  print("********************HAHIRE HASAB***********************");
-  BahireHasab b = BahireHasab(year: 2011);
+  BahireHasab b = BahireHasab(year: now.year);
   print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
   print("Wenber:= ${b.getWenber()}");
   print("Metkih:= ${b.getMetkih()}");

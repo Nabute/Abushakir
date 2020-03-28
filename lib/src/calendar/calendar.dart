@@ -43,14 +43,16 @@ class ETC implements Calendar {
     }
   }
 
-  List<int> _yearMonthRange({@required int year, int month = 1}) {
-    EtDatetime yr = new EtDatetime(year: year, month: month);
-    return [_date.yearFirstDay, _date.month == 13 ? _date.isLeap ? 6 : 5 : 30];
+  List<int> _yearMonthRange({@required EtDatetime aYear}) {
+    return [aYear.weekday, aYear.month == 13 ? aYear.isLeap ? 6 : 5 : 30];
   }
 
   Iterable<List<int>> _monthDays(int year, int month) sync* {
-    int monthBeginning = _yearMonthRange(year: year, month: month)[0];
-    int daysInMonth = _yearMonthRange(year: year, month: month)[1];
+    EtDatetime yr = new EtDatetime(year: year, month: month);
+    List<int> result = _yearMonthRange(aYear: yr);
+    print(result);
+    int monthBeginning = result[0];
+    int daysInMonth = result[1];
     for (int i = 0; i < daysInMonth; i++) {
       yield [year, month, i + 1, monthBeginning];
       monthBeginning = (monthBeginning + 1) % 7;
