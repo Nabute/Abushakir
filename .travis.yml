@@ -1,7 +1,3 @@
-language: dart
-dart:
-  - stable
-
 os:
   - linux
 sudo: false
@@ -13,23 +9,11 @@ addons:
     packages:
       - libstdc++6
       - fonts-droid-fallback
-
 before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
   - ./flutter/bin/flutter doctor
 script:
   - ./flutter/bin/flutter test
-
-install:
-  - flutter pub get
-
-#
-#dart_task:
-#  - test
-#  # Warnings are fatal, but we only analyze the lib/ directory.
-#  - dartanalyzer: --fatal-warnings lib
-#  - dartfmt
-
 cache:
   directories:
     - $HOME/.pub-cache
