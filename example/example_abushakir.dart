@@ -9,7 +9,7 @@ void main() {
 
 //  EtDatetime now = EtDatetime.now();
 //  EtDatetime now = EtDatetime(year: 2011, month: 1, day: 6);
-  EtDatetime now = EtDatetime.parse("2011-01-06 01:00:00"); //
+  EtDatetime now = EtDatetime.parse("2011-13-06 01:00:00"); //
   // Monday, June 23, 2003 8:15:22 PM GMT+03:00 == 1995-10-16 02:15:22 ET == 1056388522000
   print(now.moment);
 //  print(EtDatetime.fromMillisecondsSinceEpoch(now.moment));
@@ -49,7 +49,8 @@ void main() {
   print("------- RETESTING AFTER ADDING ONE DAY --------");
   print("Is Before:= ${before.add(Duration(days: 2)).isBefore(after)}");
   print("Is After:= ${before.add(Duration(days: 2)).isAfter(after)}");
-  print("Compare to:= ${before.add(Duration(days: 1)).compareTo(after.subtract(Duration(days: 1)))}");
+  print(
+      "Compare to:= ${before.add(Duration(days: 1)).compareTo(after.subtract(Duration(days: 1)))}");
 
 //  EtDatetime dt = new EtDatetime(year: 2011, month: 1);
 //  print("Year First Day:= ${dt.yearFirstDay}");
@@ -114,9 +115,17 @@ void main() {
 //  EtDatetime abc = EtDatetime.fromMillisecondsSinceEpoch(1568211322);
   ETC et = new ETC(year: now.year, month: now.month);
 //
+
+  for (var days in et.monthDays()) {
+    print("$days \n");
+  }
   print("Days in the month ${now.month} of ${now.year}:= ${et.monthDays()}");
   print("Days in the whole Year 2011:= ${et.yearDays()}");
 //  EtDatetime date = new EtDatetime(year: 2012);
 //  print("Year First Day:= ${date.yearFirstDay}");
 //  print("Year First Month First Day:= ${date.weekday}");
+}
+
+String formatMonth(Iterable monthDays) {
+
 }

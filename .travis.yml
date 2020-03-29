@@ -1,0 +1,9 @@
+language: dart
+dart:
+  - "2.7.1"
+
+dart_task:
+  - test
+  # Warnings are fatal, but we only analyze the lib/ directory.
+  - dartanalyzer: --fatal-warnings lib
+  - dartfmt
