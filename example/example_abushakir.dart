@@ -126,6 +126,4 @@ void main() {
 //  print("Year First Month First Day:= ${date.weekday}");
 }
 
-String formatMonth(Iterable monthDays) {
-
-}
+String formatMonth(Iterable monthDays) {}
