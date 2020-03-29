@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import 'package:ethiopiancalendar/abushakir.dart';
 
@@ -39,7 +39,7 @@ void main() {
     setUp(() {
       ec = EtDatetime(year: 2010);
     });
-    
+
     test('Testing Year on Parameterized Constructor', (){
       expect(ec.year, 2010);
     });
@@ -74,7 +74,7 @@ void main() {
     test('Testing Month on Named Constructor', (){
       expect(ec.month, 07);
     });
-    
+
     //FIXME: Day is reduced by 1
     test('Testing Day on Named Constructor', (){
       expect(ec.day, 07);
@@ -120,7 +120,7 @@ void main() {
     test('Testing Month on .now() Named Constructor', (){
       expect(ec.month, 07);
     });
-    
+
     test('Testing Month Geez on .now() Named Constructor', (){
       expect(ec.monthGeez, "መጋቢት");
     });
@@ -213,5 +213,5 @@ void main() {
     });
 
   });
- 
+
 }

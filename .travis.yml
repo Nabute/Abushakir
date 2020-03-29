@@ -1,6 +1,6 @@
 language: dart
 dart:
-  - "2.7.1"
+  - stable
 
 dart_task:
   - test
