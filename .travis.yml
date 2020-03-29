@@ -2,6 +2,9 @@ language: dart
 dart:
   - stable
 
+install:
+  - flutter pub get
+
 dart_task:
   - test
   # Warnings are fatal, but we only analyze the lib/ directory.
