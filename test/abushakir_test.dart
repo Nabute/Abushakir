@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import 'package:ethiopiancalendar/abushakir.dart';
+import 'package:abushakir/abushakir.dart';
 
 void main() {
   group('Parameterized Constructors :', () {

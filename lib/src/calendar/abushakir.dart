@@ -1,5 +1,5 @@
 ///
-part of ethiopiancalendar;
+part of abushakir;
 
 abstract class EDT extends Equatable {
   @override

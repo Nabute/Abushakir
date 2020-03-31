@@ -1,5 +1,5 @@
 ///
-part of ethiopiancalendar;
+part of abushakir;
 
 class EtDatetime extends EDT {
   int moment;
@@ -272,11 +272,11 @@ class EtDatetime extends EDT {
       Duration(days: (moment - date.moment).toInt());
 
   EtDatetime add(Duration duration) {
-    return EtDatetime.fromMillisecondsSinceEpoch(this.moment + duration.inDays);
+    return EtDatetime.fromMillisecondsSinceEpoch(moment + duration.inMilliseconds);
   }
 
   EtDatetime subtract(Duration duration) {
-    return EtDatetime.fromMillisecondsSinceEpoch(moment - duration.inDays);
+    return EtDatetime.fromMillisecondsSinceEpoch(moment - duration.inMilliseconds);
   }
 
   bool isBefore(EtDatetime other) => moment < other.moment;

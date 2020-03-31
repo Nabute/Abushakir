@@ -14,51 +14,54 @@ void main() {
 //  print(now.moment);
   EtDatetime now = new EtDatetime.fromMillisecondsSinceEpoch(1568211444000);  // 14 Hour == 2 PM
 //  print(EtDatetime.fromMillisecondsSinceEpoch(now.moment));
-  print("Year: ${now.year}");
-  print("Month: ${now.month}");
-  print("Day: ${now.day}");
-  print("Hour: ${now.hour}");
-  print("Minutes: ${now.minute}");
-  print("Seconds: ${now.second}");
-  print("MilliSeconds: ${now.millisecond}");
-  print("To String: ${now.toString()}");
-  print("To JSON: ${now.toJson()}");
-  print("To ISO8601String Format: ${now.toIso8601String()}");
-  print("The Month is ${now.monthGeez}");
+//  print("Year: ${now.year}");
+//  print("Month: ${now.month}");
+//  print("Day: ${now.day}");
+//  print("Hour: ${now.hour}");
+//  print("Minutes: ${now.minute}");
+//  print("Seconds: ${now.second}");
+//  print("MilliSeconds: ${now.millisecond}");
+//  print("To String: ${now.toString()}");
+//  print("To JSON: ${now.toJson()}");
+//  print("To ISO8601String Format: ${now.toIso8601String()}");
+//  print("The Month is ${now.monthGeez}");
 
-  print("******************   Testing utility funciton   *****************");
+//  print("******************   Testing utility funciton   *****************");
   /*
   Saturday, March 28, 2020 1:00:00 AM
   Saturday, March 28, 2020 4:00:00 AM GMT+03:00
    */
-  EtDatetime before = new EtDatetime.fromMillisecondsSinceEpoch(1585357200);
+//  EtDatetime before = new EtDatetime.fromMillisecondsSinceEpoch(1585357200);
   //
   /*
   Sunday, March 29, 2020 1:00:00 AM
   Sunday, March 29, 2020 4:00:00 AM GMT+03:00
    */
-  EtDatetime after = new EtDatetime.fromMillisecondsSinceEpoch(1585443600);
-  EtDatetime sameMomentWithAfter =
-      new EtDatetime.fromMillisecondsSinceEpoch(1585443600);
+//  EtDatetime after = new EtDatetime.fromMillisecondsSinceEpoch(1585443600);
+//  EtDatetime sameMomentWithAfter =
+//      new EtDatetime.fromMillisecondsSinceEpoch(1585443600);
 
-  print("Is Before:= ${before.isBefore(after)}");
-  print("Is After:= ${before.isAfter(after)}");
-  print("Compare to:= ${after.compareTo(before)}");
-  print(
-      "Is Is As the same moment as:= ${after.isAtSameMomentAs(sameMomentWithAfter)}");
-  print("Adding one day:= ${before.add(Duration(days: 2))}");
-  print("------- RETESTING AFTER ADDING ONE DAY --------");
-  print("Is Before:= ${before.add(Duration(days: 2)).isBefore(after)}");
-  print("Is After:= ${before.add(Duration(days: 2)).isAfter(after)}");
-  print(
-      "Compare to:= ${before.add(Duration(days: 1)).compareTo(after.subtract(Duration(days: 1)))}");
+//  print("Before:= $before");
+//  print("After:= $after");
+//  print("Is Before:= ${after.isBefore(before)}");
+//  print("Is After:= ${after.isAfter(before)}");
+//  print("Compare to:= ${before.compareTo(after)}");
+//  print(
+//      "Is Is As the same moment as:= ${after.isAtSameMomentAs(sameMomentWithAfter)}");
+//  EtDatetime addedDateTime = before.add(Duration(days: 5));
+//  print("Adding one day:= $addedDateTime}");
+//  print("------- RETESTING AFTER ADDING ONE DAY --------");
+//  print("Is Before:= ${before.add(Duration(days: 2)).isBefore(after)}");
+//  print("Is After:= ${before.add(Duration(days: 2)).isAfter(after)}");
+//  print(
+//      "Compare to:= ${before.add(Duration(days: 1)).compareTo(after.subtract(Duration(days: 1)))}");
 
 //  EtDatetime dt = new EtDatetime(year: 2011, month: 1);
 //  print("Year First Day:= ${dt.yearFirstDay}");
 //  print("Year First Day:= ${dt.weekday}");
 //  print("Year First Day:= ${dt.toString()}");
 
-  print("**********************FROM EPOCH**********************************");
+//  print("**********************FROM EPOCH**********************************");
 
 //  var b = EtDatetime.fromMillisecondsSinceEpoch(1568222122);
 //  // Epoch for Pagumen 6. 2011, 02:15:22 = 1568211322
@@ -91,13 +94,13 @@ void main() {
 /////////////////////////////////////////////////////////////////////
 // Bahire Hasab (Abusakir) Implementation Examples
 //  print("********************HAHIRE HASAB***********************");
-  BahireHasab b = BahireHasab(year: now.year);
-  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
-  print("Wenber:= ${b.getWenber()}");
-  print("Metkih:= ${b.getMetkih()}");
-  print("Abekte:= ${b.getAbekte()}");
-  print(
-      "Meskerem 1:= ${b.getMeskeremOne(returnName: true)}-- ${b.getMeskeremOne()}");
+//  BahireHasab b = BahireHasab(year: now.year);
+//  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
+//  print("Wenber:= ${b.getWenber()}");
+//  print("Metkih:= ${b.getMetkih()}");
+//  print("Abekte:= ${b.getAbekte()}");
+//  print(
+//      "Meskerem 1:= ${b.getMeskeremOne(returnName: true)}-- ${b.getMeskeremOne()}");
 //  print(
 //      "*********************  Movable Feasts and Holidays   **********************");
 ////  print('Nenewe Tsom:= ${b.getNenewe()}');
@@ -113,13 +116,13 @@ void main() {
 //  print("Year First Day:= ${dt.weekday}");
 //  print("Year First Day:= ${dt.toString()}");
 
-//  EtDatetime abc = EtDatetime.fromMillisecondsSinceEpoch(1568211322);
+  EtDatetime abc = EtDatetime.fromMillisecondsSinceEpoch(1568211322);
   ETC et = new ETC(year: now.year, month: now.month);
 //
 
-  for (var days in et.monthDays()) {
-    print("$days \n");
-  }
+//  for (var days in et.monthDays()) {
+//    print("$days \n");
+//  }
   print("Days in the month ${now.month} of ${now.year}:= ${et.monthDays()}");
   print("Days in the whole Year 2011:= ${et.yearDays()}");
 //  EtDatetime date = new EtDatetime(year: 2012);

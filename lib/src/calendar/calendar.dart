@@ -1,5 +1,5 @@
 ///
-part of ethiopiancalendar;
+part of abushakir;
 
 class ETC implements Calendar {
   EtDatetime _date;
@@ -49,10 +49,10 @@ class ETC implements Calendar {
 
   Iterable<List<int>> _monthDays(int year, int month) sync* {
     EtDatetime yr = new EtDatetime(year: year, month: month);
-    List<int> result = _yearMonthRange(aYear: yr);
-    print(result);
-    int monthBeginning = result[0];
-    int daysInMonth = result[1];
+//    List<int> result = _yearMonthRange(aYear: yr);
+//    print(result);
+    int monthBeginning = yr.weekday;
+    int daysInMonth = yr.month == 13 ? yr.isLeap ? 6 : 5 : 30;
     for (int i = 0; i < daysInMonth; i++) {
       yield [year, month, i + 1, monthBeginning];
       monthBeginning = (monthBeginning + 1) % 7;

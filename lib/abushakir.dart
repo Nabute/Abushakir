@@ -1,4 +1,4 @@
-library ethiopiancalendar;
+library abushakir;
 
 import 'dart:convert';
 import 'package:equatable/equatable.dart';

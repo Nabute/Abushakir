@@ -1,5 +1,5 @@
 ///
-part of ethiopiancalendar;
+part of abushakir;
 
 class BahireHasab extends Equatable {
   int _year;
