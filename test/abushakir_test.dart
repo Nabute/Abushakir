@@ -29,7 +29,6 @@ void main() {
     });
   });
 
-  //FIXME: All
   group('Parameterized Constructors (year only) :', () {
     EtDatetime ec;
 
@@ -54,12 +53,12 @@ void main() {
     EtDatetime ec;
 
     setUp(() {
-      ec = EtDatetime.parse("2012-07-07 18:26:31.449");
+      ec = EtDatetime.parse("2012-07-07 15:12:17.500");
     });
 
     //FIXME: Day is reduced by 1
     test('Should Print the parsed Date and Time', () {
-      expect(ec.toString(), "2012-07-07 18:26:31.449");
+      expect(ec.toString(), "2012-07-07 15:12:17.500");
     });
 
     test('Testing Year on Named Constructor', () {

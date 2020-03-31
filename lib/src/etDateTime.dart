@@ -3,6 +3,7 @@ part of ethiopiancalendar;
 
 class EtDatetime extends EDT {
   int moment;
+  int fixed;
 
   // Constructors
   EtDatetime(
@@ -14,20 +15,27 @@ class EtDatetime extends EDT {
       int second = 0,
       int millisecond = 0,
       int microsecond = 0})
-      : this.moment =
+      : fixed = _fixedFromEthiopic(year, month, day),
+        moment =
             _dateToEpoch(year, month, day, hour, minute, second, millisecond) {
-    if (moment == null) throw new ArgumentError();
+    if (fixed == null) throw ArgumentError();
   }
 
-  EtDatetime.now() {
-    this.moment =
-        (unixEpoch + (DateTime.now().millisecondsSinceEpoch / dayMilliSec))
-            .toInt();
-  }
+  EtDatetime.now()
+      : fixed = _fixedFromUnix(DateTime.now().millisecondsSinceEpoch),
+        moment = DateTime.now().millisecondsSinceEpoch;
 
   EtDatetime.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch)
-      : this._withValue(
-            millisecondsSinceEpoch * Duration.microsecondsPerMillisecond);
+      : moment = millisecondsSinceEpoch,
+        fixed = _fixedFromUnix(millisecondsSinceEpoch) {
+    if (fixed == null) throw ArgumentError();
+    if (millisecondsSinceEpoch.abs() > _maxMillisecondsSinceEpoch ||
+        (millisecondsSinceEpoch.abs() == _maxMillisecondsSinceEpoch)) {
+      throw ArgumentError(
+          "Calendar is outside valid range: ${DateTime.now().millisecondsSinceEpoch}");
+    }
+  }
+
 
   static EtDatetime parse(String formattedString) {
     var re = _parseFormat;
@@ -92,60 +100,46 @@ class EtDatetime extends EDT {
     }
   }
 
-  int get year => ((1 / 1461) * (4 * (moment - ethiopicEpoch) + 1463)).floor();
+  int get year => ((4 * (fixed - ethiopicEpoch) + 1463) ~/ 1461);
 
-  int get month =>
-      (((1 / 30) * (moment - _dateToEpoch(year, 1, 1, 1, 1, 1, 1))).floor() +
-          1);
+  int get month => (((fixed - _fixedFromEthiopic(year, 1, 1)) ~/ 30) + 1);
 
   String get monthGeez {
     return _months[(month - 1) % 13];
   }
 
-  int get day => moment + 1 - _dateToEpoch(year, month, 1, 1, 1, 1, 1);
+  int get day => fixed + 1 - _fixedFromEthiopic(year, month, 1);
 
   String get dayGeez {
     return _dayNumbers[(day - 1) % 30];
   }
 
   int get hour {
-    int yearRemainder = this.moment % yearMilliSec;
-    int monthRemainder = yearRemainder % monthMilliSec;
-    int dateRemainder = monthRemainder % dayMilliSec;
-    return ((initialHour +
-                ((dateRemainder ~/ hourMilliSec) % 12 != 0
-                    ? (dateRemainder ~/ hourMilliSec) % 12
-                    : 12)) %
-            24) -
-        6;
+    var yearRemainder = moment % yearMilliSec;
+    var dateRemainder = yearRemainder % (dayMilliSec);
+    return dateRemainder ~/ hourMilliSec;
   }
 
   int get minute {
-    int yearRemainder = this.moment % yearMilliSec;
-    int monthRemainder = yearRemainder % monthMilliSec;
-    int dateRemainder = monthRemainder % dayMilliSec;
-    int hourRemainder = dateRemainder % hourMilliSec;
-    return ((hourRemainder ~/ minMilliSec) % 60 != 0
-            ? (hourRemainder ~/ minMilliSec) % 60
-            : 60) %
-        60;
+    var yearRemainder = moment % yearMilliSec;
+    var dateRemainder = yearRemainder % (dayMilliSec);
+    var hourRemainder = dateRemainder % hourMilliSec;
+    return hourRemainder ~/ minMilliSec;
   }
 
   int get second {
-    int yearRemainder = this.moment % yearMilliSec;
-    int monthRemainder = yearRemainder % monthMilliSec;
-    int dateRemainder = monthRemainder % dayMilliSec;
-    int hourRemainder = dateRemainder % hourMilliSec;
-    int minuteRemainder = hourRemainder % minMilliSec;
+    var yearRemainder = moment % yearMilliSec;
+    var dateRemainder = yearRemainder % (dayMilliSec);
+    var hourRemainder = dateRemainder % hourMilliSec;
+    var minuteRemainder = hourRemainder % minMilliSec;
     return minuteRemainder ~/ secMilliSec;
   }
 
   int get millisecond {
-    int yearRemainder = this.moment % yearMilliSec;
-    int monthRemainder = yearRemainder % monthMilliSec;
-    int dateRemainder = monthRemainder % dayMilliSec;
-    int hourRemainder = dateRemainder % hourMilliSec;
-    int minuteRemainder = hourRemainder % minMilliSec;
+    var yearRemainder = moment % yearMilliSec;
+    var dateRemainder = yearRemainder % (dayMilliSec);
+    var hourRemainder = dateRemainder % hourMilliSec;
+    var minuteRemainder = hourRemainder % minMilliSec;
     return minuteRemainder % secMilliSec;
   }
 
@@ -201,21 +195,27 @@ class EtDatetime extends EDT {
 
   static int _dateToEpoch(int year, int month, int date, int hour, int minute,
       int second, int millisecond) {
-//    int a = ((yearMilliSec * year).abs() +
-//            (monthMilliSec * month).abs() +
-//            (dayMilliSec * date).abs() +
-//            (hourMilliSec * hour).abs() +
-//            (millisecondsPerMinute * minute).abs() +
-//            (millisecondsPerSecond * second).abs() +
-//            millisecond.abs()) -
-//        (biginningEpoch * 1000);
-//    return a.toInt();
+    return ((yearMilliSec * (year - 1)).abs() +
+            (monthMilliSec * (month - 1)).abs() +
+            (dayMilliSec * date).abs() +
+            (hourMilliSec * (hour + 3)).abs() + // since ethiopia is GMT+3
+            (millisecondsPerMinute * minute).abs() +
+            (millisecondsPerSecond * second).abs() +
+            millisecond.abs()) -
+        (biginningEpoch * 1000);
+    // return a.toInt();
+    // return (ethiopicEpoch - 1 + 365 * (year - 1) + (year / 4).floor() + 30 * (month - 1) + date);
+  }
+
+  static int _fixedFromUnix(int ms) => (unixEpoch + (ms ~/ 86400000));
+
+  static int _fixedFromEthiopic(int year, int month, int day) {
     return (ethiopicEpoch -
         1 +
         365 * (year - 1) +
-        (year / 4).floor() +
+        (year ~/ 4) +
         30 * (month - 1) +
-        date);
+        day);
   }
 
   EtDatetime._withValue(this.moment) {
@@ -268,7 +268,8 @@ class EtDatetime extends EDT {
       r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d+))?)?)?$' // Time part.
       r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
 
-  Duration difference(EtDatetime date) => Duration(days: moment - date.moment);
+  Duration difference(EtDatetime date) =>
+      Duration(days: (moment - date.moment).toInt());
 
   EtDatetime add(Duration duration) {
     return EtDatetime.fromMillisecondsSinceEpoch(this.moment + duration.inDays);

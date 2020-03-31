@@ -114,7 +114,7 @@ const int initialHour = 9; // after mid night, Ethiopian mid night, 09:00
 
 
 /// Testing with ethiopian  648000 is the difference in milliSecondsPerYear
-const int yearMilliSec = 31557600000;
+const int yearMilliSec = 31622400000; // 366 days: 31622400
 const int monthMilliSec = 2592000000;
 const int dayMilliSec = 86400000;
 const int hourMilliSec = 3600000;
