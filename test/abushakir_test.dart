@@ -112,6 +112,69 @@ void main() {
     });
   });
 
+  group('Named Constructors (.fromMillisecondsSinceEpoch) :', () {
+    EtDatetime ec;
+
+    // 1585742246021 == 2012-07-23 11:57:26.021
+    setUp(() {
+      ec = EtDatetime.fromMillisecondsSinceEpoch(1585742246021);
+    });
+
+    //FIXME: Day is reduced by 1
+    test('Should Print the parsed Date and Time', () {
+      expect(ec.toString(), "2012-07-23 11:57:26.021");
+    });
+
+    test('Testing Year on Named Constructor', () {
+      expect(ec.year, 2012);
+    });
+
+    test('Testing Month on Named Constructor', () {
+      expect(ec.month, 07);
+    });
+
+    //FIXME: Day is reduced by 1
+    test('Testing Day on Named Constructor', () {
+      expect(ec.day, 23);
+    });
+
+    //FIXEME: Day is reduced 1
+    test('Testing Date with Named Constructor', () {
+      expect(ec.dayGeez, "፳፫");
+    });
+
+    //FIXME: Reason Unknown
+    test('Testing Hour on Named Constructor', () {
+      expect(ec.hour, 11);
+    });
+
+    test('Testing Minute on Named Constructor', () {
+      expect(ec.minute, 57);
+    });
+
+    test('Testing Second on Named Constructor', () {
+      expect(ec.second, 26);
+    });
+
+    test('Testing Millisecond on Named Constructor', () {
+      expect(ec.millisecond, 021);
+    });
+  });
+
+  group('Named Constructors (.now) :', () {
+    EtDatetime ec;
+
+    setUp(() {
+      ec = EtDatetime.now();
+    });
+    test('Testing Minute on .now() Named Constructor', () {
+      expect(ec.minute, DateTime.now().minute);
+    });
+
+    test('Testing Second on .now() Named Constructor', () {
+      expect(ec.second, DateTime.now().second);
+    });
+  });
   group('BahireHasab :', () {
     BahireHasab bh;
 
