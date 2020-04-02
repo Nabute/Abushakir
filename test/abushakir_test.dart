@@ -53,7 +53,7 @@ void main() {
     setUp(() {
       ec = EtDatetime.parse("2012-07-07 15:12:17.500");
     });
-    
+
     test('Should Print the parsed Date and Time', () {
       expect(ec.toString(), "2012-07-07 15:12:17.500");
     });
@@ -169,10 +169,13 @@ void main() {
   group('Testing functions', () {
     EtDatetime ec;
     setUp(() {
-      ec = EtDatetime.now();
+      // TODO: check if all constructors return same epoch.
+//      ec = EtDatetime.now();
+      ec = EtDatetime(year: 2012);
     });
     // 1585742246021 == 2012-07-23 11:57:26.021
     test('Testing isAfter()', () {
+      print(ec.date);
       expect(ec.isAfter(EtDatetime(year: 2011)), true);
     });
     test('Testing isBefore()', () {
