@@ -36,7 +36,6 @@ class EtDatetime extends EDT {
     }
   }
 
-
   static EtDatetime parse(String formattedString) {
     var re = _parseFormat;
     Match match = re.firstMatch(formattedString);
@@ -142,6 +141,10 @@ class EtDatetime extends EDT {
     var minuteRemainder = hourRemainder % minMilliSec;
     return minuteRemainder % secMilliSec;
   }
+
+  Map<String, int> get date => {"year": year, "month": month, "day": day};
+
+  Map<String, int> get time => {"h": hour, "m": minute, "s": second};
 
 /*
    * Returns the first day of the year
@@ -272,11 +275,13 @@ class EtDatetime extends EDT {
       Duration(days: (moment - date.moment).toInt());
 
   EtDatetime add(Duration duration) {
-    return EtDatetime.fromMillisecondsSinceEpoch(moment + duration.inMilliseconds);
+    return EtDatetime.fromMillisecondsSinceEpoch(
+        moment + duration.inMilliseconds);
   }
 
   EtDatetime subtract(Duration duration) {
-    return EtDatetime.fromMillisecondsSinceEpoch(moment - duration.inMilliseconds);
+    return EtDatetime.fromMillisecondsSinceEpoch(
+        moment - duration.inMilliseconds);
   }
 
   bool isBefore(EtDatetime other) => moment < other.moment;

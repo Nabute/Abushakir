@@ -7,24 +7,24 @@ void main() {
 //  var now = EthiopianCalendar.parse("1995-04-27 20:18:04Z");
 //  var now = EthiopianCalendar.parse("1970-01-01 00:00:00"); // 1962-ታኅሳስ-23 unix epoch started
 
-//  EtDatetime now = EtDatetime.now();
+  EtDatetime now = EtDatetime.now();
 //  EtDatetime now = EtDatetime(year: 2011, month: 1, day: 6, hour: 12, minute: 33, second: 42, millisecond: 234);
 //  EtDatetime now = EtDatetime.parse("2011-13-06 01:00:00"); //
 //   Monday, June 23, 2003 8:15:22 PM GMT+03:00 == 1995-10-16 02:15:22 ET == 1056388522000
 //  print(now.moment);
-  EtDatetime now = new EtDatetime.fromMillisecondsSinceEpoch(1568211444000);  // 14 Hour == 2 PM
+//  EtDatetime now = new EtDatetime.fromMillisecondsSinceEpoch(1568211444000);  // 14 Hour == 2 PM
 //  print(EtDatetime.fromMillisecondsSinceEpoch(now.moment));
-//  print("Year: ${now.year}");
-//  print("Month: ${now.month}");
-//  print("Day: ${now.day}");
-//  print("Hour: ${now.hour}");
-//  print("Minutes: ${now.minute}");
-//  print("Seconds: ${now.second}");
-//  print("MilliSeconds: ${now.millisecond}");
-//  print("To String: ${now.toString()}");
-//  print("To JSON: ${now.toJson()}");
-//  print("To ISO8601String Format: ${now.toIso8601String()}");
-//  print("The Month is ${now.monthGeez}");
+  print("Year: ${now.year}");
+  print("Month: ${now.month}");
+  print("Day: ${now.day}");
+  print("Hour: ${now.hour}");
+  print("Minutes: ${now.minute}");
+  print("Seconds: ${now.second}");
+  print("MilliSeconds: ${now.millisecond}");
+  print("To String: ${now.toString()}");
+  print("To JSON: ${now.toJson()}");
+  print("To ISO8601String Format: ${now.toIso8601String()}");
+  print("The Month is ${now.monthGeez}");
 
 //  print("******************   Testing utility funciton   *****************");
   /*
@@ -116,15 +116,15 @@ void main() {
 //  print("Year First Day:= ${dt.weekday}");
 //  print("Year First Day:= ${dt.toString()}");
 
-  EtDatetime abc = EtDatetime.fromMillisecondsSinceEpoch(1568211322);
-  ETC et = new ETC(year: now.year, month: now.month);
+//  EtDatetime abc = EtDatetime.fromMillisecondsSinceEpoch(1568211322);
+//  ETC et = new ETC(year: now.year, month: now.month);
 //
 
 //  for (var days in et.monthDays()) {
 //    print("$days \n");
 //  }
-  print("Days in the month ${now.month} of ${now.year}:= ${et.monthDays()}");
-  print("Days in the whole Year 2011:= ${et.yearDays()}");
+//  print("Days in the month ${now.month} of ${now.year}:= ${et.monthDays()}");
+//  print("Days in the whole Year 2011:= ${et.yearDays()}");
 //  EtDatetime date = new EtDatetime(year: 2012);
 //  print("Year First Day:= ${date.yearFirstDay}");
 //  print("Year First Month First Day:= ${date.weekday}");
