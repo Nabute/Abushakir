@@ -8,19 +8,37 @@ class ETC implements Calendar {
     _date = new EtDatetime(year: year, month: month, day: day);
   }
 
+  ETC.today() {
+    _date = new EtDatetime.now();
+  }
+
+  int get year => _date.year;
+
+  int get month => _date.month;
+
+  String get monthName => _date.monthGeez;
+
+  int get day => _date.day;
+
   /*
    * Returning Next month.
    */
-  EtDatetime get nextMonth => _date.month == 13
-      ? EtDatetime(year: _date.year + 1, month: 1)
-      : EtDatetime(year: _date.year, month: _date.month + 1);
+  ETC get nextYear => new ETC(year: _date.year + 1, month: _date.month);
 
   /*
    * Returning previous month.
    */
-  EtDatetime get prevMonth => _date.month == 1
-      ? EtDatetime(year: _date.year - 1, month: 12)
-      : EtDatetime(year: _date.year, month: _date.month - 1);
+  ETC get prevYear => new ETC(year: _date.year - 1, month: _date.month);
+
+  /*
+   * Returning Next month.
+   */
+  ETC get nextMonth => new ETC(year: _date.year, month: _date.month + 1);
+
+  /*
+   * Returning previous month.
+   */
+  ETC get prevMonth => new ETC(year: _date.year, month: _date.month - 1);
 
   /*
    * Returns month range and monthStartDay as an array.
@@ -43,14 +61,8 @@ class ETC implements Calendar {
     }
   }
 
-  List<int> _yearMonthRange({@required EtDatetime aYear}) {
-    return [aYear.weekday, aYear.month == 13 ? aYear.isLeap ? 6 : 5 : 30];
-  }
-
   Iterable<List<int>> _monthDays(int year, int month) sync* {
     EtDatetime yr = new EtDatetime(year: year, month: month);
-//    List<int> result = _yearMonthRange(aYear: yr);
-//    print(result);
     int monthBeginning = yr.weekday;
     int daysInMonth = yr.month == 13 ? yr.isLeap ? 6 : 5 : 30;
     for (int i = 0; i < daysInMonth; i++) {
