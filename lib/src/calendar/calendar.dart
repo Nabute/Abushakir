@@ -8,6 +8,28 @@ class ETC implements Calendar {
     _date = new EtDatetime(year: year, month: month, day: day);
   }
 
+  ETC.today() {
+    _date = new EtDatetime.now();
+  }
+
+  int get year => _date.year;
+
+  int get month => _date.month;
+
+  String get monthName => _date.monthGeez[day];
+
+  int get day => _date.day;
+
+  /*
+   * Returning Next month.
+   */
+  ETC get nextYear => new ETC(year: _date.year + 1, month: _date.month);
+
+  /*
+   * Returning previous month.
+   */
+  ETC get prevYear => new ETC(year: _date.year - 1, month: _date.month);
+
   /*
    * Returning Next month.
    */
