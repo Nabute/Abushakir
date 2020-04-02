@@ -175,6 +175,32 @@ void main() {
       expect(ec.second, DateTime.now().second);
     });
   });
+
+  group('Testing functions', () {
+    EtDatetime ec;
+    setUp(() {
+      ec = EtDatetime.now();
+    });
+    // 1585742246021 == 2012-07-23 11:57:26.021
+    test('Testing isAfter()', () {
+      expect(ec.isAfter(EtDatetime(year: 2011)), true);
+    });
+    test('Testing isBefore()', () {
+      expect(ec.isBefore(EtDatetime(year: 2080)), true);
+    });
+    test('Testing isAfter()', () {
+      expect(
+          ec.isAtSameMomentAs(EtDatetime(
+              year: ec.year,
+              month: ec.month,
+              day: ec.day,
+              hour: ec.hour,
+              minute: ec.minute,
+              second: ec.second,
+              millisecond: ec.millisecond)),
+          true);
+    });
+  });
   group('BahireHasab :', () {
     BahireHasab bh;
 
