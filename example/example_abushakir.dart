@@ -130,9 +130,14 @@ void main() {
   print("Next Year:= ${et.nextYear.monthDays()}");
   print("Previous Year:= ${et.prevYear.monthDays()}");
   print("TODAY:= ${ETC.today().monthName}");
+//  var streamController = now.clock();
+//  streamController.listen(print);
+
 //  EtDatetime date = new EtDatetime(year: 2012);
 //  print("Year First Day:= ${date.yearFirstDay}");
 //  print("Year First Month First Day:= ${date.weekday}");
-
 }
 
+Future<int> clockCounter(Stream<int> stream) async {
+  print("The time is:= ${stream}");
+}
