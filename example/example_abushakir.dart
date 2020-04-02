@@ -129,7 +129,7 @@ void main() {
   print("Previous Month:= ${et.prevMonth.monthDays()}");
   print("Next Year:= ${et.nextYear.monthDays()}");
   print("Previous Year:= ${et.prevYear.monthDays()}");
-  print("TODAY:= ${ETC.today().day}");
+  print("TODAY:= ${ETC.today().monthName}");
 //  EtDatetime date = new EtDatetime(year: 2012);
 //  print("Year First Day:= ${date.yearFirstDay}");
 //  print("Year First Month First Day:= ${date.weekday}");

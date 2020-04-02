@@ -16,7 +16,7 @@ class ETC implements Calendar {
 
   int get month => _date.month;
 
-  String get monthName => _date.monthGeez[day];
+  String get monthName => _date.monthGeez;
 
   int get day => _date.day;
 
