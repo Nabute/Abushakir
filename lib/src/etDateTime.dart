@@ -116,7 +116,7 @@ class EtDatetime extends EDT {
   int get hour {
     var yearRemainder = moment % yearMilliSec;
     var dateRemainder = yearRemainder % (dayMilliSec);
-    return dateRemainder ~/ hourMilliSec;
+    return (dateRemainder ~/ hourMilliSec) + 3; // Since Ethiopia is GMT+3
   }
 
   int get minute {

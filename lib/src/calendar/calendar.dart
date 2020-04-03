@@ -38,7 +38,7 @@ class ETC implements Calendar {
   /*
    * Returning previous month.
    */
-  ETC get prevMonth => new ETC(year: _date.year, month: _date.month - 1);
+  ETC get prevMonth => new ETC(year: _date.year, month: _date.month - 1 == 0 ? 13 : _date.month - 1);
 
   /*
    * Returns month range and monthStartDay as an array.

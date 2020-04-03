@@ -202,15 +202,15 @@ void main() {
     });
 
     test('Testing Abekte', () {
-      expect(bh.getAbekte(), 6);
+      expect(bh.abekte, 6);
     });
 
     test('Testing Metkih', () {
-      expect(bh.getMetkih(), 24);
+      expect(bh.metkih, 24);
     });
 
     test('Testing Nenewe', () {
-      expect(bh.getNenewe(), {'month': 'የካቲት', 'date': 2});
+      expect(bh.nenewe, {'month': 'የካቲት', 'date': 2});
     });
 
     // getSingleBealOrTsom

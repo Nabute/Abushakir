@@ -94,19 +94,19 @@ void main() {
 /////////////////////////////////////////////////////////////////////
 // Bahire Hasab (Abusakir) Implementation Examples
 //  print("********************HAHIRE HASAB***********************");
-//  BahireHasab b = BahireHasab(year: now.year);
-//  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
-//  print("Wenber:= ${b.getWenber()}");
-//  print("Metkih:= ${b.getMetkih()}");
-//  print("Abekte:= ${b.getAbekte()}");
-//  print(
-//      "Meskerem 1:= ${b.getMeskeremOne(returnName: true)}-- ${b.getMeskeremOne()}");
-//  print(
-//      "*********************  Movable Feasts and Holidays   **********************");
-////  print('Nenewe Tsom:= ${b.getNenewe()}');
-////  print("Abiy Tsom:= ${b.getAbiyTsom()}");
-//  print("Getting single Beal's date:= ${b.getSingleBealOrTsom("ቅለት")}");
-//  print("Bealat:= ${b.getAllAtswamat()}");
+  BahireHasab b = BahireHasab(year: 2012);
+  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
+  print("Wenber:= ${b.wenber}");
+  print("Metkih:= ${b.metkih}");
+  print("Abekte:= ${b.abekte}");
+  print(
+      "Meskerem 1:= ${b.getMeskeremOne(returnName: true)}-- ${b.getMeskeremOne()}");
+  print(
+      "*********************  Movable Feasts and Holidays   **********************");
+  print('Nenewe Tsom:= ${b.nenewe}');
+//  print("Abiy Tsom:= ${b.getAbiyTsom()}");
+  print("Getting single Beal's date:= ${b.getSingleBealOrTsom("ጰራቅሊጦስ")}");
+  print("Bealat:= ${b.allAtswamat}");
 
   //////////////////////////////////////////////////////////////////////////////
 //  print("//////////////////////  ETHIOPIAN CALENDAR  ///////////////////////");
@@ -123,15 +123,15 @@ void main() {
 //  for (var days in et.monthDays()) {
 //    print("$days \n");
 //  }
-  print("Days in the month ${now.month} of ${now.year}:= ${et.monthDays()}");
+//  print("Days in the month ${now.month} of ${now.year}:= ${et.monthDays()}");
 //  print("Days in the whole Year 2011:= ${et.yearDays()}");
-  print("Next Month:= ${et.nextMonth.monthDays()}");
-  print("Previous Month:= ${et.prevMonth.monthDays()}");
-  print("Next Year:= ${et.nextYear.monthDays()}");
-  print("Previous Year:= ${et.prevYear.monthDays()}");
-  print("TODAY:= ${ETC.today().monthName}");
-  var streamController = now.clock();
-  streamController.listen(print);
+//  print("Next Month:= ${et.nextMonth.monthDays()}");
+//  print("Previous Month:= ${et.prevMonth.monthDays()}");
+//  print("Next Year:= ${et.nextYear.monthDays()}");
+//  print("Previous Year:= ${et.prevYear.monthDays()}");
+//  print("TODAY:= ${ETC.today().monthName}");
+//  var streamController = now.clock();
+//  streamController.listen(print);
 //      .where((i) => i % 1000 == 0)
 //      .map((i) => new EtDatetime.fromMillisecondsSinceEpoch(i).second)
 //      .listen(print);
