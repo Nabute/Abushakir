@@ -33,12 +33,16 @@ class ETC implements Calendar {
   /*
    * Returning Next month.
    */
-  ETC get nextMonth => new ETC(year: _date.year, month: _date.month + 1);
+  ETC get nextMonth => new ETC(
+      year: _date.month == 13 ? _date.year + 1 : _date.year,
+      month: _date.month + 1);
 
   /*
    * Returning previous month.
    */
-  ETC get prevMonth => new ETC(year: _date.year, month: _date.month - 1 == 0 ? 13 : _date.month - 1);
+  ETC get prevMonth => new ETC(
+      year: _date.month == 1 ? _date.year - 1 : _date.year,
+      month: _date.month - 1 == 0 ? 13 : _date.month - 1);
 
   /*
    * Returns month range and monthStartDay as an array.
