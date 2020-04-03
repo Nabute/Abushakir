@@ -298,7 +298,7 @@ class EtDatetime extends EDT {
   Stream<int> clock() async* {
     while (true) {
       await Future.delayed(const Duration(seconds: 1));
-      yield EtDatetime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch).second;
+      yield DateTime.now().millisecondsSinceEpoch;
     }
   }
 
