@@ -1,4 +1,4 @@
-import 'package:ethiopiancalendar/abushakir.dart';
+import 'package:abushakir/abushakir.dart';
 
 void main() {
 //  DateTime now = DateTime.parse("1969-07-20 20:18:04Z");
@@ -130,8 +130,11 @@ void main() {
   print("Next Year:= ${et.nextYear.monthDays()}");
   print("Previous Year:= ${et.prevYear.monthDays()}");
   print("TODAY:= ${ETC.today().monthName}");
-//  var streamController = now.clock();
-//  streamController.listen(print);
+  var streamController = now.clock();
+  streamController.listen(print);
+//      .where((i) => i % 1000 == 0)
+//      .map((i) => new EtDatetime.fromMillisecondsSinceEpoch(i).second)
+//      .listen(print);
 
 //  EtDatetime date = new EtDatetime(year: 2012);
 //  print("Year First Day:= ${date.yearFirstDay}");
