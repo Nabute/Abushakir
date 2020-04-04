@@ -12,7 +12,6 @@ class BahireHasab extends Equatable {
   /// it will take the current year.
   String getEvangelist({bool returnName = false}) {
     int evangelist;
-    int ameteAlem = getAmeteAlem();
     evangelist = ameteAlem % 4;
     if (returnName) {
       return _evangelists[evangelist];
@@ -23,11 +22,10 @@ class BahireHasab extends Equatable {
   /// Getting the total sum of year from the beginning of numbering till
   /// the given year, if year is not provided
   /// it will take the current year.
-  int getAmeteAlem() => _ameteFida + this._year;
+  int get ameteAlem => _ameteFida + this._year;
 
   /// Get year's first day or መስከርም 1
   String getMeskeremOne({bool returnName = false}) {
-    int ameteAlem = getAmeteAlem();
     int rabeet = ameteAlem ~/ 4;
     int result = (ameteAlem + rabeet) % 7;
     if (returnName) return _weekdays[result];
@@ -35,27 +33,17 @@ class BahireHasab extends Equatable {
   }
 
   /// A variable that helps to get Abekte and Metke'e
-  int getWenber() {
-    int ameteAlem = getAmeteAlem();
-    return (ameteAlem % 19) - 1;
-  }
+  int get wenber => (ameteAlem % 19) - 1;
 
   /// Abekte
-  int getAbekte() {
-    int wenber = getWenber();
-    return (wenber * _tinteAbekte) % 30;
-  }
+  int get abekte => (wenber * _tinteAbekte) % 30;
 
   /// Metkih
-  int getMetkih() {
-    int wenber = getWenber();
-    return (wenber * _tinteMetkih) % 30;
-  }
+  int get metkih => wenber == 0 ? 30 : (wenber * _tinteMetkih) % 30;
 
   /// All Ethiopian Orthodox church Fasting(s) and Holiday(s).
 
   int yebealeMetkihWer() {
-    int metkih = getMetkih();
     if (metkih > 14) {
       return 1; // መስከረም
     } else
@@ -71,8 +59,7 @@ class BahireHasab extends Equatable {
    * There are a few rules or theorems about this idea
    * 1:=
    */
-  Map<String, dynamic> getNenewe() {
-    int metkih = getMetkih();
+  Map<String, dynamic> get nenewe {
     String meskerem1 = getMeskeremOne(returnName: true);
     int month = yebealeMetkihWer();
     int date;
@@ -95,11 +82,11 @@ class BahireHasab extends Equatable {
           });
     }
     date = metkih + dayTewsak;
-    return {"month": monthName, "date": date % 30};
+    return {"month": monthName, "date": date % 30 == 0 ? 30 : date % 30};
   }
 
-  List getAllAtswamat() {
-    Map<String, dynamic> mebajaHamer = getNenewe();
+  List get allAtswamat {
+    Map<String, dynamic> mebajaHamer = nenewe;
     List result = List();
 
     _yebealTewsak.forEach((beal, numOfDays) {
@@ -108,7 +95,7 @@ class BahireHasab extends Equatable {
         "day": {
           "month": _months[_months.indexOf(mebajaHamer['month']) +
               (mebajaHamer['date'] + numOfDays) ~/ 30],
-          "date": (mebajaHamer['date'] + numOfDays) % 30
+          "date": (mebajaHamer['date'] + numOfDays) % 30 == 0 ? 30 : (mebajaHamer['date'] + numOfDays) % 30
         }
       });
     });
@@ -126,12 +113,12 @@ class BahireHasab extends Equatable {
     try {
       bool status = isMovableHoliday(name);
       if (status) {
-        Map<String, dynamic> mebajaHamer = getNenewe();
+        Map<String, dynamic> mebajaHamer = nenewe;
         int target = _yebealTewsak[name];
         return {
           "month": _months[_months.indexOf(mebajaHamer['month']) +
               (mebajaHamer['date'] + target) ~/ 30],
-          "date": (mebajaHamer['date'] + target) % 30
+          "date": (mebajaHamer['date'] + target) % 30 == 0 ? 30 : (mebajaHamer['date'] + target) % 30
         };
       }
     } catch (e) {
@@ -139,10 +126,9 @@ class BahireHasab extends Equatable {
     }
   }
 
-
   // OVERRIDES
   @override
-  List<Object> get props => null;
+  List<Object> get props => [_year];
 
   @override
   bool get stringify => true;

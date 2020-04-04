@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   equatable: ^1.1.0
-  ethiopiancalendar:
+  abushakir:
     path: ../
 
 dev_dependencies:

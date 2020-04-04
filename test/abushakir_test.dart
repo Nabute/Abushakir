@@ -18,12 +18,10 @@ void main() {
       expect(ec.month, 07);
     });
 
-    //FIXME: Day is reduced by 1
     test('Testing Day on Parameterized Constructor', () {
       expect(ec.day, 07);
     });
 
-    //FIXME: Day is reduced by 1
     test('Testing Date on Parameterized Constructor', () {
       expect(ec.dayGeez, "፯");
     });
@@ -56,7 +54,6 @@ void main() {
       ec = EtDatetime.parse("2012-07-07 15:12:17.500");
     });
 
-    //FIXME: Day is reduced by 1
     test('Should Print the parsed Date and Time', () {
       expect(ec.toString(), "2012-07-07 15:12:17.500");
     });
@@ -69,17 +66,14 @@ void main() {
       expect(ec.month, 07);
     });
 
-    //FIXME: Day is reduced by 1
     test('Testing Day on Named Constructor', () {
       expect(ec.day, 07);
     });
 
-    //FIXEME: Day is reduced 1
     test('Testing Date with Named Constructor', () {
       expect(ec.dayGeez, "፯");
     });
 
-    //FIXME: Reason Unknown
     test('Testing Hour on Named Constructor', () {
       expect(ec.hour, 15);
     });
@@ -120,7 +114,6 @@ void main() {
       ec = EtDatetime.fromMillisecondsSinceEpoch(1585742246021);
     });
 
-    //FIXME: Day is reduced by 1
     test('Should Print the parsed Date and Time', () {
       expect(ec.toString(), "2012-07-23 11:57:26.021");
     });
@@ -133,17 +126,14 @@ void main() {
       expect(ec.month, 07);
     });
 
-    //FIXME: Day is reduced by 1
     test('Testing Day on Named Constructor', () {
       expect(ec.day, 23);
     });
 
-    //FIXEME: Day is reduced 1
     test('Testing Date with Named Constructor', () {
       expect(ec.dayGeez, "፳፫");
     });
 
-    //FIXME: Reason Unknown
     test('Testing Hour on Named Constructor', () {
       expect(ec.hour, 11);
     });
@@ -179,10 +169,13 @@ void main() {
   group('Testing functions', () {
     EtDatetime ec;
     setUp(() {
-      ec = EtDatetime.now();
+      // TODO: check if all constructors return same epoch.
+//      ec = EtDatetime.now();
+      ec = EtDatetime(year: 2012);
     });
     // 1585742246021 == 2012-07-23 11:57:26.021
     test('Testing isAfter()', () {
+      print(ec.date);
       expect(ec.isAfter(EtDatetime(year: 2011)), true);
     });
     test('Testing isBefore()', () {
@@ -209,15 +202,15 @@ void main() {
     });
 
     test('Testing Abekte', () {
-      expect(bh.getAbekte(), 6);
+      expect(bh.abekte, 6);
     });
 
     test('Testing Metkih', () {
-      expect(bh.getMetkih(), 24);
+      expect(bh.metkih, 24);
     });
 
     test('Testing Nenewe', () {
-      expect(bh.getNenewe(), {'month': 'የካቲት', 'date': 2});
+      expect(bh.nenewe, {'month': 'የካቲት', 'date': 2});
     });
 
     // getSingleBealOrTsom

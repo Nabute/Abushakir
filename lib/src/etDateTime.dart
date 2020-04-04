@@ -100,27 +100,27 @@ class EtDatetime extends EDT {
 
   int get month => (((fixed - _fixedFromEthiopic(year, 1, 1)) ~/ 30) + 1);
 
-  String get monthGeez {
-    return _months[(month - 1) % 13];
-  }
+  String get monthGeez => _months[(month - 1) % 13];
 
   int get day => fixed + 1 - _fixedFromEthiopic(year, month, 1);
 
-  String get dayGeez {
-    return _dayNumbers[(day - 1) % 30];
-  }
+  String get dayGeez => _dayNumbers[(day - 1) % 30];
+
+  Map<String, int> get date => {"year": year, "month": month, "day": day};
+
+  Map<String, int> get time => {"h": hour, "m": minute, "s": second};
 
   int get hour {
     var yearRemainder = moment % yearMilliSec;
     var dateRemainder = yearRemainder % (dayMilliSec);
-    return dateRemainder ~/ hourMilliSec;
+    return ((dateRemainder ~/ hourMilliSec) + 3) % 24; // Since Ethiopia is GMT+3
   }
 
   int get minute {
     var yearRemainder = moment % yearMilliSec;
     var dateRemainder = yearRemainder % (dayMilliSec);
     var hourRemainder = dateRemainder % hourMilliSec;
-    return hourRemainder ~/ minMilliSec;
+    return (hourRemainder ~/ minMilliSec) % 60;
   }
 
   int get second {
@@ -128,7 +128,7 @@ class EtDatetime extends EDT {
     var dateRemainder = yearRemainder % (dayMilliSec);
     var hourRemainder = dateRemainder % hourMilliSec;
     var minuteRemainder = hourRemainder % minMilliSec;
-    return minuteRemainder ~/ secMilliSec;
+    return (minuteRemainder ~/ secMilliSec) % 60;
   }
 
   int get millisecond {
@@ -138,10 +138,6 @@ class EtDatetime extends EDT {
     var minuteRemainder = hourRemainder % minMilliSec;
     return minuteRemainder % secMilliSec;
   }
-
-  Map<String, int> get date => {"year": year, "month": month, "day": day};
-
-  Map<String, int> get time => {"h": hour, "m": minute, "s": second};
 
 /*
    * Returns the first day of the year
@@ -284,6 +280,13 @@ class EtDatetime extends EDT {
       return 0;
     else
       return 1;
+  }
+
+  Stream<int> clock() async* {
+    while (true) {
+      await Future.delayed(const Duration(seconds: 1));
+      yield DateTime.now().millisecondsSinceEpoch;
+    }
   }
 
   // OVERRIDES
