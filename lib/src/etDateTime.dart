@@ -345,7 +345,7 @@ class EtDatetime extends EDT {
   int get hour {
     var yearRemainder = moment % yearMilliSec;
     var dateRemainder = yearRemainder % (dayMilliSec);
-    return ((dateRemainder ~/ hourMilliSec)) % 24; // Since Ethiopia is GMT+3
+    return (dateRemainder ~/ hourMilliSec) % 24; // Since Ethiopia is GMT+3
   }
 
   /**
@@ -457,8 +457,6 @@ class EtDatetime extends EDT {
             (millisecondsPerSecond * second).abs() +
             millisecond.abs()) -
         (biginningEpoch * 1000);
-    // return a.toInt();
-    // return (ethiopicEpoch - 1 + 365 * (year - 1) + (year / 4).floor() + 30 * (month - 1) + date);
   }
 
   static int _fixedFromUnix(int ms) => (unixEpoch + (ms ~/ 86400000));
@@ -467,17 +465,6 @@ class EtDatetime extends EDT {
     return (ethiopicEpoch - 1 + 365 * (year - 1) + (year ~/ 4) + 30 * (month - 1) + day);
   }
 
-  /**
-   * Returns a human-readable string for this instance.
-   *
-   * The returned string is constructed for the time zone of this instance.
-   * The `toString()` method provides a simply formatted string.
-   * It does not support internationalized strings.
-   * Use the [intl](https://pub.dev/packages/intl) package
-   * at the pub shared packages repo.
-   *
-   * The resulting string can be parsed back using [parse].
-   */
   String toString() {
     String y = _fourDigits(year);
     String m = _twoDigits(month);
@@ -547,11 +534,11 @@ class EtDatetime extends EDT {
     return EtDatetime.fromMillisecondsSinceEpoch(moment - duration.inMilliseconds);
   }
 
-  bool isBefore(EtDatetime other) => moment < other.moment;
+  bool isBefore(EtDatetime other) => fixed < other.fixed && moment < other.moment;
 
-  bool isAfter(EtDatetime other) => moment > other.moment;
+  bool isAfter(EtDatetime other) => fixed > other.fixed && moment > other.moment;
 
-  bool isAtSameMomentAs(EtDatetime other) => moment == other.moment;
+  bool isAtSameMomentAs(EtDatetime other) => fixed == other.fixed && moment == other.moment;
 
   int compareTo(EtDatetime other) {
     if (this.isBefore(other))
