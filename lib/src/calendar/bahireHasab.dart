@@ -95,7 +95,9 @@ class BahireHasab extends Equatable {
         "day": {
           "month": _months[_months.indexOf(mebajaHamer['month']) +
               (mebajaHamer['date'] + numOfDays) ~/ 30],
-          "date": (mebajaHamer['date'] + numOfDays) % 30 == 0 ? 30 : (mebajaHamer['date'] + numOfDays) % 30
+          "date": (mebajaHamer['date'] + numOfDays) % 30 == 0
+              ? 30
+              : (mebajaHamer['date'] + numOfDays) % 30
         }
       });
     });
@@ -115,11 +117,14 @@ class BahireHasab extends Equatable {
       if (status) {
         Map<String, dynamic> mebajaHamer = nenewe;
         int target = _yebealTewsak[name];
-        return {
+        Map<String, dynamic> a = {
           "month": _months[_months.indexOf(mebajaHamer['month']) +
-              (mebajaHamer['date'] + target) ~/ 30],
-          "date": (mebajaHamer['date'] + target) % 30 == 0 ? 30 : (mebajaHamer['date'] + target) % 30
+              ((mebajaHamer['date'] + target) ~/ 30)],
+          "date": (mebajaHamer['date'] + target) % 30 == 0
+              ? 30
+              : (mebajaHamer['date'] + target) % 30
         };
+        return a;
       }
     } catch (e) {
       print(e.toString());
