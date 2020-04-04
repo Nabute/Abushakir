@@ -68,6 +68,7 @@ class EtDatetime extends EDT {
       int milliAndMicroseconds = parseMilliAndMicroseconds(match[7]);
       int millisecond =
           milliAndMicroseconds ~/ Duration.microsecondsPerMillisecond;
+      bool isUtc = false;
       if (match[8] != null) {
         // timezone part
         if (match[9] != null) {
@@ -116,7 +117,8 @@ class EtDatetime extends EDT {
   int get hour {
     var yearRemainder = moment % yearMilliSec;
     var dateRemainder = yearRemainder % (dayMilliSec);
-    return ((dateRemainder ~/ hourMilliSec) + 3) % 24; // Since Ethiopia is GMT+3
+    return (dateRemainder ~/ hourMilliSec) %
+        24; // Since Ethiopia is GMT+3
   }
 
   int get minute {
@@ -202,8 +204,6 @@ class EtDatetime extends EDT {
             (millisecondsPerSecond * second).abs() +
             millisecond.abs()) -
         (biginningEpoch * 1000);
-    // return a.toInt();
-    // return (ethiopicEpoch - 1 + 365 * (year - 1) + (year / 4).floor() + 30 * (month - 1) + date);
   }
 
   static int _fixedFromUnix(int ms) => (unixEpoch + (ms ~/ 86400000));
@@ -225,6 +225,7 @@ class EtDatetime extends EDT {
       throw ArgumentError(
           "Calendar is outside valid range: ${DateTime.now().millisecondsSinceEpoch}");
     }
+    fixed = _fixedFromUnix(moment);
   }
 
   String toString() {
@@ -280,11 +281,14 @@ class EtDatetime extends EDT {
         moment - duration.inMilliseconds);
   }
 
-  bool isBefore(EtDatetime other) => moment < other.moment;
+  bool isBefore(EtDatetime other) =>
+      fixed < other.fixed && moment < other.moment;
 
-  bool isAfter(EtDatetime other) => moment > other.moment;
+  bool isAfter(EtDatetime other) =>
+      fixed > other.fixed && moment > other.moment;
 
-  bool isAtSameMomentAs(EtDatetime other) => moment == other.moment;
+  bool isAtSameMomentAs(EtDatetime other) =>
+      fixed == other.fixed && moment == other.moment;
 
   int compareTo(EtDatetime other) {
     if (this.isBefore(other))

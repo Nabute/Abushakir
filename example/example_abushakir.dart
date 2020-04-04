@@ -7,12 +7,12 @@ void main() {
 //  var now = EthiopianCalendar.parse("1995-04-27 20:18:04Z");
 //  var now = EthiopianCalendar.parse("1970-01-01 00:00:00"); // 1962-ታኅሳስ-23 unix epoch started
 
-  EtDatetime now = EtDatetime.now();
-//  EtDatetime now = EtDatetime(year: 2011, month: 1, day: 6, hour: 12, minute: 33, second: 42, millisecond: 234);
+//  EtDatetime now = EtDatetime.now();
+  EtDatetime now = EtDatetime(year: 2011, month: 10, day: 12, hour: 0, minute: 0, second: 0, millisecond: 00);
 //  EtDatetime now = EtDatetime.parse("2011-13-06 01:00:00"); //
 //   Monday, June 23, 2003 8:15:22 PM GMT+03:00 == 1995-10-16 02:15:22 ET == 1056388522000
 //  print(now.moment);
-//  EtDatetime now = new EtDatetime.fromMillisecondsSinceEpoch(1568211444000);  // 14 Hour == 2 PM
+//  EtDatetime now = new EtDatetime.fromMillisecondsSinceEpoch(1657065600000);  // 14 Hour == 2 PM
 //  print(EtDatetime.fromMillisecondsSinceEpoch(now.moment));
 //  print("Year: ${now.year}");
 //  print("Month: ${now.month}");
@@ -21,8 +21,9 @@ void main() {
 //  print("Minutes: ${now.minute}");
 //  print("Seconds: ${now.second}");
 //  print("MilliSeconds: ${now.millisecond}");
-//  print("To String: ${now.toString()}");
-//  print("To JSON: ${now.toJson()}");
+  print("To String: ${now.toString()}");
+  print("To JSON: ${now.toJson()}");
+  print("UnParsed moment:= ${now.moment}, Parsed Fixed:= ${now.fixed}");
 //  print("To ISO8601String Format: ${now.toIso8601String()}");
 //  print("The Month is ${now.monthGeez}");
 
@@ -80,10 +81,12 @@ void main() {
 
 //  print("********************************************************");
 //
-//  var a = EtDatetime.parse("2011-10-12 00:00:00");
+  var a = EtDatetime.parse("2011-10-12 00:00:00");
 //  print(a.runtimeType);
-//  print("ToString ${a.toString()}");
-//  print("ToJson ${a.toJson()}");
+  print("Parsed moment:= ${a.moment}, Parsed Fixed:= ${a.fixed}");
+  print("ToString ${a.toString()}");
+  print("ToJson ${a.toJson()}");
+
 //  print(a.day);
 //  print("The date is ${a.dayGeez}");
 //  print("The Month is ${a.monthGeez}");
@@ -95,17 +98,17 @@ void main() {
 // Bahire Hasab (Abusakir) Implementation Examples
 //  print("********************HAHIRE HASAB***********************");
   BahireHasab b = BahireHasab(year: 2012);
-  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
-  print("Wenber:= ${b.wenber}");
-  print("Metkih:= ${b.metkih}");
-  print("Abekte:= ${b.abekte}");
-  print(
-      "Meskerem 1:= ${b.getMeskeremOne(returnName: true)}-- ${b.getMeskeremOne()}");
-  print(
-      "*********************  Movable Feasts and Holidays   **********************");
-  print('Nenewe Tsom:= ${b.nenewe}');
+//  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
+//  print("Wenber:= ${b.wenber}");
+//  print("Metkih:= ${b.metkih}");
+//  print("Abekte:= ${b.abekte}");
+//  print(
+//      "Meskerem 1:= ${b.getMeskeremOne(returnName: true)}-- ${b.getMeskeremOne()}");
+//  print(
+//      "*********************  Movable Feasts and Holidays   **********************");
+//  print('Nenewe Tsom:= ${b.nenewe}');
 //  print("Abiy Tsom:= ${b.getAbiyTsom()}");
-  print("Getting single Beal's date:= ${b.getSingleBealOrTsom("ጰራቅሊጦስ")}");
+  print("Getting single Beal's date:= ${b.getSingleBealOrTsom("ትንሳኤ")}");
   print("Bealat:= ${b.allAtswamat}");
 
   //////////////////////////////////////////////////////////////////////////////
@@ -116,8 +119,10 @@ void main() {
 //  print("Year First Day:= ${dt.weekday}");
 //  print("Year First Day:= ${dt.toString()}");
 
-//  EtDatetime abc = EtDatetime.fromMillisecondsSinceEpoch(1568211322);
-  ETC et = new ETC(year: now.year, month: now.month);
+//  EtDatetime abc = EtDatetime.fromMillisecondsSinceEpoch(1585742246021);
+//  print(abc.hour);
+//  ETC et = new ETC(year: now.year, month: now.month);
+//  ETC et = new ETC(year: 2000, month: 13);
 //
 
 //  for (var days in et.monthDays()) {
@@ -127,6 +132,9 @@ void main() {
 //  print("Days in the whole Year 2011:= ${et.yearDays()}");
 //  print("Next Month:= ${et.nextMonth.monthDays()}");
 //  print("Previous Month:= ${et.prevMonth.monthDays()}");
+  EtDatetime ec = EtDatetime.parse("2012-07-07 15:12:17.500");
+  print(ec.toString());
+  print(ec.dayGeez);
 //  print("Next Year:= ${et.nextYear.monthDays()}");
 //  print("Previous Year:= ${et.prevYear.monthDays()}");
 //  print("TODAY:= ${ETC.today().monthName}");
