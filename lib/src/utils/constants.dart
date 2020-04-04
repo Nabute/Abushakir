@@ -39,15 +39,15 @@ List<Map<String, dynamic>> _yeeletTewsak = [
 Map<String, int> _yebealTewsak = {
   "ነነዌ": 0,
   "ዓቢይ ጾም": 14,
-  "ደብረ ዘይት": 41,
-  "ሆሣዕና": 62,
-  "ስቅለት": 67,
-  "ትንሳኤ": 69,
-  "ርክበ ካህናት": 93,
-  "ዕርገት": 108,
-  "ጰራቅሊጦስ": 118,
-  "ጾመ ሐዋርያት": 119,
-  "ጾመ ድህነት": 121,
+  "ደብረ ዘይት": 11,
+  "ሆሣዕና": 2,
+  "ስቅለት": 7,
+  "ትንሳኤ": 9,
+  "ርክበ ካህናት": 3,
+  "ዕርገት": 18,
+  "ጰራቅሊጦስ": 28,
+  "ጾመ ሐዋርያት": 29,
+  "ጾመ ድህነት": 1,
 };
 
 const List<String> _dayNumbers = [
@@ -114,7 +114,7 @@ const int initialHour = 9; // after mid night, Ethiopian mid night, 09:00
 
 
 /// Testing with ethiopian  648000 is the difference in milliSecondsPerYear
-const int yearMilliSec = 31622400000; // 366 days: 31622400
+const int yearMilliSec = 31556952000; // 366 days: 31622400
 const int monthMilliSec = 2592000000;
 const int dayMilliSec = 86400000;
 const int hourMilliSec = 3600000;

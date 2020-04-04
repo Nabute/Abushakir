@@ -3,7 +3,7 @@ part of abushakir;
 
 class EtDatetime extends EDT {
   int moment;
-  int fixed;
+  final int fixed;
 
   // Constructors
   EtDatetime(
@@ -16,7 +16,8 @@ class EtDatetime extends EDT {
       int millisecond = 0,
       int microsecond = 0})
       : fixed = _fixedFromEthiopic(year, month, day),
-        moment = _dateToEpoch(year, month, day, hour, minute, second, millisecond) {
+        moment =
+            _dateToEpoch(year, month, day, hour, minute, second, millisecond) {
     if (fixed == null) throw ArgumentError();
   }
 
@@ -65,7 +66,8 @@ class EtDatetime extends EDT {
       int minute = parseIntOrZero(match[5]);
       int second = parseIntOrZero(match[6]);
       int milliAndMicroseconds = parseMilliAndMicroseconds(match[7]);
-      int millisecond = milliAndMicroseconds ~/ Duration.microsecondsPerMillisecond;
+      int millisecond =
+          milliAndMicroseconds ~/ Duration.microsecondsPerMillisecond;
       if (match[8] != null) {
         // timezone part
         if (match[9] != null) {
@@ -77,7 +79,8 @@ class EtDatetime extends EDT {
           minute -= sign * minuteDifference;
         }
       }
-      int value = _dateToEpoch(years, month, day, hour, minute, second, millisecond);
+      int value =
+          _dateToEpoch(years, month, day, hour, minute, second, millisecond);
       int fixedValue = _fixedFromEthiopic(years, month, day);
       if (value == null) {
         throw FormatException("Time out of range", formattedString);
@@ -110,37 +113,28 @@ class EtDatetime extends EDT {
 
   Map<String, int> get time => {"h": hour, "m": minute, "s": second};
 
-  int get hour {
-    var yearRemainder = moment % yearMilliSec;
-    var dateRemainder = yearRemainder % (dayMilliSec);
-    return (dateRemainder ~/ hourMilliSec) %
-        24; // Since Ethiopia is GMT+3
-  }
+  int get hour => (moment ~/ hourMilliSec) % 24;
 
-  int get minute {
-    var yearRemainder = moment % yearMilliSec;
-    var dateRemainder = yearRemainder % (dayMilliSec);
-    var hourRemainder = dateRemainder % hourMilliSec;
-    return (hourRemainder ~/ minMilliSec) % 60;
-  }
+  int get minute => (moment ~/ minMilliSec) % 60;
 
-  int get second {
-    var yearRemainder = moment % yearMilliSec;
-    var dateRemainder = yearRemainder % (dayMilliSec);
-    var hourRemainder = dateRemainder % hourMilliSec;
-    var minuteRemainder = hourRemainder % minMilliSec;
-    return (minuteRemainder ~/ secMilliSec) % 60;
-  }
+  int get second => (moment ~/ secMilliSec) % 60;
 
-  int get millisecond {
-    var yearRemainder = moment % yearMilliSec;
-    var dateRemainder = yearRemainder % (dayMilliSec);
-    var hourRemainder = dateRemainder % hourMilliSec;
-    var minuteRemainder = hourRemainder % minMilliSec;
-    return minuteRemainder % secMilliSec;
-  }
+  int get millisecond => moment % 1000;
 
-/*
+  int get yearFirstDay => _yearFirstDay();
+
+  /*
+   * Returns the first day of the month
+   */
+  int get weekday => (yearFirstDay + ((month - 1) * 2)) % 7;
+
+  /*
+   * Returns true if [this._year] is leap year or
+   * returns false.
+  */
+  bool get isLeap => year % 4 == 3;
+
+  /*
    * Returns the first day of the year
    */
   int _yearFirstDay() {
@@ -148,19 +142,6 @@ class EtDatetime extends EDT {
     int rabeet = ameteAlem ~/ 4;
     return (ameteAlem + rabeet) % 7;
   }
-
-  int get yearFirstDay => _yearFirstDay();
-
-/*
-   * Returns the first day of the month
-   */
-  int get weekday => (yearFirstDay + ((month - 1) * 2)) % 7;
-
-/*
-   * Returns true if [this._year] is leap year or
-   * returns false.
-  */
-  bool get isLeap => year % 4 == 3;
 
   static String _fourDigits(int n) {
     int absN = n.abs();
@@ -190,31 +171,34 @@ class EtDatetime extends EDT {
     return "0$n";
   }
 
-  static int _dateToEpoch(
-      int year, int month, int date, int hour, int minute, int second, int millisecond) {
-    return ((yearMilliSec * (year - 1)).abs() +
-            (monthMilliSec * (month - 1)).abs() +
-            (dayMilliSec * date).abs() +
-            (hourMilliSec * (hour + 3)).abs() + // since ethiopia is GMT+3
-            (millisecondsPerMinute * minute).abs() +
-            (millisecondsPerSecond * second).abs() +
-            millisecond.abs()) -
-        (biginningEpoch * 1000);
+  static int _dateToEpoch(int year, int month, int date, int hour, int minute,
+      int second, int millisecond) {
+    return ((_fixedFromEthiopic(year, month, date) - unixEpoch) * dayMilliSec) +
+        (hour * hourMilliSec) +
+        (minute * minMilliSec) +
+        (second * secMilliSec) +
+        millisecond;
   }
 
   static int _fixedFromUnix(int ms) => (unixEpoch + (ms ~/ 86400000));
 
   static int _fixedFromEthiopic(int year, int month, int day) {
-    return (ethiopicEpoch - 1 + 365 * (year - 1) + (year ~/ 4) + 30 * (month - 1) + day);
+    return (ethiopicEpoch -
+        1 +
+        365 * (year - 1) +
+        (year ~/ 4) +
+        30 * (month - 1) +
+        day);
   }
 
   EtDatetime._withValue(this.moment, this.fixed) {
-    if (DateTime.now().millisecondsSinceEpoch.abs() > _maxMillisecondsSinceEpoch ||
-        (DateTime.now().millisecondsSinceEpoch.abs() == _maxMillisecondsSinceEpoch)) {
+    if (DateTime.now().millisecondsSinceEpoch.abs() >
+            _maxMillisecondsSinceEpoch ||
+        (DateTime.now().millisecondsSinceEpoch.abs() ==
+            _maxMillisecondsSinceEpoch)) {
       throw ArgumentError(
           "Calendar is outside valid range: ${DateTime.now().millisecondsSinceEpoch}");
     }
-    fixed = _fixedFromUnix(moment);
   }
 
   String toString() {
@@ -241,7 +225,8 @@ class EtDatetime extends EDT {
   }
 
   String toIso8601String() {
-    String y = (year >= -9999 && year <= 9999) ? _fourDigits(year) : _sixDigits(year);
+    String y =
+        (year >= -9999 && year <= 9999) ? _fourDigits(year) : _sixDigits(year);
     String m = _twoDigits(month);
     String d = _twoDigits(day);
     String h = _twoDigits(hour);
@@ -251,11 +236,13 @@ class EtDatetime extends EDT {
     return "$y-$m-${d}T$h:$min:$sec.$ms";
   }
 
-  static final RegExp _parseFormat = RegExp(r'^([+-]?\d{4,6})-?(\d\d)-?(\d\d)' // Day part.
+  static final RegExp _parseFormat = RegExp(
+      r'^([+-]?\d{4,6})-?(\d\d)-?(\d\d)' // Day part.
       r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d+))?)?)?$' // Time part.
       r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
 
-  Duration difference(EtDatetime date) => Duration(days: (moment - date.moment).toInt());
+  Duration difference(EtDatetime date) =>
+      Duration(days: (moment - date.moment).toInt());
 
   EtDatetime add(Duration duration) {
     return EtDatetime.fromMillisecondsSinceEpoch(
