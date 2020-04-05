@@ -33,9 +33,7 @@ class ETC implements Calendar {
   /*
    * Returning Next month.
    */
-  ETC get nextMonth => new ETC(
-      year: _date.year,
-      month: _date.month + 1);
+  ETC get nextMonth => new ETC(year: _date.year, month: _date.month + 1);
 
   /*
    * Returning previous month.

@@ -2,8 +2,6 @@
 
 part of abushakir;
 
-
-
 class BealNameException implements Exception {
   @override
   String toString() =>

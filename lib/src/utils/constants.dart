@@ -1,8 +1,6 @@
 ///
 part of abushakir;
 
-
-
 /// The 4 Evangelist(s)
 const List<String> _evangelists = ["ዮሐንስ", "ማቴዎስ", "ማርቆስ", "ሉቃስ"];
 
@@ -109,9 +107,6 @@ const int initialYear = 1962;
 const int initialMonth = 4;
 const int initialDate = 23; // was 23 initially, changed it for testing
 const int initialHour = 9; // after mid night, Ethiopian mid night, 09:00
-
-
-
 
 /// Testing with ethiopian  648000 is the difference in milliSecondsPerYear
 const int yearMilliSec = 31556952000; // 366 days: 31622400
