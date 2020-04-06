@@ -88,7 +88,7 @@ class BahireHasab extends Equatable {
   List get allAtswamat {
     Map<String, dynamic> mebajaHamer = nenewe;
     List result = List();
-
+    int m = nenewe['date'];
     _yebealTewsak.forEach((beal, numOfDays) {
       result.add({
         "beal": beal,

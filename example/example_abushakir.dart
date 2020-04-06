@@ -8,11 +8,11 @@ void main() {
 //  var now = EthiopianCalendar.parse("1970-01-01 00:00:00"); // 1962-ታኅሳስ-23 unix epoch started
 
 //  EtDatetime now = EtDatetime.now();
-  EtDatetime now = EtDatetime(year: 2011, month: 10, day: 12, hour: 0, minute: 0, second: 0, millisecond: 00);
-//  EtDatetime now = EtDatetime.parse("2011-13-06 01:00:00"); //
+//  EtDatetime now = EtDatetime(year: 2012, month: 07, day: 26, hour: 15, minute: 06, second: 16, millisecond: 058);
+//  EtDatetime now = EtDatetime.parse("2012-07-07 15:12:17.500"); //
 //   Monday, June 23, 2003 8:15:22 PM GMT+03:00 == 1995-10-16 02:15:22 ET == 1056388522000
 //  print(now.moment);
-//  EtDatetime now = new EtDatetime.fromMillisecondsSinceEpoch(1657065600000);  // 14 Hour == 2 PM
+//  EtDatetime now1 = new EtDatetime.fromMillisecondsSinceEpoch(1548918809500);  // 14 Hour == 2 PM
 //  print(EtDatetime.fromMillisecondsSinceEpoch(now.moment));
 //  print("Year: ${now.year}");
 //  print("Month: ${now.month}");
@@ -21,9 +21,9 @@ void main() {
 //  print("Minutes: ${now.minute}");
 //  print("Seconds: ${now.second}");
 //  print("MilliSeconds: ${now.millisecond}");
-  print("To String: ${now.toString()}");
-  print("To JSON: ${now.toJson()}");
-  print("UnParsed moment:= ${now.moment}, Parsed Fixed:= ${now.fixed}");
+//  print("To String Now: ${now.toString()}");
+//  print("To JSON Now: ${now.toJson()}");
+//  print("UnParsed moment Now:= ${now.moment}, Parsed Fixed:= ${now.fixed}");
 //  print("To ISO8601String Format: ${now.toIso8601String()}");
 //  print("The Month is ${now.monthGeez}");
 
@@ -81,11 +81,11 @@ void main() {
 
 //  print("********************************************************");
 //
-  var a = EtDatetime.parse("2011-10-12 00:00:00");
+//  var a = EtDatetime.parse("2011-10-12 00:00:00");
 //  print(a.runtimeType);
-  print("Parsed moment:= ${a.moment}, Parsed Fixed:= ${a.fixed}");
-  print("ToString ${a.toString()}");
-  print("ToJson ${a.toJson()}");
+//  print("Parsed moment 1:= ${now1.moment}, Parsed Fixed:= ${now1.fixed}");
+//  print("ToString 1 ${now1.toString()}");
+//  print("ToJson 1 ${a.toJson()}");
 
 //  print(a.day);
 //  print("The date is ${a.dayGeez}");
@@ -108,7 +108,7 @@ void main() {
 //      "*********************  Movable Feasts and Holidays   **********************");
 //  print('Nenewe Tsom:= ${b.nenewe}');
 //  print("Abiy Tsom:= ${b.getAbiyTsom()}");
-  print("Getting single Beal's date:= ${b.getSingleBealOrTsom("ትንሳኤ")}");
+  print("Getting single Beal's date:= ${b.getSingleBealOrTsom("ዕርገት")}");
   print("Bealat:= ${b.allAtswamat}");
 
   //////////////////////////////////////////////////////////////////////////////
@@ -132,9 +132,9 @@ void main() {
 //  print("Days in the whole Year 2011:= ${et.yearDays()}");
 //  print("Next Month:= ${et.nextMonth.monthDays()}");
 //  print("Previous Month:= ${et.prevMonth.monthDays()}");
-  EtDatetime ec = EtDatetime.parse("2012-07-07 15:12:17.500");
-  print(ec.toString());
-  print(ec.dayGeez);
+//  EtDatetime ec = EtDatetime.parse("2012-07-07 15:12:17.500");
+//  print(ec.toString());
+//  print(ec.dayGeez);
 //  print("Next Year:= ${et.nextYear.monthDays()}");
 //  print("Previous Year:= ${et.prevYear.monthDays()}");
 //  print("TODAY:= ${ETC.today().monthName}");
@@ -143,6 +143,21 @@ void main() {
 //      .where((i) => i % 1000 == 0)
 //      .map((i) => new EtDatetime.fromMillisecondsSinceEpoch(i).second)
 //      .listen(print);
+  EtDatetime ec = EtDatetime.parse("2012-07-07 15:12:17.500");
+//  EtDatetime ec = EtDatetime(
+//      year: 2012,
+//      month: 7,
+//      day: 7,
+//      hour: 15,
+//      minute: 12,
+//      second: 17,
+//      millisecond: 500);
+  print(ec.moment);
+  EtDatetime ex = EtDatetime.fromMillisecondsSinceEpoch(1585731446021);
+  print(ex.fixed);
+
+  print(ec.toString());
+  print("from MS:= ${ex.toString()}");
 
 //  EtDatetime date = new EtDatetime(year: 2012);
 //  print("Year First Day:= ${date.yearFirstDay}");
