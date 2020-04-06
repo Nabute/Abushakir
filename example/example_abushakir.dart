@@ -97,18 +97,18 @@ void main() {
 /////////////////////////////////////////////////////////////////////
 // Bahire Hasab (Abusakir) Implementation Examples
 //  print("********************HAHIRE HASAB***********************");
-  BahireHasab b = BahireHasab(year: 2012);
-//  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
-//  print("Wenber:= ${b.wenber}");
-//  print("Metkih:= ${b.metkih}");
-//  print("Abekte:= ${b.abekte}");
-//  print(
-//      "Meskerem 1:= ${b.getMeskeremOne(returnName: true)}-- ${b.getMeskeremOne()}");
+  BahireHasab b = BahireHasab(year: 2011);
+  print("Wengelawi:= ${b.getEvangelist(returnName: true)}");
+  print("Wenber:= ${b.wenber}");
+  print("Metkih:= ${b.metkih}");
+  print("Abekte:= ${b.abekte}");
+  print(
+      "Meskerem 1:= ${b.getMeskeremOne(returnName: true)}-- ${b.getMeskeremOne()}");
 //  print(
 //      "*********************  Movable Feasts and Holidays   **********************");
 //  print('Nenewe Tsom:= ${b.nenewe}');
 //  print("Abiy Tsom:= ${b.getAbiyTsom()}");
-  print("Getting single Beal's date:= ${b.getSingleBealOrTsom("ዕርገት")}");
+  print("Getting single Beal's date:= ${b.getSingleBealOrTsom("ጰራቅሊጦስ")}");
   print("Bealat:= ${b.allAtswamat}");
 
   //////////////////////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ void main() {
 //      .where((i) => i % 1000 == 0)
 //      .map((i) => new EtDatetime.fromMillisecondsSinceEpoch(i).second)
 //      .listen(print);
-  EtDatetime ec = EtDatetime.parse("2012-07-07 15:12:17.500");
+//  EtDatetime ec = EtDatetime.parse("2012-07-23 08:57:26.021");
 //  EtDatetime ec = EtDatetime(
 //      year: 2012,
 //      month: 7,
@@ -152,18 +152,14 @@ void main() {
 //      minute: 12,
 //      second: 17,
 //      millisecond: 500);
-  print(ec.moment);
-  EtDatetime ex = EtDatetime.fromMillisecondsSinceEpoch(1585731446021);
-  print(ex.fixed);
-
-  print(ec.toString());
-  print("from MS:= ${ex.toString()}");
+//  print(ec.moment);
+//  EtDatetime ex = EtDatetime.fromMillisecondsSinceEpoch(1585731446021);
+//  print(ex.fixed);
+//
+//  print(ec.toString());
+//  print("from MS:= ${ex.toString()}");
 
 //  EtDatetime date = new EtDatetime(year: 2012);
 //  print("Year First Day:= ${date.yearFirstDay}");
 //  print("Year First Month First Day:= ${date.weekday}");
-}
-
-Future<int> clockCounter(Stream<int> stream) async {
-  print("The time is:= ${stream}");
 }

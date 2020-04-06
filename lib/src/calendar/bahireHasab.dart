@@ -33,7 +33,7 @@ class BahireHasab extends Equatable {
   }
 
   /// A variable that helps to get Abekte and Metke'e
-  int get wenber => (ameteAlem % 19) - 1;
+  int get wenber => ((ameteAlem % 19) - 1) < 0 ? 0 : (ameteAlem % 19) - 1;
 
   /// Abekte
   int get abekte => (wenber * _tinteAbekte) % 30;
@@ -104,6 +104,32 @@ class BahireHasab extends Equatable {
     return result;
   }
 
+//  List get allAtswamat {
+//    List result = [
+//      {"beal": "ነነዌ", "day": nenewe}
+//    ];
+//    int remainder;
+//    _yebealTewsak.forEach((beal, tewsak) {
+//      remainder = (nenewe['date'] + tewsak) % 30;
+//      bool sameMonth = remainder > result[result.length - 1]["day"]["date"];
+//      result.add({
+//        "beal": beal,
+//        "day": {
+//          "month": sameMonth
+//              ? result[result.length - 1]["day"]["month"]
+//              : _months[
+//          _months.indexOf(result[result.length - 1]["day"]["month"]) +
+//              1],
+//          "date": (nenewe['date'] + tewsak) % 30 == 0
+//              ? 30
+//              : (nenewe['date'] + tewsak) % 30
+//        }
+//      });
+////      print(result);
+//    });
+//    return result;
+//  }
+
   bool isMovableHoliday(String holidayName) {
     if (_yebealTewsak.keys.contains(holidayName)) {
       return true;
@@ -130,6 +156,8 @@ class BahireHasab extends Equatable {
       print(e.toString());
     }
   }
+
+
 
   // OVERRIDES
   @override

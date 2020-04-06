@@ -37,16 +37,32 @@ List<Map<String, dynamic>> _yeeletTewsak = [
 Map<String, int> _yebealTewsak = {
   "ነነዌ": 0,
   "ዓቢይ ጾም": 14,
-  "ደብረ ዘይት": 11,
-  "ሆሣዕና": 2,
-  "ስቅለት": 7,
-  "ትንሳኤ": 9,
-  "ርክበ ካህናት": 3,
-  "ዕርገት": 18,
-  "ጰራቅሊጦስ": 28,
-  "ጾመ ሐዋርያት": 29,
-  "ጾመ ድህነት": 1,
+  "ደብረ ዘይት": 41,
+  "ሆሣዕና": 62,
+  "ስቅለት": 67,
+  "ትንሳኤ": 69,
+  "ርክበ ካህናት": 93,
+  "ዕርገት": 108,
+  "ጰራቅሊጦስ": 118,
+  "ጾመ ሐዋርያት": 119,
+  "ጾመ ድህነት": 121,
 };
+
+
+
+List<Map<String, dynamic>> _yatswamatTewsak = [
+  {"tsom": "ነነዌ", "tewsak": 0},
+  {"tsom": "ዓቢይ ጾም", "tewsak": 14},
+  {"tsom": "ደብረ ዘይት", "tewsak": 11},
+  {"tsom": "ሆሣዕና", "tewsak": 2},
+  {"tsom": "ስቅለት", "tewsak": 7},
+  {"tsom": "ትንሳኤ", "tewsak": 9},
+  {"tsom": "ርክበ ካህናት", "tewsak": 3},
+  {"tsom": "ዕርገት", "tewsak": 18},
+  {"tsom": "ጰራቅሊጦስ", "tewsak": 28},
+  {"tsom": "ጾመ ሐዋርያት", "tewsak": 29},
+  {"tsom": "ጾመ ድህነት", "tewsak": 1},
+];
 
 const List<String> _dayNumbers = [
   "፩",
