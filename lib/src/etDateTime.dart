@@ -5,7 +5,7 @@ part of abushakir;
  * An instant in time, such as July 20, 1969, 8:18pm GMT.
  *
  * DateTimes can represent time values that are at a distance of at most
- * 100,000,000 days from epoch (1970-01-01 UTC): -271821-04-20 to 275760-09-13.
+ * 100,000,000 days from epoch (1970-01-01): -271821-04-20 to 275760-09-13.
  *
  * Create a EtDatetime object by using one of the constructors
  * or by parsing a correctly formatted string,
@@ -99,20 +99,24 @@ part of abushakir;
  */
 class EtDatetime extends EDT {
   /**
-   * 
+   * A [millisecondsSinceEpoch] of this DateTime.
    */
   int moment;
+
+  /**
+   * Fixed date—elapsed days since the onset of Monday, January 1, 1 (Gregorian)
+   */
   final int fixed;
 
   /**
-   * Constructs an [EtDatetime] instance specified in the local time zone.
+   * Constructs an [EtDatetime] instance.
    *
    * For example,
-   * to create a new EtDatetime object representing the 7th of September 2017,
+   * to create a new EtDatetime object representing the 7th of September 2012,
    * 5:30pm
    *
    * ```
-   * var dentistAppointment = new EtDatetime(year: 2017, month: 9, day: 7, hour: 17, minute: 30);
+   * var dentistAppointment = new EtDatetime(year: 2012, month: 1, day: 7, hour: 17, minute: 30);
    * ```
    */
   EtDatetime(
@@ -130,8 +134,7 @@ class EtDatetime extends EDT {
   }
 
   /**
-   * Constructs a [EtDatetime] instance with current date and time in the
-   * local time zone.
+   * Constructs an [EtDatetime] instance with current date and time.
    *
    * ```
    * var thisInstant = new EtDatetime.now();
@@ -140,14 +143,14 @@ class EtDatetime extends EDT {
   EtDatetime.now()
       : fixed = _fixedFromUnix(DateTime.now().millisecondsSinceEpoch),
         moment = DateTime.now().millisecondsSinceEpoch;
+
   /**
-   * Constructs a new [EtDatetime] instance
+   * Constructs an [EtDatetime] instance
    * with the given [millisecondsSinceEpoch].
    *
-   *
-   * The constructed [EtDatetime] represents
-   * 1970-01-01T00:00:00Z + [millisecondsSinceEpoch] ms in the given
-   * time zone (local or UTC).
+   * ```
+   * var thisInstant = new EtDatetime.fromMillisecondsSinceEpoch(1585742246021);
+   * ```
    */
   EtDatetime.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch)
       : moment = millisecondsSinceEpoch,
@@ -182,21 +185,6 @@ class EtDatetime extends EDT {
    *   The minutes and seconds may be separated from the previous parts by a
    *   ':'.
    *   Examples: "12", "12:30:24.124", "12:30:24,124", "123010.50".
-   * * An optional time-zone offset part,
-   *   possibly separated from the previous by a space.
-   *   The time zone is either 'z' or 'Z', or it is a signed two digit hour
-   *   part and an optional two digit minute part. The sign must be either
-   *   "+" or "-", and can not be omitted.
-   *   The minutes may be separated from the hours by a ':'.
-   *   Examples: "Z", "-10", "+01:30", "+1130".
-   *
-   * This includes the output of both [toString] and [toIso8601String], which
-   * will be parsed back into a `EtDatetime` object with the same time as the
-   * original.
-   *
-   * The result is always in either local time or UTC.
-   * If a time zone offset other than UTC is specified,
-   * the time is converted to the equivalent UTC time.
    *
    * Examples of accepted strings:
    *
@@ -280,20 +268,6 @@ class EtDatetime extends EDT {
   }
 
   /**
-   * Constructs a new [EtDatetime] instance with the given value.
-   *
-   * If [isUtc] is false then the date is in the local time zone.
-   */
-
-  EtDatetime._withValue(this.moment, this.fixed) {
-    if (DateTime.now().millisecondsSinceEpoch.abs() > _maxMillisecondsSinceEpoch ||
-        (DateTime.now().millisecondsSinceEpoch.abs() == _maxMillisecondsSinceEpoch)) {
-      throw ArgumentError(
-          "Calendar is outside valid range: ${DateTime.now().millisecondsSinceEpoch}");
-    }
-  }
-
-  /**
    * The year.
    *
    * ```
@@ -326,18 +300,58 @@ class EtDatetime extends EDT {
    */
   int get day => fixed + 1 - _fixedFromEthiopic(year, month, 1);
 
+  /**
+   * The day of the month in Ge'ez ['፩'..'፴'].
+   *
+   * ```
+   * var moonLanding = EtDatetime.parse("1969-07-20 20:18:04Z");
+   * assert(moonLanding.dayGeez == '፳');
+   * ```
+   */
   String get dayGeez => _dayNumbers[(day - 1) % 30];
 
   Map<String, int> get date => {"year": year, "month": month, "day": day};
 
   Map<String, int> get time => {"h": hour, "m": minute, "s": second};
 
+/**
+   * The hour of the day, expressed as in a 24-hour clock [0..23].
+   *
+   * ```
+   * var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");
+   * assert(moonLanding.hour == 20);
+   * ```
+   */
   int get hour => (moment ~/ hourMilliSec) % 24;
 
+/**
+   * The minute [0...59].
+   *
+   * ```
+   * var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");
+   * assert(moonLanding.minute == 18);
+   * ```
+   */
   int get minute => (moment ~/ minMilliSec) % 60;
 
+/**
+   * The second [0...59].
+   *
+   * ```
+   * var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");
+   * assert(moonLanding.second == 4);
+   * ```
+   */
   int get second => (moment ~/ secMilliSec) % 60;
 
+/**
+   * The millisecond [0...999].
+   *
+   * ```
+   * var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");
+   * assert(moonLanding.millisecond == 0);
+   * ```
+   */
   int get millisecond => moment % 1000;
 
   int get yearFirstDay => _yearFirstDay();
@@ -390,6 +404,7 @@ class EtDatetime extends EDT {
     return "0$n";
   }
 
+  /// Converts the given broken down date to [millisecondsSinceEpoch].
   static int _dateToEpoch(
       int year, int month, int date, int hour, int minute, int second, int millisecond) {
     return ((_fixedFromEthiopic(year, month, date) - unixEpoch) * dayMilliSec) +
@@ -405,6 +420,10 @@ class EtDatetime extends EDT {
     return (ethiopicEpoch - 1 + 365 * (year - 1) + (year ~/ 4) + 30 * (month - 1) + day);
   }
 
+/**
+   * Constructs a new [EtDatetime] instance with the given values.
+   *
+   */
   EtDatetime._withValue(this.moment, this.fixed) {
     if (DateTime.now().millisecondsSinceEpoch.abs() > _maxMillisecondsSinceEpoch ||
         (DateTime.now().millisecondsSinceEpoch.abs() == _maxMillisecondsSinceEpoch)) {
@@ -439,8 +458,7 @@ class EtDatetime extends EDT {
   /**
    * Returns an ISO-8601 full-precision extended format representation.
    *
-   * The format is `yyyy-MM-ddTHH:mm:ss.mmmuuuZ` for UTC time, and
-   * `yyyy-MM-ddTHH:mm:ss.mmmuuu` (no trailing "Z") for local/non-UTC time,
+   * The format is `yyyy-MM-ddTHH:mm:ss.mmm`
    * where:
    *
    * * `yyyy` is a, possibly negative, four digit representation of the year,
@@ -452,8 +470,6 @@ class EtDatetime extends EDT {
    * * `mm` are minutes in the range 00 to 59,
    * * `ss` are seconds in the range 00 to 59 (no leap seconds),
    * * `mmm` are milliseconds in the range 000 to 999, and
-   * * `uuu` are microseconds in the range 001 to 999. If [microsecond] equals
-   *   0, then this part is omitted.
    *
    * The resulting string can be parsed back using [parse].
    */
@@ -472,22 +488,114 @@ class EtDatetime extends EDT {
       r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d+))?)?)?$' // Time part.
       r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
 
+  /**
+   * Returns a [Duration] with the difference between [this] and [other].
+   *
+   * ```
+   * var berlinWallFell = new EtDatetime(1989, EtDatetime.november, 9);
+   * var dDay = new EtDatetime(1944, EtDatetime.june, 6);
+   *
+   * Duration difference = berlinWallFell.difference(dDay);
+   * assert(difference.inDays == 16592);
+   * ```
+   *
+   * The difference is measured in seconds and fractions of seconds.
+   * The difference above counts the number of fractional seconds between
+   * midnight at the beginning of those dates.
+   *
+   * ```
+   * var berlinWallFell = new EtDatetime(1989, EtDatetime.november, 9);
+   * var dDay = new EtDatetime(1944, EtDatetime.june, 6);
+   * Duration difference = berlinWallFell.difference(dDay);
+   * assert(difference.inDays == 16592);
+   * ```
+   * will fail because the difference is actually 16591 days and 23 hours, and
+   * [Duration.inDays] only returns the number of whole days.
+   */
   Duration difference(EtDatetime date) => Duration(days: (moment - date.moment).toInt());
 
+  /**
+   * Returns a new [EtDatetime] instance with [duration] added to [this].
+   *
+   * ```
+   * var today = new EtDatetime.now();
+   * var fiftyDaysFromNow = today.add(new Duration(days: 50));
+   * ```
+   *
+   * Notice that the duration being added is actually 50 * 24 * 60 * 60
+   * seconds. If the resulting `EtDatetime` has a different daylight saving offset
+   * than `this`, then the result won't have the same time-of-day as `this`, and
+   * may not even hit the calendar date 50 days later.
+   *
+   * Be careful when working with dates in local time.
+   */
   EtDatetime add(Duration duration) {
     return EtDatetime.fromMillisecondsSinceEpoch(moment + duration.inMilliseconds);
   }
 
+/**
+   * Returns a new [EtDatetime] instance with [duration] subtracted from [this].
+   *
+   * ```
+   * EtDatetime today = new EtDatetime.now();
+   * EtDatetime fiftyDaysAgo = today.subtract(new Duration(days: 50));
+   * ```
+   *
+   * Notice that the duration being subtracted is actually 50 * 24 * 60 * 60
+   * seconds. If the resulting `EtDatetime` has a different daylight saving offset
+   * than `this`, then the result won't have the same time-of-day as `this`, and
+   * may not even hit the calendar date 50 days earlier.
+   *
+   * Be careful when working with dates in local time.
+   */
   EtDatetime subtract(Duration duration) {
     return EtDatetime.fromMillisecondsSinceEpoch(moment - duration.inMilliseconds);
   }
 
+/**
+   * Returns true if [this] occurs before [other].
+   *
+   * ```
+   * var now = new EtDatetime.now();
+   * var earlier = now.subtract(const Duration(seconds: 5));
+   * assert(earlier.isBefore(now));
+   * assert(!now.isBefore(now));
+   * ```
+   */
   bool isBefore(EtDatetime other) => fixed < other.fixed && moment < other.moment;
 
+  /**
+   * Returns true if [this] occurs after [other].
+   *
+   * ```
+   * var now = new EtDatetime.now();
+   * var later = now.add(const Duration(seconds: 5));
+   * assert(later.isAfter(now));
+   * assert(!now.isBefore(now));
+   * ```
+   */
   bool isAfter(EtDatetime other) => fixed > other.fixed && moment > other.moment;
 
+/**
+   * Returns true if [this] occurs at the same moment as [other].
+   *
+   * ```
+   * var now = new EtDatetime.now();
+   * var later = now.add(const Duration(seconds: 5));
+   * assert(!later.isAtSameMomentAs(now));
+   * assert(now.isAtSameMomentAs(now));
+   * ```
+   */
   bool isAtSameMomentAs(EtDatetime other) => fixed == other.fixed && moment == other.moment;
 
+/**
+   * Compares this EtDatetime object to [other],
+   * returning zero if the values are equal.
+   *
+   * Returns a negative value if this EtDatetime [isBefore] [other]. It returns 0
+   * if it [isAtSameMomentAs] [other], and returns a positive value otherwise
+   * (when this [isAfter] [other]).
+   */
   int compareTo(EtDatetime other) {
     if (this.isBefore(other))
       return -1;
