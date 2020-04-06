@@ -20,29 +20,29 @@ class ETC implements Calendar {
 
   int get day => _date.day;
 
-  /*
+  /**
    * Returning Next month.
    */
   ETC get nextYear => new ETC(year: _date.year + 1, month: _date.month);
 
-  /*
+  /**
    * Returning previous month.
    */
   ETC get prevYear => new ETC(year: _date.year - 1, month: _date.month);
 
-  /*
+  /**
    * Returning Next month.
    */
   ETC get nextMonth => new ETC(year: _date.year, month: _date.month + 1);
 
-  /*
+  /**
    * Returning previous month.
    */
   ETC get prevMonth => new ETC(
       year: _date.month == 1 ? _date.year - 1 : _date.year,
       month: _date.month - 1 == 0 ? 13 : _date.month - 1);
 
-  /*
+  /**
    * Returns month range and monthStartDay as an array.
    */
   List<int> _monthRange() {
@@ -50,10 +50,9 @@ class ETC implements Calendar {
     return [_date.weekday, _date.month == 13 ? _date.isLeap ? 6 : 5 : 30];
   }
 
-  /*
+  /**
    * Returns list of weekdays with their respective date
    */
-  @override
   Iterable<List<int>> monthDays() sync* {
     int monthBeginning = _monthRange()[0];
     int daysInMonth = _monthRange()[1];
@@ -73,16 +72,14 @@ class ETC implements Calendar {
     }
   }
 
-  @override
   Iterable<Iterable<List<int>>> yearDays() sync* {
     for (int i = 0; i < _months.length; i++) {
       yield _monthDays(_date.year, i + 1);
     }
   }
 
-  // OVERRIDES
   @override
-  List<Object> get props => null;
+  List<Object> get props => [year, month, day];
 
   @override
   bool get stringify => true;
