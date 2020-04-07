@@ -55,7 +55,7 @@ part of abushakir;
  *
  */
 class ETC implements Calendar {
-  EtDatetime _date;
+  final EtDatetime _date;
 
   /**
    * Construct an [ETC] instance.
@@ -72,9 +72,8 @@ class ETC implements Calendar {
    *  day of the first month of the given year.
    *
    */
-  ETC({@required int year, int month = 1, int day = 1}) {
-    _date = new EtDatetime(year: year, month: month, day: day);
-  }
+  ETC({@required int year, int month = 1, int day = 1})
+      : _date = new EtDatetime(year: year, month: month, day: day);
 
   /**
    * Construct an [ETC] instance of the day the object is created.
@@ -84,9 +83,7 @@ class ETC implements Calendar {
    * ```
    */
 
-  ETC.today() {
-    _date = new EtDatetime.now();
-  }
+  ETC.today() : _date = new EtDatetime.now();
 
   /**
    * Getter property that return year of the current [ETC] instance.

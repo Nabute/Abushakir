@@ -4,10 +4,9 @@ description: A Dart Package for Ethiopian Calendar system (ባሕረ ሃሳብ).
   dart or flutter application. It also includes, Ethiopian Date and Time
   reckoning system and help you to get all the movable fastings with respective holidays.
 
-version: 0.0.1
+version: 0.1.0
 author: Nabute Nigusse nabute925@gmail.com; Nahom 4nahom@gmail.com
 homepage: https://github.com/Nabute/Abushakir
-repository: https://github.com/Nabute/Abushakir
 documentation: https://github.com/Nabute/Abushakir/docs
 
 

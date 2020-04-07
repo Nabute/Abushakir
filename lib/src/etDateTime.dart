@@ -92,7 +92,7 @@ class EtDatetime extends EDT {
    * Milliseconds since [UNIX Epoch](https://en.wikipedia.org/wiki/Unix_time)
    * of this EtDatetime.
    */
-  int moment;
+  final int moment;
 
   /**
    * Fixed date—elapsed days since the onset of Monday, January 1, 1970

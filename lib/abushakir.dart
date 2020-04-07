@@ -1,6 +1,6 @@
-// Copyright (c) 2012 ETC or 2020 GC, Nabute and Nahom. All rights reserved.
-// Use of this source code is governed by a MIT license that can be found
-// in the LICENSE file.
+/// Copyright (c) 2012 ETC or 2020 GC, Nabute and Nahom. All rights reserved.
+/// Use of this source code is governed by a MIT license that can be found
+/// in the LICENSE file.
 
 /**
  * Abushakir (Ge'ez: Bahire Hasab) is an arabic word that can be defined as a time-tracking method,
@@ -29,7 +29,6 @@
  * EtDatetime abushakirPublished = new EtDatetime.fromMillisecondsSinceEpoch(1586257594357)
  * ```
  *
- *
  * ## Ethiopian Calendar
  *
  * Ethiopic year 1 E.E.3 starts on August 29, 8 C.E. (Julian), our R.D. 2796.
@@ -49,6 +48,7 @@
  * ```
  * ETC ethiopianCalendar = new ETC(year: 2012, month: 7, day: 4);
  * ETC today = ETC.today()
+ *
  * ```
  *
  *

@@ -49,8 +49,8 @@ part of abushakir;
 class BahireHasab extends Equatable {
   int _year;
 
-  BahireHasab({int year = -1}) {
-    year < 0 ? this._year = EtDatetime.now().year : this._year = year;
+  BahireHasab({int year: -1}) {
+    year < 0 ? _year = EtDatetime.now().year : _year = year;
   }
 
   /**
@@ -200,7 +200,6 @@ class BahireHasab extends Equatable {
   List get allAtswamat {
     Map<String, dynamic> mebajaHamer = nenewe;
     List result = List();
-    int m = nenewe['date'];
     _yebealTewsak.forEach((beal, numOfDays) {
       result.add({
         "beal": beal,
