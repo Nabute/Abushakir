@@ -103,7 +103,7 @@ class EtDatetime extends EDT {
   int moment;
 
   /**
-   * Fixed date—elapsed days since the onset of Monday, January 1, 1 (Gregorian)
+   * Fixed date—elapsed (days) since the onset of Monday, January 1, 1 (Gregorian)
    */
   final int fixed;
 
@@ -128,8 +128,7 @@ class EtDatetime extends EDT {
       int millisecond = 0,
       int microsecond = 0})
       : fixed = _fixedFromEthiopic(year, month, day),
-        moment =
-            _dateToEpoch(year, month, day, hour, minute, second, millisecond) {
+        moment = _dateToEpoch(year, month, day, hour, minute, second, millisecond) {
     if (fixed == null) throw ArgumentError();
   }
 
@@ -231,8 +230,7 @@ class EtDatetime extends EDT {
       int minute = parseIntOrZero(match[5]);
       int second = parseIntOrZero(match[6]);
       int milliAndMicroseconds = parseMilliAndMicroseconds(match[7]);
-      int millisecond =
-          milliAndMicroseconds ~/ Duration.microsecondsPerMillisecond;
+      int millisecond = milliAndMicroseconds ~/ Duration.microsecondsPerMillisecond;
       if (match[8] != null) {
         // timezone part
         if (match[9] != null) {
@@ -244,8 +242,7 @@ class EtDatetime extends EDT {
           minute -= sign * minuteDifference;
         }
       }
-      int value =
-          _dateToEpoch(years, month, day, hour, minute, second, millisecond);
+      int value = _dateToEpoch(years, month, day, hour, minute, second, millisecond);
       int fixedValue = _fixedFromEthiopic(years, month, day);
       if (value == null) {
         throw FormatException("Time out of range", formattedString);
@@ -408,8 +405,8 @@ class EtDatetime extends EDT {
   }
 
   /// Converts the given broken down date to [millisecondsSinceEpoch].
-  static int _dateToEpoch(int year, int month, int date, int hour, int minute,
-      int second, int millisecond) {
+  static int _dateToEpoch(
+      int year, int month, int date, int hour, int minute, int second, int millisecond) {
     return ((_fixedFromEthiopic(year, month, date) - unixEpoch) * dayMilliSec) +
         (hour * hourMilliSec) +
         (minute * minMilliSec) +
@@ -417,15 +414,17 @@ class EtDatetime extends EDT {
         millisecond;
   }
 
+/**
+ * Returns [fixed] date from Unix [millisecond] count.
+ */
   static int _fixedFromUnix(int ms) => (unixEpoch + (ms ~/ 86400000));
 
+  /**
+  * Converts an ethiopic date to [fixed] date by adding the days elapsed to the last day before the
+  * [ethiopicEpoch]. 
+  */
   static int _fixedFromEthiopic(int year, int month, int day) {
-    return (ethiopicEpoch -
-        1 +
-        365 * (year - 1) +
-        (year ~/ 4) +
-        30 * (month - 1) +
-        day);
+    return (ethiopicEpoch - 1 + 365 * (year - 1) + (year ~/ 4) + 30 * (month - 1) + day);
   }
 
   /**
@@ -433,10 +432,8 @@ class EtDatetime extends EDT {
    *
    */
   EtDatetime._withValue(this.moment, this.fixed) {
-    if (DateTime.now().millisecondsSinceEpoch.abs() >
-            _maxMillisecondsSinceEpoch ||
-        (DateTime.now().millisecondsSinceEpoch.abs() ==
-            _maxMillisecondsSinceEpoch)) {
+    if (DateTime.now().millisecondsSinceEpoch.abs() > _maxMillisecondsSinceEpoch ||
+        (DateTime.now().millisecondsSinceEpoch.abs() == _maxMillisecondsSinceEpoch)) {
       throw ArgumentError(
           "Calendar is outside valid range: ${DateTime.now().millisecondsSinceEpoch}");
     }
@@ -484,8 +481,7 @@ class EtDatetime extends EDT {
    * The resulting string can be parsed back using [parse].
    */
   String toIso8601String() {
-    String y =
-        (year >= -9999 && year <= 9999) ? _fourDigits(year) : _sixDigits(year);
+    String y = (year >= -9999 && year <= 9999) ? _fourDigits(year) : _sixDigits(year);
     String m = _twoDigits(month);
     String d = _twoDigits(day);
     String h = _twoDigits(hour);
@@ -495,8 +491,7 @@ class EtDatetime extends EDT {
     return "$y-$m-${d}T$h:$min:$sec.$ms";
   }
 
-  static final RegExp _parseFormat = RegExp(
-      r'^([+-]?\d{4,6})-?(\d\d)-?(\d\d)' // Day part.
+  static final RegExp _parseFormat = RegExp(r'^([+-]?\d{4,6})-?(\d\d)-?(\d\d)' // Day part.
       r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d+))?)?)?$' // Time part.
       r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
 
@@ -524,8 +519,7 @@ class EtDatetime extends EDT {
    * will fail because the difference is actually 16591 days and 23 hours, and
    * [Duration.inDays] only returns the number of whole days.
    */
-  Duration difference(EtDatetime date) =>
-      Duration(days: (fixed - date.fixed).toInt());
+  Duration difference(EtDatetime date) => Duration(days: (fixed - date.fixed).toInt());
 
   /**
    * Returns a new [EtDatetime] instance with [duration] added to [this].
@@ -543,8 +537,7 @@ class EtDatetime extends EDT {
    * Be careful when working with dates in local time.
    */
   EtDatetime add(Duration duration) {
-    return EtDatetime.fromMillisecondsSinceEpoch(
-        moment + duration.inMilliseconds);
+    return EtDatetime.fromMillisecondsSinceEpoch(moment + duration.inMilliseconds);
   }
 
   /**
@@ -563,8 +556,7 @@ class EtDatetime extends EDT {
    * Be careful when working with dates in local time.
    */
   EtDatetime subtract(Duration duration) {
-    return EtDatetime.fromMillisecondsSinceEpoch(
-        moment - duration.inMilliseconds);
+    return EtDatetime.fromMillisecondsSinceEpoch(moment - duration.inMilliseconds);
   }
 
   /**
@@ -577,8 +569,7 @@ class EtDatetime extends EDT {
    * assert(!now.isBefore(now));
    * ```
    */
-  bool isBefore(EtDatetime other) =>
-      fixed < other.fixed && moment < other.moment;
+  bool isBefore(EtDatetime other) => fixed < other.fixed && moment < other.moment;
 
   /**
    * Returns true if [this] occurs after [other].
@@ -590,8 +581,7 @@ class EtDatetime extends EDT {
    * assert(!now.isBefore(now));
    * ```
    */
-  bool isAfter(EtDatetime other) =>
-      fixed > other.fixed && moment > other.moment;
+  bool isAfter(EtDatetime other) => fixed > other.fixed && moment > other.moment;
 
   /**
    * Returns true if [this] occurs at the same moment as [other].
@@ -603,8 +593,7 @@ class EtDatetime extends EDT {
    * assert(now.isAtSameMomentAs(now));
    * ```
    */
-  bool isAtSameMomentAs(EtDatetime other) =>
-      fixed == other.fixed && moment == other.moment;
+  bool isAtSameMomentAs(EtDatetime other) => fixed == other.fixed && moment == other.moment;
 
   /**
    * Compares this EtDatetime object to [other],
