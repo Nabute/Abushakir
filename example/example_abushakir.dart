@@ -36,10 +36,11 @@ void main() {
   /**
    * Ethiopian Calendar Module [ETC]
    */
-  ETC ethiopianCalendar = new ETC(year: 2012, month: 7, day: 4);
+  ETC ethiopianCalendar = new ETC(year: 2011, month: 13, day: 4);
 
   ///
-  print(ethiopianCalendar.monthDays()); // Iterable Object of the given month
+  print(ethiopianCalendar.monthDays(
+      geezDay: true, weekDayName: true)); // Iterable Object of the given month
   print(ethiopianCalendar.monthDays().toList()[0]); // => [2012, 7, 1, 1]
   // [year, month, dateNumber, dateNameIndex], Monday as First weekday
 

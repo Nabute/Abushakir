@@ -1,3 +1,9 @@
+// Copyright 2020 GC (2012 ETC) Nabute and Nahom. All rights reserved.
+// Use of this source code is governed by MIT license, which can be found
+// in the LICENSE file.
+
+part of abushakir;
+
 /**
  * The Ethiopian calendar is one of the the calendars which uses the solar
  * system to reckon years, months and days, even time. Ethiopian single year
@@ -48,14 +54,35 @@
  * ```
  *
  */
-part of abushakir;
-
 class ETC implements Calendar {
   EtDatetime _date;
 
+  /**
+   * Construct an [ETC] instance.
+   *
+   * For example. to create a new [ETC] object representing the 1st of ጷጉሜን 2011,
+   *
+   *
+   * ```
+   * var etc = new ETC(year: 2011, month: 13, day: 1);
+   * ```
+   *
+   *
+   *  Month and day are optional, if not provided ETC will assume the first
+   *  day of the first month of the given year.
+   *
+   */
   ETC({@required int year, int month = 1, int day = 1}) {
     _date = new EtDatetime(year: year, month: month, day: day);
   }
+
+  /**
+   * Construct an [ETC] instance of the day the object is created.
+   *
+   * ```
+   * var today = ETC.today();
+   * ```
+   */
 
   ETC.today() {
     _date = new EtDatetime.now();
@@ -77,30 +104,45 @@ class ETC implements Calendar {
   int get day => _date.day;
 
   /**
+   * All Month names  ["መስከረም", "ጥቅምት", ... ,"ጷጉሜን"]
+   */
+  List get allMonths => _months;
+
+  /**
+   * All Days number in Ge'ez ["፩", "፪", ... , "፴"]
+   */
+  List get dayNumbers => _dayNumbers;
+
+  /**
+   * All Day names ["ሰኞ", "ማግሰኞ", ... , "እሁድ"]
+   */
+  List get weekdays => _weekdays;
+
+  /**
    * Getter property that return the month name for the current [ETC]
    * instance.
    */
   String get monthName => _date.monthGeez;
 
   /**
-   * Returning [ETC] instance of same year with a month next to [this]
+   * Returning [ETC] instance of same year with a month next to this.
    */
   ETC get nextMonth => new ETC(year: _date.year, month: _date.month + 1);
 
   /**
-   * Returning [ETC] instance of same year with a month previous to [this]
+   * Returning [ETC] instance of same year with a month previous to this.
    */
   ETC get prevMonth => new ETC(
       year: _date.month == 1 ? _date.year - 1 : _date.year,
       month: _date.month - 1 == 0 ? 13 : _date.month - 1);
 
   /**
-   * Returning [ETC] instance of same month with a year next to [this]
+   * Returning [ETC] instance of same month with a year next to this.
    */
   ETC get nextYear => new ETC(year: _date.year + 1, month: _date.month);
 
   /**
-   * Returning [ETC] instance of same month with a year previous to [this]
+   * Returning [ETC] instance of same month with a year previous to this.
    */
   ETC get prevYear => new ETC(year: _date.year - 1, month: _date.month);
 
@@ -114,63 +156,119 @@ class ETC implements Calendar {
 
   /**
    * Returns [Iterable] object of [List] which looks like:
+   *
    * ```
    * [year, month, day, weekday]
    * ```
+   *
    * Where: all are integer values representing [year], [month], [day] and
-   * [weekday](_date.weekdays) respectively. The weekday value can be used to get the
-   * name of the weekday using
+   * weekday respectively. The weekday can be returned in day name or just
+   * index of the day, assuming ሰኞ as the first day of the week with index of 0.
    *
    * ```
-   * const List<String> _weekdays = ["ሰኞ", "ማግሰኞ", "ረቡዕ", "ሐሙስ", "አርብ",
-   * "ቅዳሜ", "እሁድ"];
+   * // const List<String> _weekdays = ["ሰኞ", "ማግሰኞ", "ረቡዕ", "ሐሙስ", "አርብ", "ቅዳሜ", "እሁድ"];
    *
-   * String dayName = _weekdays[weekday];
-   * ```
-   *
-   * The month value can also be used to get the name like
+   * etc.monthDays(weekDayName: true); // => [2011, 13, 1, አርብ]
    *
    * ```
-   * const List<String> _months = ["መስከረም","ጥቅምት","ኅዳር","ታኅሳስ","ጥር",
-   * "የካቲት","መጋቢት","ሚያዝያ","ግንቦት","ሰኔ","ኃምሌ","ነሐሴ","ጷጉሜን"];
    *
-   * String monthName = _months[month];
+   * The day number in Geez can also be returned by passing geezDay parameter.
+   *
+   * ```
+   * // Days of ጷጉሜን in 2011
+   * // ["፩", "፪", "፫", "፬", "፭", "፮"]
+   * // [2011, 13, ፮, ረቡዕ]
+   *
+   * etc.monthDays(geezDay: true, weekDayName: true); // => [2011, 13, ፮, ረቡዕ]
+   *
    * ```
    */
-  Iterable<List<int>> monthDays() sync* {
+  Iterable<List<dynamic>> monthDays(
+      {bool geezDay: false, bool weekDayName: false}) sync* {
     int monthBeginning = _monthRange()[0];
     int daysInMonth = _monthRange()[1];
     for (int i = 0; i < daysInMonth; i++) {
-      yield [_date.year, _date.month, i + 1, monthBeginning];
+      if (geezDay) {
+        yield [
+          _date.year,
+          _date.month,
+          _dayNumbers[i],
+          weekDayName ? _weekdays[monthBeginning] : monthBeginning
+        ];
+      } else
+        yield [
+          _date.year,
+          _date.month,
+          i + 1,
+          weekDayName ? _weekdays[monthBeginning] : monthBeginning
+        ];
       monthBeginning = (monthBeginning + 1) % 7;
     }
   }
 
   /**
-   * Similar method as [monthDays] but the difference is this one will take
+   * Similar method as monthDays but the difference is this one will take
    * year and month as a parameter and then generate all available days of
    * the given month of the year.
    *
-   * This method is used by [yearDays] for generating all available days
+   * This method is used by yearDays for generating all available days
    * for the whole year.
    */
-  Iterable<List<int>> _monthDays(int year, int month) sync* {
+  Iterable<List<dynamic>> _monthDays(int year, int month,
+      {bool geezDay: false, bool weekDayName: false}) sync* {
     EtDatetime yr = new EtDatetime(year: year, month: month);
     int monthBeginning = yr.weekday;
     int daysInMonth = yr.month == 13 ? yr.isLeap ? 6 : 5 : 30;
     for (int i = 0; i < daysInMonth; i++) {
-      yield [year, month, i + 1, monthBeginning];
+      if (geezDay) {
+        yield [
+          year,
+          month,
+          _dayNumbers[i],
+          weekDayName ? _weekdays[monthBeginning] : monthBeginning
+        ];
+      } else
+        yield [
+          year,
+          month,
+          i + 1,
+          weekDayName ? _weekdays[monthBeginning] : monthBeginning
+        ];
       monthBeginning = (monthBeginning + 1) % 7;
     }
   }
 
   /**
    * Method that can be used to generate all the available days of the [year].
+   *
+   * The weekday can be returned in day name or just index of the day,
+   * assuming ሰኞ as the first day of the week with index of 0.
+   *
+   * ```
+   * // const List<String> _weekdays = ["ሰኞ", "ማግሰኞ", "ረቡዕ", "ሐሙስ", "አርብ", "ቅዳሜ", "እሁድ"];
+   *
+   * etc.yearDays(weekDayName: true); // => [2011, 13, 1, አርብ]
+   *
+   * ```
+   *
+   * The day number in Geez can also be returned by passing geezDay parameter.
+   *
+   * ```
+   * // Days of ጷጉሜን in 2011
+   * // ["፩", "፪", "፫", "፬", "፭", "፮"]
+   * // [2011, 13, ፮, ረቡዕ]
+   *
+   * etc.monthDays(geezDay: true, weekDayName: true); // => [2011, 13, ፮, ረቡዕ]
+   *
+   * ```
+   *
    */
 
-  Iterable<Iterable<List<int>>> yearDays() sync* {
+  Iterable<Iterable<List<dynamic>>> yearDays(
+      {bool geezDay: false, bool weekDayName: false}) sync* {
     for (int i = 0; i < _months.length; i++) {
-      yield _monthDays(_date.year, i + 1);
+      yield _monthDays(_date.year, i + 1,
+          geezDay: geezDay, weekDayName: weekDayName);
     }
   }
 

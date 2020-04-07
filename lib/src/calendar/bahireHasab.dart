@@ -1,3 +1,9 @@
+// Copyright 2020 GC (2012 ETC) Nabute and Nahom. All rights reserved.
+// Use of this source code is governed by MIT license, which can be found
+// in the LICENSE file.
+
+part of abushakir;
+
 /**
  *
  * "Bahire Hasab /'bəhrɛ həsəb'/  " simply means "An age with a descriptive
@@ -9,38 +15,37 @@
  * man. As is time.
  *
  * There are 8 Rules or you can call them conventions too. These are:
- *  1- When calculating [wenber]which is remainder of
+ *
+ *  1. When calculating [wenber]which is remainder of
  *   [ameteAlem] by 19, subtract 1 (ONE) from the remainder as of
  *  the story in ancient calculation "አንዱን ለዘመኑ ሰጠው".
  *
- *  2- If [metkih] > 14, then month of [metkih]
+ *  2. If [metkih] > 14, then month of [metkih]
  *   will be at the FIRST month of the year. which is መስከረም.
  *
- *  3- If [metkih] <= 14, then month of [metkih]
+ *  3. If [metkih] <= 14, then month of [metkih]
  *   will be at the SECOND month of the year. which is ጥቅምት.
  *
- *  4- If month of [metkih] is መስከረም (the FIRST month), then
+ *  4. If month of [metkih] is መስከረም (the FIRST month), then
  *   Nineveh or [nenewe] will be in ጥር (the FIFTH month).
  *
- *  5- If month of [metkih] is ጥቅምት (the FIRST month), then
+ *  5. If month of [metkih] is ጥቅምት (the FIRST month), then
  *  Nineveh or [nenewe] will be in የካቲት (the SIXTH month).
  *
- *  6- If the summation of [metkih] and the corresponding
+ *  6. If the summation of [metkih] and the corresponding
  *   number of the weekday that [metkih] is on, is greater than
  *   30 (> 30) then Nineveh or [nenewe] will be in የካቲት
  *   (the SIXTH month).
  *
- *  7- If the value of [wenber] == 0, the corresponding value
+ *  7. If the value of [wenber] == 0, the corresponding value
  *   of the 30th weekday for መስከረም (the first month) will be the value of
  *   MEBAJA HAMER which is technically [metkih] + weekday
  *   corresponding value or number.
  *
- *  8- If the value of [wenber] == 0, then Nineveh or
+ *  8. If the value of [wenber] == 0, then Nineveh or
  *  [nenewe] will be in የካቲት (the SIXTH month)
  *
  */
-part of abushakir;
-
 class BahireHasab extends Equatable {
   int _year;
 
@@ -50,22 +55,32 @@ class BahireHasab extends Equatable {
 
   /**
    * Getting the evangelist of the given year, if year is not provided
-   * it will take the current year and the years before christ [_ameteFida]
+   * it will take the current year and the years before christ ( አመተ ፍዳ )
    * and get the age of earth, since creation day of Adam and Eve and, divide
    * it by 4 and then
-   * if Remainder == 0 ==> the year will be assigned to apostle JOHN
-   * if Remainder == 1 ==> the year will be assigned to apostle MATHEW
-   * if Remainder == 2 ==> the year will be assigned to apostle MARK
-   * if Remainder == 3 ==> the year will be assigned to apostle LUKE
+   *
+   * * if Remainder == 0 => the year will be assigned to apostle JOHN
+   *
+   * * if Remainder == 1 => the year will be assigned to apostle MATHEW
+   *
+   * * if Remainder == 2 => the year will be assigned to apostle MARK
+   *
+   * *if Remainder == 3 => the year will be assigned to apostle LUKE
    *
    * LUKE is when the leap year occurs.
    *
    * ```
+   *
+   * // const List<String> evangelists = ["ዮሐንስ", "ማቴዎስ", "ማርቆስ", "ሉቃስ"];
+   *
    * BahireHasab bh = BahireHasab(year: 2011);
    * bh.getEvangelist(returnName: true)
+   *
    * ```
+   *
    * if returnName is not provided or is false, as the default, this function
-   * will return index of the apostle from [_evangelists] list.
+   * will return index of the apostle from evangelists list.
+   *
    */
 
   String getEvangelist({bool returnName = false}) {
@@ -80,18 +95,19 @@ class BahireHasab extends Equatable {
   /**
    * Amete alem (አመተ ዓለም) is the total years from the creation day. In
    * Ethiopian calendar the day of Adam and Eve creation is believed to be 5500 years
-   * before Christ which is referred as Year of Agony or [_ameteFida]. And
+   * before Christ which is referred as Year of Agony or ( አመተ ፍዳ ). And
    * this function is used to calculate the number of years from the
-   * creation day till [_year].
+   * creation day till the given year, or current year if year parameter is not
+   * provided.
    *
    */
   int get ameteAlem => _ameteFida + this._year;
 
   /**
-   * Get year's first weekday of [_year] or the very first weekday [_year]
-   * is going to be started. It returns the name of the weekday if
+   * Get year's first weekday of current year or the very first weekday that the
+   * current year is going to be start from. It returns the name of the weekday if
    * returnName=true otherwise it will return the index of the weekday
-   * from [_weekdays].
+   * from list of weekdays.
    *
    */
   String getMeskeremOne({bool returnName = false}) {
@@ -102,28 +118,30 @@ class BahireHasab extends Equatable {
   }
 
   /**
-   * A variable that helps to get Abekte and Metke'e
+   * A variable that helps to get Abekte and Metkih
    */
   int get wenber => ((ameteAlem % 19) - 1) < 0 ? 0 : (ameteAlem % 19) - 1;
 
   /**
    * Abekte means the difference between solar and lunar years. The
-   * initial or the first or the ancient value of Abekte is [_tinteAbekte]
+   * initial or the first or the ancient value of Abekte is 11.
    */
   int get abekte => (wenber * _tinteAbekte) % 30;
 
   /**
-   * Metkih the name of feast and Hebrew New Year in which the shopar is
+   * Metkih the name of feast and Hebrew New Year in which the shofar is
    * announced. It usually destined on the Seventh month of the first day
    * of the moon.
    */
   int get metkih => wenber == 0 ? 30 : (wenber * _tinteMetkih) % 30;
 
-  /// All Ethiopian Orthodox church Fasting(s) and Holiday(s).
   /**
-   * This function returns the month index value from [_months] which are
+   * This function returns the month index value assuming መስከረም with index
+   * value of 0 which are
+   *
    * if [metkih] > 14 => መስከረም
    * else => ጥቅምት
+   *
    * according to rule #2 and #3 from the rules mentioned above.
    */
   int yebealeMetkihWer() {
@@ -136,9 +154,12 @@ class BahireHasab extends Equatable {
   /**
    * This function returns the date Tsome Nenewe or Nineveh will be at.
    * to get this date we need to get Mebaja Hamer(beginning)
+   *
    *```
-   * MebajaHamer = Metikih + Ye'elet Tewsak
+   *
+   * MebajaHamer = Metikih + Ye'elet Tewsak // የእለት ተውሳክ
    *```
+   *
    */
   Map<String, dynamic> get nenewe {
     String meskerem1 = getMeskeremOne(returnName: true);
@@ -169,8 +190,11 @@ class BahireHasab extends Equatable {
   /**
    * This function returns an [List] of [Map] object. which is structured in
    * the form of
+   *
    * ```
+   *
    * {beal: ትንሳኤ, day: {month: ሚያዝያ, date: 20}}
+   *
    * ```
    */
   List get allAtswamat {
@@ -206,8 +230,11 @@ class BahireHasab extends Equatable {
   /**
    * A function to compute the month and day of the given feast of the
    * fasting or feasting (Holiday). It returns [Map] object with the form of
+   *
    * ```
+   *
    * {month: ሚያዝያ, date: 20}
+   *
    * ```
    */
   Map<String, dynamic> getSingleBealOrTsom(String name) {

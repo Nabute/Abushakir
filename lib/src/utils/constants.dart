@@ -78,7 +78,7 @@ const List<String> _dayNumbers = [
   "፳፯",
   "፳፰",
   "፳፱",
-  "፴",
+  "፴"
 ];
 
 // Month constants that are returned by the [month] getter.

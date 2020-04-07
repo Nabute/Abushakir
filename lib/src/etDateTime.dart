@@ -1,3 +1,7 @@
+// Copyright 2020 GC (2012 ETC) Nabute and Nahom. All rights reserved.
+// Use of this source code is governed by MIT license, which can be found
+// in the LICENSE file.
+
 part of abushakir;
 
 /**
@@ -32,12 +36,12 @@ part of abushakir;
  *
  * For convenience and readability,
  * the EtDatetime class provides a constant for each day and month
- * name - for example, [መስከረም] and [ማግሰኞ].
+ * name - for example, መስከረም and ማግሰኞ.
  * You can use these constants to improve code readability:
  *
  *
  * Day and month indexes begin at 0, and the week starts on Monday (ሰኞ).
- * That is, the constants [መስከረም] and [ሰኞ] are both 1.
+ * That is, the constants መስከረም and ሰኞ are both 1.
  *
  * ## Comparing EtDatetime objects
  *
@@ -83,7 +87,6 @@ part of abushakir;
  * for this purpose.
  *
  */
-
 class EtDatetime extends EDT {
   /**
    * Milliseconds since [UNIX Epoch](https://en.wikipedia.org/wiki/Unix_time)
@@ -101,7 +104,7 @@ class EtDatetime extends EDT {
    * Constructs an [EtDatetime] instance.
    *
    * For example,
-   * to create a new EtDatetime object representing the 7th of September 2012,
+   * to create a new EtDatetime object representing the 7th of መስከረም 2012,
    * 5:30pm
    *
    * ```
@@ -542,7 +545,7 @@ class EtDatetime extends EDT {
       Duration(days: (fixed - date.fixed).toInt());
 
   /**
-   * Returns a new [EtDatetime] instance with [duration] added to [this].
+   * Returns a new [EtDatetime] instance with [duration] added to current instance.
    *
    * ```
    * var today = new EtDatetime.now();
@@ -562,7 +565,7 @@ class EtDatetime extends EDT {
   }
 
   /**
-   * Returns a new [EtDatetime] instance with [duration] subtracted from [this].
+   * Returns a new [EtDatetime] instance with [duration] subtracted from current instance.
    *
    * ```
    * EtDatetime today = new EtDatetime.now();
@@ -582,7 +585,7 @@ class EtDatetime extends EDT {
   }
 
   /**
-   * Returns true if [this] occurs before [other].
+   * Returns true if current instance occurs before the [other].
    *
    * ```
    * var now = new EtDatetime.now();
@@ -595,7 +598,7 @@ class EtDatetime extends EDT {
       fixed < other.fixed && moment < other.moment;
 
   /**
-   * Returns true if [this] occurs after [other].
+   * Returns true if current instance occurs after [other].
    *
    * ```
    * var now = new EtDatetime.now();
@@ -608,7 +611,7 @@ class EtDatetime extends EDT {
       fixed > other.fixed && moment > other.moment;
 
   /**
-   * Returns true if [this] occurs at the same moment as [other].
+   * Returns true if current instance occurs at the same moment as [other].
    *
    * ```
    * var now = new EtDatetime.now();

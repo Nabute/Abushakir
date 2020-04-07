@@ -17,9 +17,8 @@ Unix Epoch is measured using milliseconds since 01 Jan, 1970 UTC. In unix epoch 
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
-<!--- These are just example requirements. Add, duplicate or remove as required --->
-* ```equatable= ^1.1.0```
 
+* ```equatable= ^1.1.0```
 
 
 ## Getting started
@@ -70,8 +69,8 @@ import 'package:abushakir/abushakir.dart';
   ETC ethiopianCalendar = new ETC(year: 2012, month: 7, day: 4);
 
   ///
-  print(ethiopianCalendar.monthDays()); // Iterable Object of the given month
-  print(ethiopianCalendar.monthDays().toList()[0]); // => [2012, 7, 1, 1]
+  print(ethiopianCalendar.monthDays(geezDay: true, weekDayName:true)); // Iterable Object of the given month
+  print(ethiopianCalendar.monthDays().toList()[0]); // => [2012, 7, ፩, አርብ]
   // [year, month, dateNumber, dateNameIndex], Monday as First weekday
 
   print(ethiopianCalendar.nextMonth); // => ETC instance of nextMonth, same year

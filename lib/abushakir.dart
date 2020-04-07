@@ -15,9 +15,7 @@
  * ## Ethiopian Date and Time
  *
  * Use [EtDatetime] to represent moment in time.
- * You can also User [Duration]
- * (https://api.dart.dev/stable/2.7.2/dart-core/Duration-class.html),
- * dart built it package to represent time span.
+ * You can also User [Duration] dart built it package to represent time span.
  *
  * You can create EtDatetime object using one of the constructors or just by
  * parsing string with the correct format and also from UNIX timestamp.
@@ -36,7 +34,9 @@
  *
  * Ethiopic year 1 E.E.3 starts on August 29, 8 C.E. (Julian), our R.D. 2796.
  * According to the definition of the "Ethiopic" calendar in Dershowitz and
- * Reingold's [Calendrical Calculations](), where it's the base calendar for
+ * Reingold's [Calendrical Calculations]
+ * <https://www.amazon.com/Calendrical-Calculations-Nachum-Dershowitz/dp/0521702380>,
+ * where it's the base calendar for
  * all computations.  See the book for algorithms for converting between
  * Ethiopic ordinals and many other calendar systems.
  *
@@ -72,8 +72,6 @@
  * BahireHasab thisYear = BahireHasab();
  *
  * ```
- *
- * {@category abushakir}
  */
 library abushakir;
 
