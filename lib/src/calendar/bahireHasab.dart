@@ -9,37 +9,36 @@
  * man. As is time.
  *
  * There are 8 Rules or you can call them conventions too. These are:
-    /// 1- When calculating [BahireHasab.wenber] which is remainder of
-    [BahireHasab.ameteAlem] by 19, subtract 1 (ONE) from the remainder as of
-    the story in ancient calculation "አንዱን ለዘመኑ ሰጠው".
-
-    /// 2- If [BahireHasab.metkih] > 14, then month of [BahireHasab.metkih]
-    will be at the FIRST month of the year. which is መስከረም.
-
-    /// 3- If [BahireHasab.metkih] <= 14, then month of [BahireHasab.metkih]
-    will be at the SECOND month of the year. which is ጥቅምት.
-
-    /// 4- If month of [BahireHasab.metkih] is መስከረም (the FIRST month), then
-    Nineveh or [BahireHasab.nenewe] will be in ጥር (the FIFTH month).
-
-    /// 5- If month of [BahireHasab.metkih] is ጥቅምት (the FIRST month), then
-    Nineveh or [BahireHasab.nenewe] will be in የካቲት (the SIXTH month).
-
-    /// 6- If the summation of [BahireHasab.metkih] and the corresponding
-    number of the weekday that [BahireHasab.metkih] is on, is greater than
-    30 (> 30) then Nineveh or [BahireHasab.nenewe] will be in የካቲት
-    (the SIXTH month).
-
-    /// 7- If the value of [BahireHasab.wenber] == 0, the corresponding value
-    of the 30th weekday for መስከረም (the first month) will be the value of
-    MEBAJA HAMER which is technically [BahireHasab.metkih] + weekday
-    corresponding value or number.
-
-    /// 8- If the value of [BahireHasab.wenber] == 0, then Nineveh or
-    [BahireHasab.nenewe] will be in የካቲት (the SIXTH month)
-
+ *  1- When calculating [wenber]which is remainder of
+ *   [ameteAlem] by 19, subtract 1 (ONE) from the remainder as of
+ *  the story in ancient calculation "አንዱን ለዘመኑ ሰጠው".
+ *
+ *  2- If [metkih] > 14, then month of [metkih]
+ *   will be at the FIRST month of the year. which is መስከረም.
+ *
+ *  3- If [metkih] <= 14, then month of [metkih]
+ *   will be at the SECOND month of the year. which is ጥቅምት.
+ *
+ *  4- If month of [metkih] is መስከረም (the FIRST month), then
+ *   Nineveh or [nenewe] will be in ጥር (the FIFTH month).
+ *
+ *  5- If month of [metkih] is ጥቅምት (the FIRST month), then
+ *  Nineveh or [nenewe] will be in የካቲት (the SIXTH month).
+ *
+ *  6- If the summation of [metkih] and the corresponding
+ *   number of the weekday that [metkih] is on, is greater than
+ *   30 (> 30) then Nineveh or [nenewe] will be in የካቲት
+ *   (the SIXTH month).
+ *
+ *  7- If the value of [wenber] == 0, the corresponding value
+ *   of the 30th weekday for መስከረም (the first month) will be the value of
+ *   MEBAJA HAMER which is technically [metkih] + weekday
+ *   corresponding value or number.
+ *
+ *  8- If the value of [wenber] == 0, then Nineveh or
+ *  [nenewe] will be in የካቲት (the SIXTH month)
+ *
  */
-
 part of abushakir;
 
 class BahireHasab extends Equatable {

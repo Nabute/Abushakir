@@ -20,7 +20,6 @@
  * ETC today = ETC.today();
  * ```
  *
- *
  * After creating instance of [ETC], you can navigate to the future or past
  * of the given date.
  *
@@ -28,8 +27,10 @@
  * ETC _nextMonth = today.nextMonth;
  * ETC _prevMonth = today.prevMonth;
  * ```
+ *
  * you can also get the same month of different year (the next year or
  * prev one)
+ *
  * ```
  * ETC _nextYear = today.nextYear;
  * ETC _prevYear = today.prevYear;
@@ -117,7 +118,7 @@ class ETC implements Calendar {
    * [year, month, day, weekday]
    * ```
    * Where: all are integer values representing [year], [month], [day] and
-   * [_date.weekday] respectively. The weekday value can be used to get the
+   * [weekday](_date.weekdays) respectively. The weekday value can be used to get the
    * name of the weekday using
    *
    * ```

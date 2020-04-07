@@ -1,7 +1,7 @@
 part of abushakir;
 
 /**
- * An instant in time, such as July 20, 1969, 8:18pm GMT.
+ * An instant in time, such as መጋቢት 20, 2012, 8:18pm.
  *
  * EtDatetime can represent time values that are at a distance of at most
  * 100,000,000 days from epoch (1970-01-01): -271821-04-20 to 275760-09-13.
@@ -86,7 +86,8 @@ part of abushakir;
 
 class EtDatetime extends EDT {
   /**
-   * A [millisecondsSinceEpoch] of this EtDatetime.
+   * Milliseconds since [UNIX Epoch](https://en.wikipedia.org/wiki/Unix_time)
+   * of this EtDatetime.
    */
   int moment;
 
@@ -387,7 +388,7 @@ class EtDatetime extends EDT {
   int get weekday => (yearFirstDay + ((month - 1) * 2)) % 7;
 
   /**
-   * Returns true if [this._year] is leap year or
+   * Returns true if [year] is leap year or
    * returns false.
    */
   bool get isLeap => year % 4 == 3;
@@ -433,8 +434,15 @@ class EtDatetime extends EDT {
         millisecond;
   }
 
+  /**
+   * Returns [fixed] date from Unix [millisecond] count.
+   */
   static int _fixedFromUnix(int ms) => (_unixEpoch + (ms ~/ 86400000));
 
+  /**
+   * Converts an ethiopic date to [fixed] date by adding the days elapsed to the last day before the
+   * [_ethiopicEpoch].
+   */
   static int _fixedFromEthiopic(int year, int month, int day) {
     return (_ethiopicEpoch -
         1 +
@@ -507,7 +515,7 @@ class EtDatetime extends EDT {
   }
 
   /**
-   * Returns a [Duration] with the difference between [this] and [other].
+   * Returns a [Duration] with the difference between this and other.
    *
    * ```
    * var berlinWallFell = new EtDatetime(1989, EtDatetime.november, 9);
