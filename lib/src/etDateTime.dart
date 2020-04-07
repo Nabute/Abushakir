@@ -3,7 +3,7 @@ part of abushakir;
 /**
  * An instant in time, such as July 20, 1969, 8:18pm GMT.
  *
- * DateTimes can represent time values that are at a distance of at most
+ * EtDatetime can represent time values that are at a distance of at most
  * 100,000,000 days from epoch (1970-01-01): -271821-04-20 to 275760-09-13.
  *
  * Create a EtDatetime object by using one of the constructors
@@ -15,35 +15,29 @@ part of abushakir;
  *
  * ```
  * var now = new EtDatetime.now();
- * var moonLanding = EtDatetime.parse("1969-07-20 20:18:04Z");  // 8:18pm
+ * var covid19Confirmed = new EtDatetime(year: 2012, month: 7, day: 4);
+ * var lockdownBegin = new EtDatetime.fromMillisecondsSinceEpoch(1586215439441);
  * ```
  *
- * An EtDatetime object is anchored either in the UTC time zone
- * or in the local time zone of the current computer
- * when the object is created.
- *
- * Once created, neither the value nor the time zone
- * of an EtDatetime object may be changed.
+ * Once created, the value of an EtDatetime object may not be changed.
  *
  * You can use properties to get
- * the individual units of am EtDatetime object.
+ * the individual units of an EtDatetime object.
  *
  * ```
- * assert(berlinWallFell.month == 11);
- * assert(moonLanding.hour == 20);
+ * assert(covid19Confirmed.year == 2012);
+ * assert(covid19Confirmed.month == 7);
+ * assert(covid19Confirmed.day == 2);
  * ```
  *
  * For convenience and readability,
  * the EtDatetime class provides a constant for each day and month
- * name - for example, [august] and [friday].
+ * name - for example, [መስከረም] and [ማግሰኞ].
  * You can use these constants to improve code readability:
  *
- * ```
- * assert(berlinWallFell.weekday == EtDatetime.thursday);
- * ```
  *
- * Day and month values begin at 1, and the week starts on Monday.
- * That is, the constants [january] and [monday] are both 1.
+ * Day and month indexes begin at 0, and the week starts on Monday (ሰኞ).
+ * That is, the constants [መስከረም] and [ሰኞ] are both 1.
  *
  * ## Comparing EtDatetime objects
  *
@@ -52,8 +46,8 @@ part of abushakir;
  * for comparing EtDatetime objects.
  *
  * ```
- * assert(berlinWallFell.isAfter(moonLanding) == true);
- * assert(berlinWallFell.isBefore(moonLanding) == false);
+ * assert(lockdownBegin.isAfter(covid19Confirmed) == true);
+ * assert(covid19Confirmed.isBefore(lockdownBegin) == false);
  * ```
  *
  * ## Using EtDatetime with Duration
@@ -72,30 +66,24 @@ part of abushakir;
  * [difference], which returns a [Duration] object:
  *
  * ```
- * var difference = berlinWallFell.difference(moonLanding);
- * assert(difference.inDays == 7416);
+ * var difference = covid19Confirmed.difference(lockdownBegin);
+ * assert(difference.inDays == 24);
  * ```
+ * ### NOTE
  *
- * The difference between two dates in different time zones
- * is just the number of nanoseconds between the two points in time.
- * It doesn't take calendar days into account.
- * That means that the difference between two midnights in local time may be
- * less than 24 hours times the number of days between them,
- * if there is a daylight saving change in between.
- * If the difference above is calculated using Australian local time, the
- * difference is 7415 days and 23 hours, which is only 7415 whole days as
- * reported by `inDays`.
+ * There is no UTC or TIme zone feature in this package since it's built only
+ * for ethiopia.
  *
- * ## Other resources
  *
- * See [Duration] to represent a span of time.
- * See [Stopwatch] to measure timespans.
+ * ## Realtime Clock
  *
- * The EtDatetime class does not provide internationalization.
- * To internationalize your code, use
- * the [intl](https://pub.dev/packages/intl) package.
+ * The EtDatetime class provides realtime clock for Ethiopian with 6 hour
+ * offset and can be integrated into flutter application. See sample
+ * [flutter application](https://github.com/Nabute/ethiopian_calendar) made
+ * for this purpose.
  *
  */
+
 class EtDatetime extends EDT {
   /**
    * A [millisecondsSinceEpoch] of this EtDatetime.
@@ -103,7 +91,8 @@ class EtDatetime extends EDT {
   int moment;
 
   /**
-   * Fixed date—elapsed days since the onset of Monday, January 1, 1 (Gregorian)
+   * Fixed date—elapsed days since the onset of Monday, January 1, 1970
+   * (Gregorian)
    */
   final int fixed;
 
@@ -115,7 +104,7 @@ class EtDatetime extends EDT {
    * 5:30pm
    *
    * ```
-   * var dentistAppointment = new EtDatetime(year: 2012, month: 1, day: 7, hour: 17, minute: 30);
+   * var covid19Confirmed = new EtDatetime(year: 2012, month: 1, day: 7, hour: 17, minute: 30);
    * ```
    */
   EtDatetime(
@@ -274,31 +263,33 @@ class EtDatetime extends EDT {
    * The year.
    *
    * ```
-   * var moonLanding = EtDatetime.parse("1969-07-20 20:18:04Z");
-   * assert(moonLanding.year == 1969);
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
+   * assert(covid19Confirmed.year == 2012);
    * ```
    */
-  int get year => ((4 * (fixed - ethiopicEpoch) + 1463) ~/ 1461);
+  int get year => ((4 * (fixed - _ethiopicEpoch) + 1463) ~/ 1461);
 
   /**
-   * The month [1..12].
+   * The month [1..13].
    *
    * ```
-   * var moonLanding = EtDatetime.parse("1969-07-20 20:18:04Z");
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
    * assert(moonLanding.month == 7);
-   * assert(moonLanding.month == EtDatetime.july);
    * ```
    */
   int get month => (((fixed - _fixedFromEthiopic(year, 1, 1)) ~/ 30) + 1);
 
+  /**
+   * The month name for the current [EtDatetime] instance.
+   */
   String get monthGeez => _months[(month - 1) % 13];
 
   /**
-   * The day of the month [1..31].
+   * The day of the month [1..30].
    *
    * ```
-   * var moonLanding = EtDatetime.parse("1969-07-20 20:18:04Z");
-   * assert(moonLanding.day == 20);
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
+   * assert(covid19Confirmed.day == 4);
    * ```
    */
   int get day => fixed + 1 - _fixedFromEthiopic(year, month, 1);
@@ -307,22 +298,40 @@ class EtDatetime extends EDT {
    * The day of the month in Ge'ez ['፩'..'፴'].
    *
    * ```
-   * var moonLanding = EtDatetime.parse("1969-07-20 20:18:04Z");
-   * assert(moonLanding.dayGeez == '፳');
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
+   * assert(covid19Confirmed.dayGeez == '፬');
    * ```
    */
   String get dayGeez => _dayNumbers[(day - 1) % 30];
 
+  /**
+   * The Date
+   *
+   * ```
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
+   * var date = covid19Confirmed.date;
+   * assert(date['year'] == 2012);
+   * ```
+   */
   Map<String, int> get date => {"year": year, "month": month, "day": day};
 
+  /**
+   * The Time
+   *
+   * ```
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
+   * var time = covid19Confirmed.time;
+   * assert(time['hour'] == 13);
+   * ```
+   */
   Map<String, int> get time => {"h": hour, "m": minute, "s": second};
 
   /**
    * The hour of the day, expressed as in a 24-hour clock [0..23].
    *
    * ```
-   * var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");
-   * assert(moonLanding.hour == 20);
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
+   * assert(covid19Confirmed.hour == 13);
    * ```
    */
   int get hour => (moment ~/ hourMilliSec) % 24;
@@ -331,8 +340,8 @@ class EtDatetime extends EDT {
    * The minute [0...59].
    *
    * ```
-   * var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");
-   * assert(moonLanding.minute == 18);
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
+   * assert(covid19Confirmed.minute == 18);
    * ```
    */
   int get minute => (moment ~/ minMilliSec) % 60;
@@ -341,8 +350,8 @@ class EtDatetime extends EDT {
    * The second [0...59].
    *
    * ```
-   * var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");
-   * assert(moonLanding.second == 4);
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
+   * assert(covid19Confirmed.second == 4);
    * ```
    */
   int get second => (moment ~/ secMilliSec) % 60;
@@ -351,81 +360,45 @@ class EtDatetime extends EDT {
    * The millisecond [0...999].
    *
    * ```
-   * var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");
-   * assert(moonLanding.millisecond == 0);
+   * var covid19Confirmed = EtDatetime.parse("2012-07-04 13:18:04Z");
+   * assert(covid19Confirmed.millisecond == 0);
    * ```
    */
   int get millisecond => moment % 1000;
 
+  /**
+   * First day of the Year
+   *
+   * ```
+   * var lastYear = EtDatetime(year: 2011);
+   * assert(lastYear.yearFirstDay == 1); // ማግሰኞ
+   * ```
+   */
   int get yearFirstDay => _yearFirstDay();
 
-  /*
-   * Returns the first day of the month
+  /**
+   * First Day of the Month
+   *
+   * ```
+   * var twoMonthAgo = EtDatetime(year:2012, month: 4);
+   * assert(twoMonthAgo.weekday == 0) // ሰኞ
+   * ```
    */
   int get weekday => (yearFirstDay + ((month - 1) * 2)) % 7;
 
-  /*
+  /**
    * Returns true if [this._year] is leap year or
    * returns false.
-  */
+   */
   bool get isLeap => year % 4 == 3;
 
-  /*
+  /**
    * Returns the first day of the year
    */
   int _yearFirstDay() {
     int ameteAlem = _ameteFida + year;
     int rabeet = ameteAlem ~/ 4;
     return (ameteAlem + rabeet) % 7;
-  }
-
-  static String _fourDigits(int n) {
-    int absN = n.abs();
-    String sign = n < 0 ? "-" : "";
-    if (absN >= 1000) return "$n";
-    if (absN >= 100) return "${sign}0$absN";
-    if (absN >= 10) return "${sign}00$absN";
-    return "${sign}000$absN";
-  }
-
-  static String _sixDigits(int n) {
-    assert(n < -9999 || n > 9999);
-    int absN = n.abs();
-    String sign = n < 0 ? "-" : "+";
-    if (absN >= 100000) return "$sign$absN";
-    return "${sign}0$absN";
-  }
-
-  static String _threeDigits(int n) {
-    if (n >= 100) return "$n";
-    if (n >= 10) return "0$n";
-    return "00$n";
-  }
-
-  static String _twoDigits(int n) {
-    if (n >= 10) return "$n";
-    return "0$n";
-  }
-
-  /// Converts the given broken down date to [millisecondsSinceEpoch].
-  static int _dateToEpoch(int year, int month, int date, int hour, int minute,
-      int second, int millisecond) {
-    return ((_fixedFromEthiopic(year, month, date) - unixEpoch) * dayMilliSec) +
-        (hour * hourMilliSec) +
-        (minute * minMilliSec) +
-        (second * secMilliSec) +
-        millisecond;
-  }
-
-  static int _fixedFromUnix(int ms) => (unixEpoch + (ms ~/ 86400000));
-
-  static int _fixedFromEthiopic(int year, int month, int day) {
-    return (ethiopicEpoch -
-        1 +
-        365 * (year - 1) +
-        (year ~/ 4) +
-        30 * (month - 1) +
-        day);
   }
 
   /**
@@ -442,6 +415,41 @@ class EtDatetime extends EDT {
     }
   }
 
+  /**
+   * Converts the given broken down date to [millisecondsSinceEpoch].
+   *
+   * ```
+   * var someTime = _dateToEpoch(2012, 7, 29, 0, 15, 48, 118);
+   * assert(someTime == 1586218548118);
+   * ```
+   */
+  static int _dateToEpoch(int year, int month, int date, int hour, int minute,
+      int second, int millisecond) {
+    return ((_fixedFromEthiopic(year, month, date) - _unixEpoch) *
+            dayMilliSec) +
+        (hour * hourMilliSec) +
+        (minute * minMilliSec) +
+        (second * secMilliSec) +
+        millisecond;
+  }
+
+  static int _fixedFromUnix(int ms) => (_unixEpoch + (ms ~/ 86400000));
+
+  static int _fixedFromEthiopic(int year, int month, int day) {
+    return (_ethiopicEpoch -
+        1 +
+        365 * (year - 1) +
+        (year ~/ 4) +
+        30 * (month - 1) +
+        day);
+  }
+
+  /**
+   * Returns a human-readable string for this instance.
+   *
+   * The resulting string can be parsed back using [parse].
+   *
+   */
   String toString() {
     String y = _fourDigits(year);
     String m = _twoDigits(month);
@@ -453,6 +461,9 @@ class EtDatetime extends EDT {
     return "$y-$m-$d $h:$min:$sec.$ms";
   }
 
+  /**
+   * Returns a JSON serialization for this instance.
+   */
   String toJson() {
     return json.encode({
       "year": _fourDigits(year),
@@ -494,11 +505,6 @@ class EtDatetime extends EDT {
     String ms = _threeDigits(millisecond);
     return "$y-$m-${d}T$h:$min:$sec.$ms";
   }
-
-  static final RegExp _parseFormat = RegExp(
-      r'^([+-]?\d{4,6})-?(\d\d)-?(\d\d)' // Day part.
-      r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d+))?)?)?$' // Time part.
-      r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
 
   /**
    * Returns a [Duration] with the difference between [this] and [other].
@@ -623,6 +629,11 @@ class EtDatetime extends EDT {
       return 1;
   }
 
+  /**
+   * Stream of [moment] delayed with 1 second.
+   *
+   * Can be used to create realtime clock or time counter.
+   */
   Stream<int> clock() async* {
     while (true) {
       await Future.delayed(const Duration(seconds: 1));
@@ -630,7 +641,39 @@ class EtDatetime extends EDT {
     }
   }
 
-  // OVERRIDES
+  static String _fourDigits(int n) {
+    int absN = n.abs();
+    String sign = n < 0 ? "-" : "";
+    if (absN >= 1000) return "$n";
+    if (absN >= 100) return "${sign}0$absN";
+    if (absN >= 10) return "${sign}00$absN";
+    return "${sign}000$absN";
+  }
+
+  static String _sixDigits(int n) {
+    assert(n < -9999 || n > 9999);
+    int absN = n.abs();
+    String sign = n < 0 ? "-" : "+";
+    if (absN >= 100000) return "$sign$absN";
+    return "${sign}0$absN";
+  }
+
+  static String _threeDigits(int n) {
+    if (n >= 100) return "$n";
+    if (n >= 10) return "0$n";
+    return "00$n";
+  }
+
+  static String _twoDigits(int n) {
+    if (n >= 10) return "$n";
+    return "0$n";
+  }
+
+  static final RegExp _parseFormat = RegExp(
+      r'^([+-]?\d{4,6})-?(\d\d)-?(\d\d)' // Day part.
+      r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d+))?)?)?$' // Time part.
+      r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
+
   @override
   List<Object> get props => null;
 

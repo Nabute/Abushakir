@@ -1,11 +1,10 @@
-///
 part of abushakir;
 
 abstract class EDT extends Equatable {
   @override
   List<Object> get props => [];
 
-//  // Getters
+  /// Properties
   int get year;
 
   int get month;
@@ -23,6 +22,8 @@ abstract class EDT extends Equatable {
   int get second;
 
   int get millisecond;
+
+  /// Methods
 
   String toString();
 
@@ -46,6 +47,15 @@ abstract class EDT extends Equatable {
 abstract class Calendar extends Equatable {
   @override
   List<Object> get props => [];
+
+  /// Prooperties
+  int get year;
+
+  int get month;
+
+  int get day;
+
+  String get monthName;
 
   monthDays();
 
