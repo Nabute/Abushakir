@@ -1,6 +1,6 @@
-/// Copyright (c) 2012 ETC or 2020 GC, Nabute and Nahom. All rights reserved.
-/// Use of this source code is governed by a MIT license that can be found
-/// in the LICENSE file.
+// Copyright (c) 2012 ETC or 2020 GC, Nabute and Nahom. All rights reserved.
+// Use of this source code is governed by a MIT license that can be found
+// in the LICENSE file.
 
 /**
  * Abushakir (Ge'ez: Bahire Hasab) is an arabic word that can be defined as a time-tracking method,
