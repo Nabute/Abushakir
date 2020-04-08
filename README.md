@@ -1,16 +1,18 @@
 # Abushakir (ባሕረ ሃሳብ)
 
-<!--- These are examples. See https://shields.io for others or to customize this set of shields. You might want to include dependencies, project status and licence info here --->
-<!---![GitHub repo size](https://img.shields.io/github/repo-size/Nabute/Abushakir)--->
-<!---![GitHub contributors](https://img.shields.io/github/contributors/Nabute/Abushakir)--->
-<!---![GitHub stars](https://img.shields.io/github/stars/Nabute/Abushakir?style=social)--->
-<!---![GitHub forks](https://img.shields.io/github/forks/Nabute/Abushakir?style=social)--->
-<!---![Twitter Follow](https://img.shields.io/twitter/follow/danny_nigusse?style=social)--->
+The words Bahire Hasab originate from the ancient language of Ge'ez, ( Arabic: Abu Shakir) is a
+time-tracking method, devised by the 12th pope of Alexandria, Pope St. Dimitri.
 
-Abushakir is a package that allows developers to implement ethiopian calendar system and DateTime System in their application(s)`.
+## What does it mean?
 
-This package is implemented using the [UNIX EPOCH](https://en.wikipedia.org/wiki/Unix_time) which means it's not a conversion of any other calendar system into
-ethiopian, for instance, Gregorian Calendar into Ethiopian.
+"Bahire Hasab /'bəhrɛ həsəb'/  " simply means "An age with a descriptive and chronological number". In some books it can also be found as "Hasabe Bahir", in a sense giving time an analogy, resembling a sea.
+
+This package allows developers to implement Ethiopian Calendar and Datetime System in their application(s)`.
+
+This package is implemented using the [UNIX EPOCH](https://en.wikipedia.org/wiki/Unix_time) which
+means it's not a conversion of any other calendar system into Ethiopian, for instance, Gregorian Calendar.
+
+Unix Epoch is measured using milliseconds since 01 Jan, 1970 UTC. In unix epoch leap seconds are ignored.
 
 ## Prerequisites
 
@@ -38,44 +40,56 @@ import 'package:abushakir/abushakir.dart';
 ## Example
 
 ```dart
+   /**
+   * Ethiopian Datetime Module [EtDatetime]
+   */
+  EtDatetime now = new EtDatetime.now(); // => 2012-07-28 17:18:31.466
+  print(now.date); // => {year: 2012, month: 7, day: 28}
+  print(now.time); // => {h: 17, m: 18, s: 31}
 
-// Ethiopain Date and Time
-EtDatetime aMoment = EtDatetime.parse("2011-13-06 02:15:22");
-print("Year: ${aMoment.year}");
-print("Month: ${aMoment.month}");
-print("Day: ${aMoment.day}");
-print("Hour: ${aMoment.hour}");
-print("Minutes: ${aMoment.minute}");
-print("Seconds: ${aMoment.second}");
-print("MilliSeconds: ${aMoment.millisecond}");
-print("To String: ${aMoment.toString()}");
-print("To JSON: ${aMoment.toJson()}");
-print("To ISO8601String Format: ${aMoment.toIso8601String()}");
-print("The Month is ${aMoment.monthGeez}");
+  EtDatetime covidFirstConfirmed = new EtDatetime(year: 2012, month: 7, day: 4);
+  EtDatetime covidFirstConfirmedEpoch =
+      new EtDatetime.fromMillisecondsSinceEpoch(covidFirstConfirmed.moment);
 
-/// OUTPUT
-/*
-* Year: 2011
-* Month: 13
-* Day: 6
-* Hour: 14
-* Minutes: 15
-* Seconds: 22
-* MilliSeconds: MilliSeconds: 0
-* To String: 2011-13-06 14:15:22.000
-* To JSON: {"year":"2011","month":"13","date":"06","hour":"14","min":"15","sec":"22","ms":"000"}
-* To ISO8601String Format: 2011-13-06T14:15:22.000
-* The Month is ጷጉሜን
-*/
+  EtDatetime covidFirstDeath = EtDatetime.parse("2012-07-26 23:00:00");
 
-/// Ethiopian Calendar
-ETC et = new ETC(year: aMoment.year, month: aMoment.month);
+  /// Comparison of two EtDatetime Instances
+  Duration daysWithOutDeath = covidFirstConfirmed.difference(covidFirstDeath);
 
-/// OUTPUT
-/*
-*Days in the month 13 of 2011:= ([2011, 13, 1, 4], [2011, 13, 2, 5], [2011, 13, 3, 6], ..., [2011, 13, 5, 1], [2011, 13, 6, 2])
-*/
+  assert(daysWithOutDeath.inDays == -22, true); // 22 days
+
+  assert(covidFirstDeath.isAfter(covidFirstConfirmed), true);
+
+  assert(covidFirstDeath.isBefore(now), true);
+
+  assert(covidFirstConfirmed.isAtSameMomentAs(covidFirstConfirmedEpoch), true);
+
+  /**
+   * Ethiopian Calendar Module [ETC]
+   */
+  ETC ethiopianCalendar = new ETC(year: 2012, month: 7, day: 4);
+
+  ///
+  print(ethiopianCalendar.monthDays()); // Iterable Object of the given month
+  print(ethiopianCalendar.monthDays().toList()[0]); // => [2012, 7, 1, 1]
+  // [year, month, dateNumber, dateNameIndex], Monday as First weekday
+
+  print(ethiopianCalendar.nextMonth); // => ETC instance of nextMonth, same year
+  print(ethiopianCalendar.prevYear); // => ETC instance of prevYear, same month
+
+  /**
+   * Bahire Hasab Module [BahireHasab]
+   */
+  BahireHasab bh = BahireHasab(year: 2011);
+//  BahireHasab bh = BahireHasab(); // Get's the current year
+
+  print(bh.getEvangelist(returnName: true)); // => ሉቃስ
+
+  print(bh.getSingleBealOrTsom("ትንሳኤ")); // {month: ሚያዝያ, date: 20}
+
+  bh.allAtswamat; // => List of All fasting and Movable holidays
 ```
+For further implementation example see [this flutter application](https://github.com/Nabute/ethiopian_calendar)
 
 <!---Add run commands and examples you think users will find useful. Provide an options reference for bonus points!--->
 

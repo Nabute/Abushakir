@@ -214,47 +214,47 @@ void main() {
     });
 
     // getSingleBealOrTsom
-//    test("Testing 'ነነዌ' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ነነዌ"), {'month': 'የካቲት', 'date': 11});
-//    });
-//    test("Testing 'ዓቢይ ጾም' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ዓቢይ ጾም"), {'month': 'የካቲት', 'date': 25});
-//    });
-//
-//    test("Testing 'ደብረ ዘይት' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ደብረ ዘይት"), {'month': 'መጋቢት', 'date': 22});
-//    });
-//
-//    test("Testing 'ሆሣዕና' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ሆሣዕና"), {'month': 'ሚያዝያ', 'date': 13});
-//    });
-//
-//    test("Testing 'ስቅለት' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ስቅለት"), {'month': 'ሚያዝያ', 'date': 18});
-//    });
-//
-//    test("Testing 'ትንሳኤ' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ትንሳኤ"), {'month': 'ሚያዝያ', 'date': 20});
-//    });
-//
-//    test("Testing 'ርክበ ካህናት' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ርክበ ካህናት"), {'month': 'ግንቦት', 'date': 14});
-//    });
-//
-//    test("Testing 'ዕርገት' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ዕርገት"), {'month': 'ግንቦት', 'date': 29});
-//    });
-//
-//    test("Testing 'ጰራቅሊጦስ' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ጰራቅሊጦስ"), {'month': 'ሰኔ', 'date': 9});
-//    });
-//
-//    test("Testing 'ጾመ ሐዋርያት' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ጾመ ሐዋርያት"), {'month': 'ሰኔ', 'date': 10});
-//    });
-//
-//    test("Testing 'ጾመ ድህነት' on getSingleBealOrTsom", () {
-//      expect(bh.getSingleBealOrTsom("ጾመ ድህነት"), {'month': 'ሰኔ', 'date': 12});
-//    });
+    test("Testing 'ነነዌ' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ነነዌ"), {'month': 'የካቲት', 'date': 11});
+    });
+    test("Testing 'ዓቢይ ጾም' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ዓቢይ ጾም"), {'month': 'የካቲት', 'date': 25});
+    });
+
+    test("Testing 'ደብረ ዘይት' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ደብረ ዘይት"), {'month': 'መጋቢት', 'date': 22});
+    });
+
+    test("Testing 'ሆሣዕና' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ሆሣዕና"), {'month': 'ሚያዝያ', 'date': 13});
+    });
+
+    test("Testing 'ስቅለት' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ስቅለት"), {'month': 'ሚያዝያ', 'date': 18});
+    });
+
+    test("Testing 'ትንሳኤ' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ትንሳኤ"), {'month': 'ሚያዝያ', 'date': 20});
+    });
+
+    test("Testing 'ርክበ ካህናት' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ርክበ ካህናት"), {'month': 'ግንቦት', 'date': 14});
+    });
+
+    test("Testing 'ዕርገት' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ዕርገት"), {'month': 'ግንቦት', 'date': 29});
+    });
+
+    test("Testing 'ጰራቅሊጦስ' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ጰራቅሊጦስ"), {'month': 'ሰኔ', 'date': 9});
+    });
+
+    test("Testing 'ጾመ ሐዋርያት' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ጾመ ሐዋርያት"), {'month': 'ሰኔ', 'date': 10});
+    });
+
+    test("Testing 'ጾመ ድህነት' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ጾመ ድህነት"), {'month': 'ሰኔ', 'date': 12});
+    });
   });
 }
