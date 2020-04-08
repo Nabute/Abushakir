@@ -169,7 +169,6 @@ void main() {
   group('Testing functions', () {
     EtDatetime ec;
     setUp(() {
-      // TODO: check if all constructors return same epoch.
 //      ec = EtDatetime.now();
       ec = EtDatetime(year: 2012);
     });

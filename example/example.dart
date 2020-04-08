@@ -9,9 +9,7 @@
 import 'package:abushakir/abushakir.dart';
 
 void main() {
-  /**
-   * Ethiopian Datetime Module [EtDatetime]
-   */
+  /// Ethiopian Datetime Module [EtDatetime]
   EtDatetime now = new EtDatetime.now(); // => 2012-07-28 17:18:31.466
   print(now.date); // => {year: 2012, month: 7, day: 28}
   print(now.time); // => {h: 17, m: 18, s: 31}
@@ -33,22 +31,19 @@ void main() {
 
   assert(covidFirstConfirmed.isAtSameMomentAs(covidFirstConfirmedEpoch), true);
 
-  /**
-   * Ethiopian Calendar Module [ETC]
-   */
-  ETC ethiopianCalendar = new ETC(year: 2012, month: 7, day: 4);
+  /// Ethiopian Calendar Module [ETC]
+  ETC ethiopianCalendar = new ETC(year: 2011, month: 13, day: 4);
 
   ///
-  print(ethiopianCalendar.monthDays()); // Iterable Object of the given month
+  print(ethiopianCalendar.monthDays(
+      geezDay: true, weekDayName: true)); // Iterable Object of the given month
   print(ethiopianCalendar.monthDays().toList()[0]); // => [2012, 7, 1, 1]
   // [year, month, dateNumber, dateNameIndex], Monday as First weekday
 
   print(ethiopianCalendar.nextMonth); // => ETC instance of nextMonth, same year
   print(ethiopianCalendar.prevYear); // => ETC instance of prevYear, same month
 
-  /**
-   * Bahire Hasab Module [BahireHasab]
-   */
+  /// Bahire Hasab Module [BahireHasab]
   BahireHasab bh = BahireHasab(year: 2011);
 //  BahireHasab bh = BahireHasab(); // Get's the current year
 

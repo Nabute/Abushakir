@@ -1,10 +1,10 @@
 part of abushakir;
 
+/// Interface for Ethiopian Data and Time types.
 abstract class EDT extends Equatable {
   @override
   List<Object> get props => [];
 
-  /// Properties
   int get year;
 
   int get month;
@@ -24,7 +24,7 @@ abstract class EDT extends Equatable {
   int get millisecond;
 
   /// Methods
-
+  @override
   String toString();
 
   String toJson();
@@ -44,11 +44,12 @@ abstract class EDT extends Equatable {
   EtDatetime subtract(Duration duration);
 }
 
+/// Interface for Ethiopian Calendar types.
 abstract class Calendar extends Equatable {
   @override
   List<Object> get props => [];
 
-  /// Prooperties
+  /// Properties
   int get year;
 
   int get month;
@@ -57,7 +58,7 @@ abstract class Calendar extends Equatable {
 
   String get monthName;
 
-  monthDays();
+  Iterable<List<dynamic>> monthDays();
 
-  yearDays();
+  Iterable<Iterable<List<dynamic>>> yearDays();
 }
