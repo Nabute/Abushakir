@@ -112,7 +112,7 @@ class EtDatetime extends EDT {
    * ```
    */
   EtDatetime(
-      {@required int year,
+      {int year,
       int month = 1,
       int day = 1,
       int hour = 0,

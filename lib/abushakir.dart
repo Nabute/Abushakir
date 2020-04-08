@@ -77,7 +77,6 @@ library abushakir;
 
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 part 'src/etDateTime.dart';
 
