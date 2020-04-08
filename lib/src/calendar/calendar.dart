@@ -79,6 +79,7 @@ class ETC implements Calendar {
 
   /// Getter property that return year of the current [ETC] instance.
   @override
+
   int get year => _date.year;
 
   /// Getter property that return month of the current [ETC] instance.

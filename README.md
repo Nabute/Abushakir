@@ -17,9 +17,8 @@ Unix Epoch is measured using milliseconds since 01 Jan, 1970 UTC. In unix epoch 
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
-<!--- These are just example requirements. Add, duplicate or remove as required --->
-* ```equatable= ^1.1.0```
 
+* ```equatable= ^1.1.0```
 
 
 ## Getting started
@@ -70,8 +69,8 @@ import 'package:abushakir/abushakir.dart';
   ETC ethiopianCalendar = new ETC(year: 2012, month: 7, day: 4);
 
   ///
-  print(ethiopianCalendar.monthDays()); // Iterable Object of the given month
-  print(ethiopianCalendar.monthDays().toList()[0]); // => [2012, 7, 1, 1]
+  print(ethiopianCalendar.monthDays(geezDay: true, weekDayName:true)); // Iterable Object of the given month
+  print(ethiopianCalendar.monthDays().toList()[0]); // => [2012, 7, ፩, አርብ]
   // [year, month, dateNumber, dateNameIndex], Monday as First weekday
 
   print(ethiopianCalendar.nextMonth); // => ETC instance of nextMonth, same year
@@ -91,19 +90,6 @@ import 'package:abushakir/abushakir.dart';
 ```
 For further implementation example see [this flutter application](https://github.com/Nabute/ethiopian_calendar)
 
-<!---Add run commands and examples you think users will find useful. Provide an options reference for bonus points!--->
-
-## Contributing to <Abushakir>
-<!--- If your README is long or you have some specific process or steps you want contributors to follow, consider creating a separate CONTRIBUTING.md file--->
-To contribute to <Abushakir>, follow these steps:
-
-1. Fork this repository.
-2. Create a branch: `git checkout -b <branch_name>`.
-3. Make your changes and commit them: `git commit -m '<commit_message>'`
-4. Push to the original branch: `git push origin Abushakir/<location>`
-5. Create the pull request.
-
-Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
 ## Contributors
 

@@ -78,6 +78,7 @@ class BahireHasab extends Equatable {
   /// if returnName is not provided or is false, as the default, this function
   /// will return index of the apostle from evangelists list.
   ///
+
   String getEvangelist({bool returnName = false}) {
     var evangelist;
     evangelist = ameteAlem % 4;
@@ -101,6 +102,7 @@ class BahireHasab extends Equatable {
   /// returnName=true otherwise it will return the index of the weekday
   /// from list of weekdays.
   ///
+
   String getMeskeremOne({bool returnName = false}) {
     var rabeet = ameteAlem ~/ 4;
     var result = (ameteAlem + rabeet) % 7;

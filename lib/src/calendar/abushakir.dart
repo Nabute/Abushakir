@@ -1,6 +1,7 @@
 part of abushakir;
 
 /// Interface for Ethiopian Data and Time types.
+
 abstract class EDT extends Equatable {
   @override
   List<Object> get props => [];

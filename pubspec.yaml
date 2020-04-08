@@ -1,8 +1,14 @@
 name: abushakir
-description: A Dart Package for Ethiopian Calendar (ባሕረ ሃሳብ).
-version: 0.0.1
+description: A Dart Package for Ethiopian Calendar system (ባሕረ ሃሳብ).
+  This package can hep you integrate Ethiopian calendar system into your
+  dart or flutter application. It also includes, Ethiopian Date and Time
+  reckoning system and help you to get all the movable fastings with respective holidays.
+
+version: 0.1.0
 author: Nabute Nigusse nabute925@gmail.com; Nahom 4nahom@gmail.com
-homepage:
+homepage: https://github.com/Nabute/Abushakir
+documentation: https://github.com/Nabute/Abushakir/docs
+
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
