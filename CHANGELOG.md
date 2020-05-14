@@ -1,4 +1,4 @@
-## [0.0.2] - 2020-14-5
+## [0.1.2] - 2020-14-5
 
 * Code Comment refactored for better score
 * Documentation restructured

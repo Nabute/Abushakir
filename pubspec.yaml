@@ -3,7 +3,7 @@ description: A Dart/ Flutter Package for Ethiopian calendar system (ባሕረ �
   It can help you integrate Ethiopian DateTime, calendar
   and all the movable fastings with respective holidays.
 
-version: 0.0.2
+version: 0.1.2
 homepage: https://github.com/Nabute/Abushakir
 
 
