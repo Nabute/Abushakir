@@ -1,4 +1,6 @@
-# Abushakir (ባሕረ ሃሳብ)
+# Abushakir (ባሕረ ሃሳብ) 
+[![GitHub stars](https://img.shields.io/github/stars/Nabute/Abushakir?style=social)](https://github.com/Nabute/Abushakir/stargazers)       [![GitHub forks](https://img.shields.io/github/forks/Nabute/Abushakir?style=social)](https://github.com/Nabute/Abushakir/network)
+[![GitHub license](https://img.shields.io/github/license/Nabute/Abushakir)](https://github.com/Nabute/Abushakir/blob/master/LICENSE)
 
 The words Bahire Hasab originate from the ancient language of Ge'ez, ( Arabic: Abu Shakir) is a
 time-tracking method, devised by the 12th pope of Alexandria, Pope St. Dimitri.
