@@ -1,9 +1,9 @@
 part of abushakir;
 
-/**
- * Interface for Ethiopian Data and Time types.
- *
- */
+///
+/// Interface for Ethiopian Data and Time types.
+///
+///
 abstract class EDT extends Equatable {
   @override
   List<Object> get props => [];
@@ -47,10 +47,10 @@ abstract class EDT extends Equatable {
   EtDatetime subtract(Duration duration);
 }
 
-/**
-* Interface for Ethiopian Calendar types.
-*
-*/
+///
+/// Interface for Ethiopian Calendar types.
+///
+///
 abstract class Calendar extends Equatable {
   @override
   List<Object> get props => [];
