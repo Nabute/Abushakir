@@ -17,7 +17,7 @@ part of abushakir;
 /// year, using one of the constructors.
 ///
 /// ```
-/// ETC etc = new ETC(year: 2012, month: 7, day: 4);
+/// ETC etc = ETC(year: 2012, month: 7, day: 4);
 /// ```
 ///
 /// or
@@ -64,7 +64,7 @@ class ETC implements Calendar {
   ///
   ///
   /// ```
-  /// var etc = new ETC(year: 2011, month: 13, day: 1);
+  /// var etc = ETC(year: 2011, month: 13, day: 1);
   /// ```
   ///
   ///
@@ -73,7 +73,7 @@ class ETC implements Calendar {
   ///
   ///
   ETC({int year, int month = 1, int day = 1})
-      : _date = new EtDatetime(year: year, month: month, day: day);
+      : _date = EtDatetime(year: year, month: month, day: day);
 
   ///
   /// Construct an [ETC] instance of the day the object is created.
@@ -83,7 +83,7 @@ class ETC implements Calendar {
   /// ```
   ///
 
-  ETC.today() : _date = new EtDatetime.now();
+  ETC.today() : _date = EtDatetime.now();
 
   ///
   /// Getter property that return year of the current [ETC] instance.
@@ -124,24 +124,24 @@ class ETC implements Calendar {
   ///
   /// Returning [ETC] instance of same year with a month next to this.
   ///
-  ETC get nextMonth => new ETC(year: _date.year, month: _date.month + 1);
+  ETC get nextMonth => ETC(year: _date.year, month: _date.month + 1);
 
   ///
   /// Returning [ETC] instance of same year with a month previous to this.
   ///
-  ETC get prevMonth => new ETC(
+  ETC get prevMonth => ETC(
       year: _date.month == 1 ? _date.year - 1 : _date.year,
       month: _date.month - 1 == 0 ? 13 : _date.month - 1);
 
   ///
   /// Returning [ETC] instance of same month with a year next to this.
   ///
-  ETC get nextYear => new ETC(year: _date.year + 1, month: _date.month);
+  ETC get nextYear => ETC(year: _date.year + 1, month: _date.month);
 
   ///
   /// Returning [ETC] instance of same month with a year previous to this.
   ///
-  ETC get prevYear => new ETC(year: _date.year - 1, month: _date.month);
+  ETC get prevYear => ETC(year: _date.year - 1, month: _date.month);
 
   ///
   /// Returns month range and monthStartDay as an array.
@@ -213,7 +213,7 @@ class ETC implements Calendar {
   ///
   Iterable<List<dynamic>> _monthDays(int year, int month,
       {bool geezDay: false, bool weekDayName: false}) sync* {
-    EtDatetime yr = new EtDatetime(year: year, month: month);
+    EtDatetime yr = EtDatetime(year: year, month: month);
     int monthBeginning = yr.weekday;
     int daysInMonth = yr.month == 13 ? yr.isLeap ? 6 : 5 : 30;
     for (int i = 0; i < daysInMonth; i++) {

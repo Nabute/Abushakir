@@ -632,12 +632,13 @@ class EtDatetime extends EDT {
   /// (when this [isAfter] [other]).
   ///
   int compareTo(EtDatetime other) {
-    if (this.isBefore(other))
+    if (this.isBefore(other)) {
       return -1;
-    else if (this.isAtSameMomentAs(other))
+    } else if (this.isAtSameMomentAs(other)) {
       return 0;
-    else
+    } else {
       return 1;
+    }
   }
 
   ///

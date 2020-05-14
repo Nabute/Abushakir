@@ -49,7 +49,7 @@ part of abushakir;
 class BahireHasab extends Equatable {
   int _year;
 
-  BahireHasab({int year: -1}) {
+  BahireHasab({int year = -1}) {
     year < 0 ? _year = EtDatetime.now().year : _year = year;
   }
 
@@ -147,8 +147,9 @@ class BahireHasab extends Equatable {
   int yebealeMetkihWer() {
     if (metkih > 14) {
       return 1;
-    } else
+    } else {
       return 2;
+    }
   }
 
   ///
@@ -221,8 +222,9 @@ class BahireHasab extends Equatable {
   bool isMovableHoliday(String holidayName) {
     if (_yebealTewsak.keys.contains(holidayName)) {
       return true;
-    } else
+    } else {
       throw BealNameException;
+    }
   }
 
   ///
@@ -236,23 +238,24 @@ class BahireHasab extends Equatable {
   /// ```
   ///
   Map<String, dynamic> getSingleBealOrTsom(String name) {
+    Map<String, dynamic> a;
     try {
       bool status = isMovableHoliday(name);
       if (status) {
         Map<String, dynamic> mebajaHamer = nenewe;
         int target = _yebealTewsak[name];
-        Map<String, dynamic> a = {
+        a = {
           "month": _months[_months.indexOf(mebajaHamer['month']) +
               ((mebajaHamer['date'] + target) ~/ 30)],
           "date": (mebajaHamer['date'] + target) % 30 == 0
               ? 30
               : (mebajaHamer['date'] + target) % 30
         };
-        return a;
       }
     } catch (e) {
       print(e.toString());
     }
+    return a;
   }
 
   // OVERRIDES
