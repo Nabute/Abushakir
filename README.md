@@ -30,7 +30,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  abushakir: "^0.0.1"
+  abushakir: "^0.1.3"
 ```
 
 In your library add the following import:
