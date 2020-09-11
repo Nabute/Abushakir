@@ -17,7 +17,6 @@ class WeekdayNumberException implements Exception {
 }
 
 class EthiopicNumberException implements Exception {
-
   final message;
 
   EthiopicNumberException([this.message]);

@@ -181,7 +181,7 @@ class ETC implements Calendar {
   /// ```
   ///
   Iterable<List<dynamic>> monthDays(
-      {bool geezDay= false, bool weekDayName= false}) sync* {
+      {bool geezDay = false, bool weekDayName = false}) sync* {
     int monthBeginning = _monthRange()[0];
     int daysInMonth = _monthRange()[1];
     for (int i = 0; i < daysInMonth; i++) {
