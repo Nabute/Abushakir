@@ -1,3 +1,8 @@
+## [0.1.4] - 2020-14-5
+
+* Arabic numeral into ethiopic converter utility added
+
+
 ## [0.1.3] - 2020-14-5
 
 * Code Comment refactored for better score

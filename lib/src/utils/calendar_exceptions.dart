@@ -15,3 +15,15 @@ class MonthNumberException implements Exception {
 class WeekdayNumberException implements Exception {
   String message() => 'Weekday number should be between 0 and 6.';
 }
+
+class EthiopicNumberException implements Exception {
+
+  final message;
+
+  EthiopicNumberException([this.message]);
+
+  String toString() {
+    if (message == null) return "Exception";
+    return "Exception: $message";
+  }
+}

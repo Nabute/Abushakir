@@ -89,6 +89,16 @@ import 'package:abushakir/abushakir.dart';
   print(bh.getSingleBealOrTsom("ትንሳኤ")); // {month: ሚያዝያ, date: 20}
 
   bh.allAtswamat; // => List of All fasting and Movable holidays
+
+  /**
+   * Arabic or English number (1,2,3...) to Ethiopic or GE'EZ (፩, ፪, ፫...) number Converter
+   */
+
+  var input= [1, 10, 15, 20, 25, 78, 105, 333, 450, 600, 1000, 1001, 1010, 1056, 1200, 2013, 9999, 10000];
+
+  for (var arabic in input) {
+     print(ConvertToEthiopic(arabic)); // [፩, ፲, ፲፭, ፳, ፳፭, ፸፰, ፻፭, ፫፻፴፫, ፬፻፶, ፮፻, ፲፻, ፲፻፩, ፲፻፲, ፲፻፶፮, ፲፪፻, ፳፻፲፫, ፺፱፻፺፱, ፻፻]
+  }
 ```
 For further implementation example see [this flutter application](https://github.com/Nabute/ethiopian_calendar)
 

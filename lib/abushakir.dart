@@ -86,6 +86,8 @@ part 'src/utils/constants.dart';
 
 part 'src/utils/calendar_exceptions.dart';
 
+part 'src/utils/convertor.dart';
+
 part 'src/calendar/calendar.dart';
 
 part 'src/calendar/abushakir.dart';

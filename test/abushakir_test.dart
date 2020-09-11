@@ -257,4 +257,56 @@ void main() {
       expect(bh.getSingleBealOrTsom("ጾመ ድህነት"), {'month': 'ሰኔ', 'date': 12});
     });
   });
+
+  group('Number Convertor', () {
+    List<int> input;
+    List<String> output;
+    setUp(() {
+      input = [
+        1,
+        10,
+        15,
+        20,
+        25,
+        78,
+        105,
+        333,
+        450,
+        600,
+        1000,
+        1001,
+        1010,
+        1056,
+        1200,
+        2013,
+        9999,
+        10000
+      ];
+      output = [
+        "፩",
+        "፲",
+        "፲፭",
+        "፳",
+        "፳፭",
+        "፸፰",
+        "፻፭",
+        "፫፻፴፫",
+        "፬፻፶",
+        "፮፻",
+        "፲፻",
+        "፲፻፩",
+        "፲፻፲",
+        "፲፻፶፮",
+        "፲፪፻",
+        "፳፻፲፫",
+        "፺፱፻፺፱",
+        "፻፻"
+      ];
+    });
+    test('Testing Convertor', () {
+      for (var i = 0; i < input.length; i++) {
+        expect(ConvertToEthiopic(input[i]), output[i]);
+      }
+    });
+  });
 }
