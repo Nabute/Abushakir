@@ -16,6 +16,9 @@ means it's not a conversion of any other calendar system into Ethiopian, for ins
 
 Unix Epoch is measured using milliseconds since 01 Jan, 1970 UTC. In unix epoch leap seconds are ignored.
 
+## Documentation
+[Abushakir](https://pub.dev/documentation/abushakir/latest/)
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
@@ -30,7 +33,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  abushakir: "^0.1.3"
+  abushakir: "^0.1.4"
 ```
 
 In your library add the following import:
