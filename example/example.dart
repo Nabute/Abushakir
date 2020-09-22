@@ -93,17 +93,23 @@ void main() {
   Conversion from any calendar (in this case, Gregorian) into Ethiopian Calendar.
    */
   DateTime gregorian1 = new DateTime.now();
-  EtDatetime ethiopian1 = new EtDatetime.fromMillisecondsSinceEpoch(gregorian1.millisecondsSinceEpoch);
-  print("*******************   Gregorian into Ethiopian   ***********************");
-  print("Gregorian := ${gregorian1.toString()} is equivalent to Ethiopian ${ethiopian1.toString()}");
+  EtDatetime ethiopian1 = new EtDatetime.fromMillisecondsSinceEpoch(
+      gregorian1.millisecondsSinceEpoch);
+  print(
+      "*******************   Gregorian into Ethiopian   ***********************");
+  print(
+      "Gregorian := ${gregorian1.toString()} is equivalent to Ethiopian ${ethiopian1.toString()}");
 
   /*
    Conversion from Ethiopian Calendar into any calendar (in this case, Gregorian).
    */
   EtDatetime ethiopian = new EtDatetime.now();
-  DateTime gregorian = new DateTime.fromMillisecondsSinceEpoch(ethiopian.moment);
+  DateTime gregorian =
+      new DateTime.fromMillisecondsSinceEpoch(ethiopian.moment);
   print("Ethiopian EPOCH := ${ethiopian.moment}");
   print("Gregorian EPOCH := ${gregorian.millisecondsSinceEpoch}");
-  print("*******************   Ethiopian into Gregorian   ***********************");
-  print("Ethiopian ${ethiopian.toString()} is equivalent to Gregorian := ${gregorian.toString()}");
+  print(
+      "*******************   Ethiopian into Gregorian   ***********************");
+  print(
+      "Ethiopian ${ethiopian.toString()} is equivalent to Gregorian := ${gregorian.toString()}");
 }
