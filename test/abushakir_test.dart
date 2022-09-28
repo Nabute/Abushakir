@@ -4,7 +4,7 @@ import 'package:abushakir/abushakir.dart';
 
 void main() {
   group('Parameterized Constructors :', () {
-    EtDatetime ec;
+    late EtDatetime ec;
 
     setUp(() {
       ec = EtDatetime(year: 2012, month: 07, day: 07);
@@ -28,7 +28,7 @@ void main() {
   });
 
   group('Parameterized Constructors (year only) :', () {
-    EtDatetime ec;
+    late EtDatetime ec;
 
     setUp(() {
       ec = EtDatetime(year: 2010);
@@ -48,7 +48,7 @@ void main() {
   });
 
   group('Named Constructors (.parse) :', () {
-    EtDatetime ec;
+    late EtDatetime ec;
 
     setUp(() {
       ec = EtDatetime.parse("2012-07-07 15:12:17.500");
@@ -92,7 +92,7 @@ void main() {
   });
 
   group('Named Constructors (.now) :', () {
-    EtDatetime ec;
+    late EtDatetime ec;
 
     setUp(() {
       ec = EtDatetime.now();
@@ -107,7 +107,7 @@ void main() {
   });
 
   group('Named Constructors (.fromMillisecondsSinceEpoch) :', () {
-    EtDatetime ec;
+    late EtDatetime ec;
 
     // 1585731446021 == 2012-07-23 08:57:26.021
     setUp(() {
@@ -152,7 +152,7 @@ void main() {
   });
 
   group('Named Constructors (.now) :', () {
-    EtDatetime ec;
+    late EtDatetime ec;
 
     setUp(() {
       ec = EtDatetime.now();
@@ -167,7 +167,7 @@ void main() {
   });
 
   group('Testing functions', () {
-    EtDatetime ec;
+    late EtDatetime ec;
     setUp(() {
       // TODO: check if all constructors return same epoch.
 //      ec = EtDatetime.now();
@@ -195,7 +195,7 @@ void main() {
     });
   });
   group('BahireHasab :', () {
-    BahireHasab bh;
+    late BahireHasab bh;
 
     setUp(() {
       bh = BahireHasab(year: 2011);
@@ -259,8 +259,8 @@ void main() {
   });
 
   group('Number Convertor', () {
-    List<int> input;
-    List<String> output;
+    late List<int> input;
+    late List<String> output;
     setUp(() {
       input = [
         1,

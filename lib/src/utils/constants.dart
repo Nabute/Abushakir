@@ -82,7 +82,7 @@ const List<String> _dayNumbers = [
 ];
 
 // Month constants that are returned by the [month] getter.
-const List<String> _months = [
+const List<String?> _months = [
   "መስከረም",
   "ጥቅምት",
   "ኅዳር",
