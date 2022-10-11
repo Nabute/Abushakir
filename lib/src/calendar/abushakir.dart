@@ -12,7 +12,7 @@ abstract class EDT extends Equatable {
 
   int get month;
 
-  String get monthGeez;
+  String? get monthGeez;
 
   int get day;
 
@@ -62,7 +62,7 @@ abstract class Calendar extends Equatable {
 
   int get day;
 
-  String get monthName;
+  String? get monthName;
 
   monthDays();
 

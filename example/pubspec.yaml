@@ -5,12 +5,12 @@ author: Nabute Nigusse nabute925@gmail.com;
 homepage:
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  equatable: ^1.1.0
+  equatable: ^2.0.5
   abushakir:
     path: ../
 

@@ -72,7 +72,7 @@ class ETC implements Calendar {
   ///  day of the first month of the given year.
   ///
   ///
-  ETC({int year, int month = 1, int day = 1})
+  ETC({required int year, int month = 1, int day = 1})
       : _date = EtDatetime(year: year, month: month, day: day);
 
   ///
@@ -119,7 +119,7 @@ class ETC implements Calendar {
   /// Getter property that return the month name for the current [ETC]
   /// instance.
   ///
-  String get monthName => _date.monthGeez;
+  String? get monthName => _date.monthGeez;
 
   ///
   /// Returning [ETC] instance of same year with a month next to this.

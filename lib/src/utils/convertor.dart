@@ -7,7 +7,7 @@ List<int> _divide(int denominator, int numinator) {
   return [numinator ~/ denominator, numinator % denominator];
 }
 
-String _convert_1_2_10_to_ethiopic(int num) {
+String? _convert_1_2_10_to_ethiopic(int num) {
   if (num < 1) {
     throw new EthiopicNumberException(
         "Zero (0) and Negative numbers doesn't exsit in Ethiopic numerals");
@@ -15,7 +15,7 @@ String _convert_1_2_10_to_ethiopic(int num) {
   return geezNumbers[num];
 }
 
-String _convert_11_2_100_to_ethiopic(int num) {
+String? _convert_11_2_100_to_ethiopic(int num) {
   if (num == 100) {
     return geezNumbers[num];
   } else {
@@ -42,7 +42,7 @@ String _convert_101_2_1000_to_ethiopic(int num) {
   return "${left}${right}";
 }
 
-String ConvertToEthiopic(int num) {
+String? ConvertToEthiopic(int num) {
   if (num.runtimeType != int) {
     throw new TypeError();
   }

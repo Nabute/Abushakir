@@ -47,7 +47,7 @@ part of abushakir;
 ///
 ///
 class BahireHasab extends Equatable {
-  int _year;
+  int? _year;
 
   BahireHasab({int year = -1}) {
     year < 0 ? _year = EtDatetime.now().year : _year = year;
@@ -101,7 +101,7 @@ class BahireHasab extends Equatable {
   /// provided.
   ///
   ///
-  int get ameteAlem => _ameteFida + this._year;
+  int get ameteAlem => _ameteFida + this._year!;
 
   ///
   /// Get year's first weekday of current year or the very first weekday that the
@@ -165,13 +165,13 @@ class BahireHasab extends Equatable {
     String meskerem1 = getMeskeremOne(returnName: true);
     int month = yebealeMetkihWer();
     int date;
-    int dayTewsak;
+    int? dayTewsak;
     _yeeletTewsak.forEach((el) => {
           if (el['key'] ==
               _weekdays[(_weekdays.indexOf(meskerem1) + metkih - 1) % 7])
             dayTewsak = el['value']
         });
-    String monthName = dayTewsak + metkih > 30 ? 'የካቲት' : 'ጥር';
+    String monthName = dayTewsak! + metkih > 30 ? 'የካቲት' : 'ጥር';
     if (month == 2) {
       // ጥቅምት
       monthName = 'የካቲት';
@@ -183,7 +183,7 @@ class BahireHasab extends Equatable {
               dayTewsak = el['value']
           });
     }
-    date = metkih + dayTewsak;
+    date = metkih + dayTewsak!;
     return {"month": monthName, "date": date % 30 == 0 ? 30 : date % 30};
   }
 
@@ -199,13 +199,13 @@ class BahireHasab extends Equatable {
   ///
   List get allAtswamat {
     Map<String, dynamic> mebajaHamer = nenewe;
-    List result = List();
+    List result = [];
     _yebealTewsak.forEach((beal, numOfDays) {
       result.add({
         "beal": beal,
         "day": {
           "month": _months[_months.indexOf(mebajaHamer['month']) +
-              (mebajaHamer['date'] + numOfDays) ~/ 30],
+              (mebajaHamer['date'] + numOfDays) ~/ 30 as int],
           "date": (mebajaHamer['date'] + numOfDays) % 30 == 0
               ? 30
               : (mebajaHamer['date'] + numOfDays) % 30
@@ -237,16 +237,16 @@ class BahireHasab extends Equatable {
   ///
   /// ```
   ///
-  Map<String, dynamic> getSingleBealOrTsom(String name) {
-    Map<String, dynamic> a;
+  Map<String, dynamic>? getSingleBealOrTsom(String name) {
+    Map<String, dynamic>? a;
     try {
       bool status = isMovableHoliday(name);
       if (status) {
         Map<String, dynamic> mebajaHamer = nenewe;
-        int target = _yebealTewsak[name];
+        int? target = _yebealTewsak[name];
         a = {
           "month": _months[_months.indexOf(mebajaHamer['month']) +
-              ((mebajaHamer['date'] + target) ~/ 30)],
+              ((mebajaHamer['date'] + target) ~/ 30) as int],
           "date": (mebajaHamer['date'] + target) % 30 == 0
               ? 30
               : (mebajaHamer['date'] + target) % 30
@@ -260,7 +260,7 @@ class BahireHasab extends Equatable {
 
   // OVERRIDES
   @override
-  List<Object> get props => [_year];
+  List<Object?> get props => [_year];
 
   @override
   bool get stringify => true;
