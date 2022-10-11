@@ -26,7 +26,7 @@ Unix Epoch is measured using milliseconds since 01 Jan, 1970 UTC. In unix epoch 
 
 Before you begin, ensure you have met the following requirements:
 
-* ```equatable= ^1.1.0```
+* ```equatable= ^2.0.5```
 
 
 ## Getting started
@@ -36,7 +36,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  abushakir: "^0.1.4"
+  abushakir: "^1.0.0"
 ```
 
 In your library add the following import:
@@ -141,7 +141,7 @@ Thanks to the following people who have contributed to this project:
 
 ## Contact
 
-If you want to contact me you can reach me at <daniel@ibrave.dev>.
+If you want to contact me you can reach me at <nabute925@gmail.com>.
 
 ## License
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->

@@ -1,9 +1,7 @@
 name: example
 description: An Example for EthiopianCalendar Package.
 version: 0.0.1
-author: Nabute Nigusse nabute925@gmail.com;
-homepage:
-
+publish_to: none
 environment:
   sdk: '>=2.12.0 <3.0.0'
 

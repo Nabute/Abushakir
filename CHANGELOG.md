@@ -1,3 +1,6 @@
+## [1.0.0] - 2022-12-10
+
+* Migrate to null safety.
 ## [0.1.4] - 2020-14-5
 
 * Arabic numeral into ethiopic converter utility added

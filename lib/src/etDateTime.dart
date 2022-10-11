@@ -123,7 +123,7 @@ class EtDatetime extends EDT {
       : fixed = _fixedFromEthiopic(year, month, day),
         moment =
             _dateToEpoch(year, month, day, hour, minute, second, millisecond) {
-    if (fixed == null) throw ArgumentError();
+    // if (fixed == null) throw ArgumentError();
   }
 
   ///
@@ -148,7 +148,7 @@ class EtDatetime extends EDT {
   EtDatetime.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch)
       : moment = millisecondsSinceEpoch,
         fixed = _fixedFromUnix(millisecondsSinceEpoch) {
-    if (fixed == null) throw ArgumentError();
+    // if (fixed == null) throw ArgumentError();
     if (millisecondsSinceEpoch.abs() > _maxMillisecondsSinceEpoch ||
         (millisecondsSinceEpoch.abs() == _maxMillisecondsSinceEpoch)) {
       throw ArgumentError(
@@ -240,9 +240,9 @@ class EtDatetime extends EDT {
       int value =
           _dateToEpoch(years, month, day, hour, minute, second, millisecond);
       int fixedValue = _fixedFromEthiopic(years, month, day);
-      if (value == null) {
-        throw FormatException("Time out of range", formattedString);
-      }
+      // if (value == null) {
+      //   throw FormatException("Time out of range", formattedString);
+      // }
       return EtDatetime._withValue(value, fixedValue);
     } else {
       throw FormatException("Invalid date format", formattedString);

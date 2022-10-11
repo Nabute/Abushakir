@@ -148,7 +148,14 @@ class ETC implements Calendar {
   ///
   List<int> _monthRange() {
     if (_date.month <= 1 && _date.month >= 13) throw MonthNumberException;
-    return [_date.weekday, _date.month == 13 ? _date.isLeap ? 6 : 5 : 30];
+    return [
+      _date.weekday,
+      _date.month == 13
+          ? _date.isLeap
+              ? 6
+              : 5
+          : 30
+    ];
   }
 
   ///
@@ -215,7 +222,11 @@ class ETC implements Calendar {
       {bool geezDay: false, bool weekDayName: false}) sync* {
     EtDatetime yr = EtDatetime(year: year, month: month);
     int monthBeginning = yr.weekday;
-    int daysInMonth = yr.month == 13 ? yr.isLeap ? 6 : 5 : 30;
+    int daysInMonth = yr.month == 13
+        ? yr.isLeap
+            ? 6
+            : 5
+        : 30;
     for (int i = 0; i < daysInMonth; i++) {
       if (geezDay) {
         yield [
