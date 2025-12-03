@@ -55,7 +55,7 @@ void main() {
 
   print(bh.getEvangelist(returnName: true)); // => ሉቃስ
 
-  print(bh.getSingleBealOrTsom("ትንሳኤ")); // {month: ሚያዝያ, date: 20}
+  print(bh.getSingleBealOrTsom("ትንሣኤ")); // {month: ሚያዝያ, date: 20}
 
   bh.allAtswamat; // => List of All fasting and Movable holidays
 

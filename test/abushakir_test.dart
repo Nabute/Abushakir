@@ -217,8 +217,8 @@ void main() {
     test("Testing 'ነነዌ' on getSingleBealOrTsom", () {
       expect(bh.getSingleBealOrTsom("ነነዌ"), {'month': 'የካቲት', 'date': 11});
     });
-    test("Testing 'ዓቢይ ጾም' on getSingleBealOrTsom", () {
-      expect(bh.getSingleBealOrTsom("ዓቢይ ጾም"), {'month': 'የካቲት', 'date': 25});
+    test("Testing 'ዐቢይ ጾም' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ዐቢይ ጾም"), {'month': 'የካቲት', 'date': 25});
     });
 
     test("Testing 'ደብረ ዘይት' on getSingleBealOrTsom", () {
@@ -233,8 +233,8 @@ void main() {
       expect(bh.getSingleBealOrTsom("ስቅለት"), {'month': 'ሚያዝያ', 'date': 18});
     });
 
-    test("Testing 'ትንሳኤ' on getSingleBealOrTsom", () {
-      expect(bh.getSingleBealOrTsom("ትንሳኤ"), {'month': 'ሚያዝያ', 'date': 20});
+    test("Testing 'ትንሣኤ' on getSingleBealOrTsom", () {
+      expect(bh.getSingleBealOrTsom("ትንሣኤ"), {'month': 'ሚያዝያ', 'date': 20});
     });
 
     test("Testing 'ርክበ ካህናት' on getSingleBealOrTsom", () {
