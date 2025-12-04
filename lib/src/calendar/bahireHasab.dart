@@ -193,7 +193,7 @@ class BahireHasab extends Equatable {
   ///
   /// ```
   ///
-  /// {beal: ትንሳኤ, day: {month: ሚያዝያ, date: 20}}
+  /// {beal: ትንሣኤ, day: {month: ሚያዝያ, date: 20}}
   ///
   /// ```
   ///
